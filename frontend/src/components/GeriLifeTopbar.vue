@@ -1,18 +1,22 @@
 <template>
-  <q-toolbar class="text-primary bg-grey-4">
-    <q-toolbar-title class="q-mr-md" shrink>
+  <q-toolbar class="bg-grey-4">
+    <q-toolbar-title
+      @click="$router.push({ path: '/' })"
+      class="pointer q-mr-md"
+      shrink
+    >
       <q-img
         width="30px"
         height="30px"
         src="~assets/gerilife-logo.png"
         alt=""
       />
-      GeriLife<sup>®</sup>
+      <span class="text-grey-7"> GeriLife<sup>®</sup></span>
     </q-toolbar-title>
 
     <q-btn
       @click="$router.push({ path: '/residents' })"
-      dense
+      class="text-grey-7"
       size="md"
       flat
       icon="fa fa-users"
@@ -23,7 +27,7 @@
     </q-btn>
     <q-btn
       @click="$router.push({ path: '/activities' })"
-      dense
+      class="text-grey-7"
       flat
       size="md"
       icon="fa fa-heartbeat"
@@ -34,7 +38,7 @@
     </q-btn>
     <q-btn
       @click="$router.push({ path: '/homes' })"
-      dense
+      class="text-grey-7"
       flat
       size="md"
       icon="fa fa-home"
@@ -49,3 +53,11 @@
 <script>
 export default {};
 </script>
+<style lang="scss" scoped>
+.bar-grey {
+  background-color: #e7e7e7;
+}
+.pointer {
+  cursor: pointer;
+}
+</style>

@@ -1,13 +1,15 @@
 <template>
   <q-page class="flex flex-center">
-    <img alt="Quasar logo" src="~assets/quasar-logo-full.svg" />
+    <front-page />
   </q-page>
 </template>
 
 <script>
+import FrontPage from "src/features/front-page/index.vue";
+
 export default {
   name: "PageIndex",
-
+  components: { FrontPage },
   async created() {
     const { data: cookieData } = await this.$axios.post("/users/login", {
       email: "mehtashailee21@gmail.com",

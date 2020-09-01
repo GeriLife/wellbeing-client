@@ -4,21 +4,36 @@
     v-on="$listeners"
     filled
     :value="value"
+    :use-chips="multiple === true"
     use-input
     input-debounce="0"
-    label="Residents"
+    :label="$i18n.t('activityForm-residentSelect-placeholder')"
     :options="options"
     @filter="filterFn"
-    style="width: 250px"
+    :multiple="multiple"
+    dropdown-icon="fa fa-chevron-down"
     behavior="menu"
-  />
+  >
+    <template v-slot:option="scope">
+      <q-item v-bind="scope.itemProps" v-on="scope.itemEvents">
+        <q-item-section>
+          <q-item-label v-html="scope.opt.label"></q-item-label>
+          <q-item-label caption
+            >{{ $i18n.t("newResidentAndResidencySchema-homeId-label") }}:
+            {{ scope.opt.home }}</q-item-label
+          >
+        </q-item-section>
+      </q-item>
+    </template>
+  </q-select>
 </template>
 <script>
 import { getResidentsList } from "src/services/residents";
 
 export default {
   props: {
-    value: { type: Number, default: null }
+    value: [Object, Array],
+    multiple: { type: Boolean, default: false }
   },
   data() {
     return {
@@ -33,7 +48,6 @@ export default {
 
   methods: {
     filterFn(val, update) {
-      debugger;
       if (val === "") {
         update(() => {
           this.options = this.original;
@@ -44,7 +58,7 @@ export default {
       update(() => {
         const needle = val.toLowerCase();
         this.options = this.original.filter(
-          v => v.toLowerCase().indexOf(needle) > -1
+          v => v.label.toLowerCase().indexOf(needle) > -1
         );
       });
     }

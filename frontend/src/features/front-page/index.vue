@@ -2,24 +2,24 @@
   <div class="q-ma-sm fit">
     <q-card flat bordered>
       <q-card-section horizontal class="q-pa-sm bg-grey-4">
-        <div>Quick Add</div>
+        <div>{{ $i18n.t("front-quickAddPanel-title") }}</div>
       </q-card-section>
 
       <q-separator />
       <div class="row">
+        <div class="col-1 q-mx-sm q-my-lg">
+          <q-card class="text-white pointer bg-green q-pa-lg">
+            <div class="q-ml-md"><q-icon name="fa fa-heartbeat" /></div>
+            <div>{{ $i18n.t("front-quickAddPanel-activityButton") }}</div>
+          </q-card>
+        </div>
         <div class="col-1 q-mx-sm q-my-lg">
           <q-card
             @click="openFeelingsDialog"
             class="text-white pointer bg-green q-pa-lg"
           >
             <div class="q-ml-md"><q-icon name="fa fa-stethoscope" /></div>
-            <div>Feelings</div>
-          </q-card>
-        </div>
-        <div class="col-1 q-mx-sm q-my-lg">
-          <q-card class="text-white pointer bg-green q-pa-lg">
-            <div class="q-ml-md"><q-icon name="fa fa-heartbeat" /></div>
-            <div>Activity</div>
+            <div>{{ $i18n.t("front-quickAddPanel-feelingButton") }}</div>
           </q-card>
         </div>
       </div>
@@ -27,7 +27,7 @@
 
     <q-card class="q-mt-xl" flat bordered>
       <q-card-section horizontal class="q-pa-sm bg-grey-4">
-        <div>Quick Navigation</div>
+        <div>{{ $i18n.t("front-quickNavigationPanel-title") }}</div>
       </q-card-section>
 
       <q-separator />
@@ -38,7 +38,9 @@
             class="pointer text-white bg-primary q-pa-lg"
           >
             <div class="q-ml-md"><q-icon name="fa fa-users" /></div>
-            <div>Residents</div>
+            <div>
+              {{ $i18n.t("front-quickNavigationPanel-residentsButton") }}
+            </div>
           </q-card>
         </div>
         <div class="col-1 q-mx-sm q-my-lg">
@@ -47,7 +49,7 @@
             class="pointer text-white bg-primary q-pa-lg"
           >
             <div class="q-ml-md"><q-icon name="fa fa-home" /></div>
-            <div>Homes</div>
+            <div>{{ $i18n.t("front-quickNavigationPanel-homesButton") }}</div>
           </q-card>
         </div>
         <div class="col-1 q-mx-sm q-my-lg">
@@ -56,7 +58,9 @@
             class="pointer text-white bg-primary q-pa-lg"
           >
             <div class="q-ml-md"><q-icon name="fa fa-heartbeat" /></div>
-            <div>Activities</div>
+            <div>
+              {{ $i18n.t("front-quickNavigationPanel-activitiesButton") }}
+            </div>
           </q-card>
         </div>
       </div>
@@ -64,7 +68,10 @@
     <q-dialog v-model="openDialog">
       <q-card class="sizing">
         <q-card-section horizontal>
-          <manage-feelings v-if="isFeelings" />
+          <manage-feelings
+            @feeling-result="v => (v === true ? (openDialog = false) : '')"
+            v-if="isFeelings"
+          />
         </q-card-section>
       </q-card>
     </q-dialog>

@@ -233,6 +233,7 @@
   "newFeeling-header": "Record new feeling",
   "newFeeling-save": "Save",
   "newFeeling-success": "Successfully recorded feeling",
+  "newFeeling-residentRequired": "Residents must be added",
   "newHome-cancelButton-text": "Cancel",
   "newHome-header-text": "Create new home",
   "assignManager-header-text": "Assign a manager",

@@ -8,7 +8,10 @@
       <q-separator />
       <div class="row">
         <div class="col-1 q-mx-sm q-my-lg">
-          <q-card class="text-white pointer bg-green q-pa-lg">
+          <q-card
+            @click="() => (openDialog = true)"
+            class="text-white pointer bg-green q-pa-lg"
+          >
             <div class="q-ml-md"><q-icon name="fa fa-heartbeat" /></div>
             <div>{{ $i18n.t("front-quickAddPanel-activityButton") }}</div>
           </q-card>
@@ -65,12 +68,20 @@
         </div>
       </div>
     </q-card>
-    <q-dialog v-model="openDialog">
+    <q-dialog
+      @hide="closeDialog"
+      @escape-key="closeDialog"
+      v-model="openDialog"
+    >
       <q-card class="sizing">
         <q-card-section horizontal>
           <manage-feelings
-            @feeling-result="v => (v === true ? (openDialog = false) : '')"
+            @feeling-result="v => (v === true ? closeDialog() : '')"
             v-if="isFeelings"
+          />
+          <manage-activity
+            v-else
+            @activity-result="v => (v === true ? closeDialog() : '')"
           />
         </q-card-section>
       </q-card>
@@ -80,10 +91,12 @@
 
 <script>
 import ManageFeelings from "src/components/ManageFeelings";
+import ManageActivity from "src/components/ManageActivity";
 
 export default {
   components: {
-    ManageFeelings
+    ManageFeelings,
+    ManageActivity
   },
 
   data() {

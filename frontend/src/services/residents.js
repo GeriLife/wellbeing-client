@@ -1,6 +1,6 @@
 import { $axios } from "src/boot/axios";
 import { getCookie } from "./cookies";
-import { Notify } from "quasar";
+import { errorNotifier } from "src/utils/notifier.js";
 
 export const getResidentsList = async () => {
   try {
@@ -19,12 +19,7 @@ export const getResidentsList = async () => {
       }))
     );
   } catch (error) {
-    console.log(error);
-    Notify.create({
-      type: "negative",
-      position: "top-right",
-      message: error
-    });
+    errorNotifier(error);
     return [];
   }
 };

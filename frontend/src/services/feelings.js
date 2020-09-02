@@ -2,6 +2,7 @@ import { $axios } from "src/boot/axios";
 import { getCookie } from "./cookies";
 import { Notify } from "quasar";
 import { i18n } from "src/boot/i18n";
+import { errorNotifier } from "src/utils/notifier.js";
 
 export const addFeeling = async data => {
   try {
@@ -15,12 +16,7 @@ export const addFeeling = async data => {
     });
     return true;
   } catch (error) {
-    console.log(error);
-    Notify.create({
-      type: "negative",
-      position: "top-right",
-      message: error
-    });
+    errorNotifier(error);
     return false;
   }
 };

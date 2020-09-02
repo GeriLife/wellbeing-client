@@ -273,6 +273,8 @@
   "resident-editButton": "Edit resident",
   "resident-onHiatus": "On hiatus",
   "residentCurrentResidency-editResidencyButton": "Edit Residency",
+  "fieldRequired": "This field is required",
+  "formInvalid": "Form Invalid: Please fill appropriate details.",
   "residencies": {
     "homeId": {
       "label": "Home"
@@ -436,5 +438,7 @@
   "usersSettingsTable-tableHeaders-email": "Email",
   "usersSettingsTable-tableHeaders-roles": "Roles",
   "usersSettingsTable-tableHeaders-passwordActive": "Password active",
-  "userVisibleResidentNames-GroupedtByHomes-notFound": "No residents found for this user!"
+  "userVisibleResidentNames-GroupedtByHomes-notFound": "No residents found for this user!",
+  "activity-manage-dateSelectionRange": "Pick a date from the last seven days",
+  "activity-manage-timeMaxValue": "Add under 24 hours"
 }

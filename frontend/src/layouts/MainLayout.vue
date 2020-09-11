@@ -5,7 +5,9 @@
     </q-header>
 
     <q-page-container>
-      <router-view />
+      <q-page class="flex q-mt-sm">
+        <router-view />
+      </q-page>
     </q-page-container>
   </q-layout>
 </template>

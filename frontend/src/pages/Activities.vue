@@ -1,7 +1,5 @@
 <template>
-  <q-page padding>
-    <activities />
-  </q-page>
+  <activities />
 </template>
 
 <script>

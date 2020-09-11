@@ -10,19 +10,29 @@
         <div class="col-1 q-mx-sm q-my-lg">
           <q-card
             @click="() => (openDialog = true)"
-            class="text-white pointer bg-green q-pa-lg"
+            class="text-center text-white pointer bg-green q-pa-lg"
           >
-            <div class="q-ml-md"><q-icon name="fa fa-heartbeat" /></div>
-            <div>{{ $i18n.t("front-quickAddPanel-activityButton") }}</div>
+            <div><q-icon name="fa fa-heartbeat" /></div>
+            <div
+              class="ellipsis"
+              :title="$i18n.t('front-quickAddPanel-activityButton')"
+            >
+              {{ $i18n.t("front-quickAddPanel-activityButton") }}
+            </div>
           </q-card>
         </div>
         <div class="col-1 q-mx-sm q-my-lg">
           <q-card
             @click="openFeelingsDialog"
-            class="text-white pointer bg-green q-pa-lg"
+            class="text-center text-white pointer bg-green q-pa-lg"
           >
-            <div class="q-ml-md"><q-icon name="fa fa-stethoscope" /></div>
-            <div>{{ $i18n.t("front-quickAddPanel-feelingButton") }}</div>
+            <div><q-icon name="fa fa-stethoscope" /></div>
+            <div
+              class="ellipsis"
+              :title="$i18n.t('front-quickAddPanel-feelingButton')"
+            >
+              {{ $i18n.t("front-quickAddPanel-feelingButton") }}
+            </div>
           </q-card>
         </div>
       </div>
@@ -38,10 +48,13 @@
         <div class="col-1 q-mx-sm q-my-lg">
           <q-card
             @click="$router.push({ path: '/residents' })"
-            class="pointer text-white bg-primary q-pa-lg"
+            class="text-center pointer text-white bg-primary q-pa-lg"
           >
-            <div class="q-ml-md"><q-icon name="fa fa-users" /></div>
-            <div>
+            <div><q-icon name="fa fa-users" /></div>
+            <div
+              class="ellipsis"
+              :title="$i18n.t('front-quickNavigationPanel-residentsButton')"
+            >
               {{ $i18n.t("front-quickNavigationPanel-residentsButton") }}
             </div>
           </q-card>
@@ -49,19 +62,27 @@
         <div class="col-1 q-mx-sm q-my-lg">
           <q-card
             @click="$router.push({ path: '/homes' })"
-            class="pointer text-white bg-primary q-pa-lg"
+            class="text-center pointer text-white bg-primary q-pa-lg"
           >
-            <div class="q-ml-md"><q-icon name="fa fa-home" /></div>
-            <div>{{ $i18n.t("front-quickNavigationPanel-homesButton") }}</div>
+            <div><q-icon name="fa fa-home" /></div>
+            <div
+              class="ellipsis"
+              :title="$i18n.t('front-quickNavigationPanel-homesButton')"
+            >
+              {{ $i18n.t("front-quickNavigationPanel-homesButton") }}
+            </div>
           </q-card>
         </div>
         <div class="col-1 q-mx-sm q-my-lg">
           <q-card
             @click="$router.push({ path: '/activities' })"
-            class="pointer text-white bg-primary q-pa-lg"
+            class="text-center pointer text-white bg-primary q-pa-lg"
           >
-            <div class="q-ml-md"><q-icon name="fa fa-heartbeat" /></div>
-            <div>
+            <div><q-icon name="fa fa-heartbeat" /></div>
+            <div
+              class="ellipsis"
+              :title="$i18n.t('front-quickNavigationPanel-activitiesButton')"
+            >
               {{ $i18n.t("front-quickNavigationPanel-activitiesButton") }}
             </div>
           </q-card>

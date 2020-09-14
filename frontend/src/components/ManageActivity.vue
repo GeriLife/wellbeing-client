@@ -33,7 +33,7 @@
             filled
             v-model="date"
             :label="$i18n.t('activities.activityDate.label')"
-            mask="date"
+            mask="datetime"
             :rules="[
               v => !!v || this.$i18n.t('fieldRequired'),
               v =>
@@ -92,7 +92,7 @@
 import Residents from "./Residents";
 import ActivityTypes from "./ActivityTypes";
 import Roles from "./Roles";
-import { saveActivity } from "src/services/activities.js";
+import { saveActivity, getActivityData } from "src/services/activities.js";
 import { date } from "quasar";
 
 export default {
@@ -101,6 +101,11 @@ export default {
     ActivityTypes,
     Roles
   },
+
+  props: {
+    residentId: { type: String, default: null }
+  },
+
   data() {
     return {
       residents: [],
@@ -110,6 +115,21 @@ export default {
       duration: 0
     };
   },
+
+  async created() {
+    await this.$nextTick();
+    await this.$nextTick();
+
+    if (this.residentId) {
+      const { data } = await getActivityData(this.residentId);
+      this.residents = data.residents;
+      this.activityType = data.activityType;
+      this.role = data.facilitatorRole;
+      this.date = data.activityDate;
+      this.duration = data.duration;
+    }
+  },
+
   methods: {
     async validateAndSubmit() {
       const result = await this.$refs.myForm.validate();
@@ -124,10 +144,14 @@ export default {
 
       const payload = {
         activityTypeId: this.activityType._id,
-        activityDate: new Date(this.date).toUTCString(),
+        activityDate: `${date.formatDate(
+          this.date,
+          "YYYY-MM-DDTHH:mm:ss.SSS"
+        )}Z`,
         facilitatorRoleId: this.role._id,
         duration: this.duration,
-        residentIds: this.residents.map(r => r.value)
+        residentIds: this.residents.map(r => r.value),
+        _id: this.residentId
       };
       const saveResult = await saveActivity(payload);
       this.$emit("activity-result", saveResult);

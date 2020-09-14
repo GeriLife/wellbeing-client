@@ -51,6 +51,7 @@
   "activityForm-residentSelect-placeholder": "Select resident(s)",
   "activityForm-save": "Save",
   "activityForm-add-success": "Activity added",
+  "activityForm-delete-success": "Activity deleted",
   "activityFormModal-header": "Activity",
   "activityForm-update-success": "Activity updated",
   "activityTypesSettings-activityTypeTable-helpText": "For data integrity, activity types can only be removed when they are related to no recorded activities.",

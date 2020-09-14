@@ -6,6 +6,8 @@
     :value="value"
     :label="$i18n.t('activities.facilitatorRoleId.label')"
     :options="options"
+    map-options
+    fill-input
     option-value="_id"
     option-label="name"
     dropdown-icon="fa fa-chevron-down"

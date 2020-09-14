@@ -17,6 +17,7 @@
     "axios": "^0.19.2",
     "core-js": "^3.6.5",
     "dotenv": "^8.2.0",
+    "humanize-duration": "^3.23.1",
     "quasar": "^1.0.0",
     "vue-i18n": "^8.20.0"
   },

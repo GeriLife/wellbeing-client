@@ -4,6 +4,8 @@
     v-on="$listeners"
     filled
     :value="value"
+    map-options
+    fill-input
     option-value="_id"
     option-label="name"
     :label="$i18n.t('activities.activityTypeId.label')"

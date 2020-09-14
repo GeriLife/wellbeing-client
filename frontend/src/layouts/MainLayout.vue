@@ -18,8 +18,15 @@ import GeriLifeTopbar from "components/GeriLifeTopbar.vue";
 export default {
   name: "MainLayout",
   components: { GeriLifeTopbar },
-  data() {
-    return {};
+  async created() {
+    const { data: cookieData } = await this.$axios.post("/users/login", {
+      email: "mehtashailee21@gmail.com",
+      password: "123456"
+    });
+    console.log(cookieData);
+    document.cookie = `token=${cookieData.token}; expires=${cookieData.tokenExpires}`;
+
+    await this.$store.dispatch("user/getUserDetails");
   }
 };
 </script>

@@ -7,33 +7,33 @@
 
       <q-separator />
       <div class="row">
-        <div class="col-1 q-mx-sm q-my-lg">
-          <q-card
+        <div class="q-gutter-xs q-ma-md">
+          <q-btn
             @click="() => (openDialog = true)"
-            class="text-center text-white pointer bg-green q-pa-lg"
+            class="text-center text-white bg-green q-px-sm q-py-lg"
           >
-            <div><q-icon name="fa fa-heartbeat" /></div>
+            <q-icon name="fa fa-heartbeat" /><br />
             <div
-              class="ellipsis"
+              class="ellipsis q-ml-sm"
               :title="$i18n.t('front-quickAddPanel-activityButton')"
             >
               {{ $i18n.t("front-quickAddPanel-activityButton") }}
             </div>
-          </q-card>
+          </q-btn>
         </div>
-        <div class="col-1 q-mx-sm q-my-lg">
-          <q-card
+        <div class="q-gutter-xs q-ma-md">
+          <q-btn
             @click="openFeelingsDialog"
-            class="text-center text-white pointer bg-green q-pa-lg"
+            class="text-center text-white bg-green q-px-sm q-py-lg"
           >
-            <div><q-icon name="fa fa-stethoscope" /></div>
+            <q-icon name="fa fa-stethoscope" /><br />
             <div
-              class="ellipsis"
+              class="ellipsis q-ml-sm"
               :title="$i18n.t('front-quickAddPanel-feelingButton')"
             >
               {{ $i18n.t("front-quickAddPanel-feelingButton") }}
             </div>
-          </q-card>
+          </q-btn>
         </div>
       </div>
     </q-card>
@@ -45,47 +45,47 @@
 
       <q-separator />
       <div class="row">
-        <div class="col-1 q-mx-sm q-my-lg">
-          <q-card
+        <div class="q-gutter-xs q-ma-md">
+          <q-btn
             @click="$router.push({ path: '/residents' })"
-            class="text-center pointer text-white bg-primary q-pa-lg"
+            class="text-center text-white bg-primary q-px-sm q-py-lg"
           >
-            <div><q-icon name="fa fa-users" /></div>
+            <q-icon name="fa fa-users" />
             <div
-              class="ellipsis"
+              class="ellipsis q-ml-sm"
               :title="$i18n.t('front-quickNavigationPanel-residentsButton')"
             >
               {{ $i18n.t("front-quickNavigationPanel-residentsButton") }}
             </div>
-          </q-card>
+          </q-btn>
         </div>
-        <div class="col-1 q-mx-sm q-my-lg">
-          <q-card
+        <div class="q-gutter-xs q-ma-md">
+          <q-btn
             @click="$router.push({ path: '/homes' })"
-            class="text-center pointer text-white bg-primary q-pa-lg"
+            class="text-center text-white bg-primary q-px-sm q-py-lg"
           >
-            <div><q-icon name="fa fa-home" /></div>
+            <q-icon name="fa fa-home" />
             <div
-              class="ellipsis"
+              class="ellipsis q-ml-sm"
               :title="$i18n.t('front-quickNavigationPanel-homesButton')"
             >
               {{ $i18n.t("front-quickNavigationPanel-homesButton") }}
             </div>
-          </q-card>
+          </q-btn>
         </div>
-        <div class="col-1 q-mx-sm q-my-lg">
-          <q-card
+        <div class="q-gutter-xs q-ma-md">
+          <q-btn
             @click="$router.push({ path: '/activities' })"
-            class="text-center pointer text-white bg-primary q-pa-lg"
+            class="text-center text-white bg-primary q-px-sm q-py-lg"
           >
-            <div><q-icon name="fa fa-heartbeat" /></div>
+            <q-icon name="fa fa-heartbeat" />
             <div
-              class="ellipsis"
+              class="ellipsis q-ml-sm"
               :title="$i18n.t('front-quickNavigationPanel-activitiesButton')"
             >
               {{ $i18n.t("front-quickNavigationPanel-activitiesButton") }}
             </div>
-          </q-card>
+          </q-btn>
         </div>
       </div>
     </q-card>
@@ -94,7 +94,7 @@
       @escape-key="closeDialog"
       v-model="openDialog"
     >
-      <q-card class="sizing">
+      <q-card class="fit">
         <q-card-section horizontal>
           <manage-feelings
             @feeling-result="v => (v === true ? closeDialog() : '')"
@@ -140,13 +140,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-.pointer {
-  cursor: pointer;
-}
-.sizing {
-  min-width: 500px;
-  min-height: 500px;
-}
-</style>

@@ -3,14 +3,9 @@ import axios from "axios";
 import { getCookie } from "src/services/cookies";
 
 const axiosInstance = axios.create({
-  baseURL: process.env.BASE_URL,
-  headers: {
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Headers": "Content-Type, Authorization"
-  }
+  baseURL: process.env.BASE_URL
 });
 
-axiosInstance.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
 axiosInstance.interceptors.request.use(
   config => {
     if (config.url !== "/users/login") {

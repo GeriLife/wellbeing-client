@@ -117,9 +117,6 @@ export default {
   },
 
   async created() {
-    await this.$nextTick();
-    await this.$nextTick();
-
     if (this.residentId) {
       const { data } = await getActivityData(this.residentId);
       this.residents = data.residents;

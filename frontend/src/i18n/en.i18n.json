@@ -441,5 +441,16 @@
   "usersSettingsTable-tableHeaders-passwordActive": "Password active",
   "userVisibleResidentNames-GroupedtByHomes-notFound": "No residents found for this user!",
   "activity-manage-dateSelectionRange": "Pick a date from the last seven days",
-  "activity-manage-timeMaxValue": "Add under 24 hours"
+  "activity-manage-timeMaxValue": "Add under 24 hours",
+  "login": "Sign-in to Gerilife",
+  "login-email": "Email",
+  "invalid-email": "Email address is invalid",
+  "login-password": "Password",
+  "login-submit": "Sign In",
+  "login-forgotPassword": "Forgot your password?",
+  "ApiError": "Some error occurred. Please try again later",
+  "email-send-successful": "Email sent successfully",
+  "email-reset-submit": "Email reset link",
+  "email-reset-title": "Reset your password",
+  "email-reset-go-back": "If you already have an account"
 }

@@ -14,19 +14,15 @@
 
 <script>
 import GeriLifeTopbar from "components/GeriLifeTopbar.vue";
+import { getCookie } from "src/services/cookies";
 
 export default {
   name: "MainLayout",
   components: { GeriLifeTopbar },
   async created() {
-    const { data: cookieData } = await this.$axios.post("/users/login", {
-      email: "mehtashailee21@gmail.com",
-      password: "123456"
-    });
-    console.log(cookieData);
-    document.cookie = `token=${cookieData.token}; expires=${cookieData.tokenExpires}`;
-
-    await this.$store.dispatch("user/getUserDetails");
+    if (!!getCookie("token")) {
+      await this.$store.dispatch("user/getUserDetails");
+    }
   }
 };
 </script>

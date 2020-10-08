@@ -3,6 +3,9 @@ import { $axios } from "src/boot/axios";
 import { Notify } from "quasar";
 import { i18n } from "src/boot/i18n";
 
+import axiosSub from "axios";
+import { getCookie } from "src/services/cookies";
+
 export const loginToServer = async (email, password) => {
   try {
     const { data: cookieData } = await $axios.post("/users/login", {
@@ -47,4 +50,29 @@ export const sendResetEmail = async email => {
     errorNotifier(error);
   }
   return false;
+};
+
+export const checkIfLoggedIn = async () => {
+  const axiosInstance = axiosSub.create({
+    baseURL: process.env.BASE_URL
+  });
+
+  let result;
+  try {
+    const { data } = await axiosInstance.post(
+      "/methods/checkIfLoggedIn?_t=" + new Date().getTime(),
+      {},
+      {
+        headers: { Authorization: "Bearer " + getCookie("token") }
+      }
+    );
+    result = data;
+  } catch (error) {
+    errorNotifier(error);
+    result = false;
+  }
+  if (!result) {
+    document.cookie = `token=;`;
+  }
+  return result;
 };

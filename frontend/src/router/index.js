@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import { getCookie } from "src/services/cookies";
 import routes from "./routes";
+import { checkIfLoggedIn } from "src/services/login.js";
 
 Vue.use(VueRouter);
 
@@ -26,15 +27,22 @@ export default function(/* { store, ssrContext } */) {
     base: process.env.VUE_ROUTER_BASE
   });
 
-  Router.beforeEach((to, from, next) => {
-    if (to.path !== "/login" && !getCookie("token")) {
+  Router.beforeEach(async (to, from, next) => {
+    if (to.path === "/login" && !!getCookie("token")) {
+      next("/");
+      return;
+    }
+    if (to.path === "/login" && !getCookie("token")) {
+      next();
+      return;
+    }
+
+    const result = await checkIfLoggedIn();
+    if (!result) {
       next("/login");
       return;
     }
-    if (to.path === "/login" && !!getCookie("token")) {
-      next("/");
-      return
-    }
+
     next();
   });
   return Router;

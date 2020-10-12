@@ -47,3 +47,26 @@ export const addOrUpdateAGroup = async groupDetails => {
     return false;
   }
 };
+
+export const addOrUpdateHome =async homeDetails => {
+  try {
+    let payload = homeDetails;
+    if (homeDetails._id) {
+      payload = { _id: homeDetails._id, modifier: { $set: homeDetails } };
+      delete payload.modifier._id;
+    }
+    await $axios.post("/methods/addOrUpdateHome", payload);
+
+    Notify.create({
+      position: "top-right",
+      type: "positive",
+      message: i18n.t(
+        `homeModal-${homeDetails._id ? "update" : "create"}-successful`
+      )
+    });
+    return true;
+  } catch (error) {
+    errorNotifier(error);
+    return false;
+  }
+};

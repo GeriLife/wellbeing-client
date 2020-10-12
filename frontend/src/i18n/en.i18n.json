@@ -147,6 +147,12 @@
   "front-quickNavigationPanel-activitiesButton": "Activities",
   "groupModal-cancel": "Cancel",
   "groupModal-header-createNew": "Create new group",
+  "groupModal-create-successful": "New group created successfully",
+  "homeModal-create-successful": "New group created successfully",
+  "groupModal-update-successful": "Group updated successfully",
+  "homeModal-update-successful": "Group updated successfully",
+  "managerAssign-create-successful": "manager assigned successfully",
+  "groupModal-group-requiredMaxLength": "This is a required field with max character limit equal to 30",
   "groupModal-header-edit": "Edit group",
   "groupModal-save": "Save",
   "groups": {
@@ -182,7 +188,7 @@
   "homeGroup-editButton-text": "Edit",
   "homeGroup-home-reportButton-text": "Report",
   "homeGroup-home-viewButton-text": "View",
-  "homeGroup-tableCaption": "Homes with count of residents per seven day activiy level.",
+  "homeGroup-tableCaption": "Homes with count of residents per seven day activity level.",
   "homeGroup-tableHeader-activityLevels": "Activity levels",
   "homeGroup-tableHeader-name": "Name",
   "homeGroup-tableHeader-viewHome": "View home",
@@ -452,5 +458,6 @@
   "email-send-successful": "Email sent successfully",
   "email-reset-submit": "Email reset link",
   "email-reset-title": "Reset your password",
-  "email-reset-go-back": "If you already have an account"
+  "email-reset-go-back": "If you already have an account",
+  "search-text":"Search"
 }

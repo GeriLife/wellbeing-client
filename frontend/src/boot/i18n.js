@@ -7,8 +7,7 @@ const fi = require("../i18n/fi.i18n.json");
 Vue.use(VueI18n);
 
 const i18n = new VueI18n({
-  locale: "en-us",
-  fallbackLocale: "en-us",
+  locale: "en",
   messages: {
     en,
     fi

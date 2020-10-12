@@ -1,6 +1,6 @@
 <template>
   <q-card>
-    <q-card-section class="row text-black bg-grey-4">
+    <q-card-section class="row justify-end text-black bg-grey-4">
       <div class="col-12 col-sm-8">
         <q-icon name="fa fa-cubes" class="q-mr-sm ellipsis" /> {{ group.name }}
         <q-btn
@@ -12,18 +12,26 @@
         >
       </div>
       <div class="col-12 col-sm-4">
-        <span class="float-right">
-          <q-btn size="sm" class="text-white bg-primary">
-            <q-icon size="xs" class="fa fa-home" />&nbsp;&nbsp;{{
-              $i18n.t("homes-homeGroup-assignManagerButton-home")
-            }}</q-btn
+        <span class="q-gutter-sm float-right">
+          <q-btn
+            @click="showAddHome = true"
+            size="sm"
+            class="text-white bg-primary"
           >
-
-          <q-btn size="sm" class="bg-standard">
             <q-icon size="xs" class="fa fa-home" />&nbsp;&nbsp;{{
               $i18n.t("homes-homeGroup-addNewButton-home")
-            }}</q-btn
+            }}
+          </q-btn>
+
+          <q-btn
+            @click="showAssignManager = true"
+            size="sm"
+            class="bg-standard"
           >
+            <q-icon size="xs" class="fa fa-home" />&nbsp;&nbsp;{{
+              $i18n.t("homes-homeGroup-assignManagerButton-home")
+            }}
+          </q-btn>
         </span>
       </div>
     </q-card-section>
@@ -84,22 +92,38 @@
         </template>
       </q-table>
     </q-card-section>
+
+    <add-home v-if="showAddHome" :group-id="group._id" @close="close" />
+    <assign-manager
+      v-if="showAssignManager"
+      :group-id="group._id"
+      @close="closeManager"
+    />
   </q-card>
 </template>
 
 <script>
 import { getHomesWithActivityLevel } from "./services/homes-list";
 import { renderChart } from "./services/home-activity-levels.chart";
+import AddHome from "./add-home";
+import AssignManager from "./assign-manager";
 
 export default {
   props: {
     group: { type: Object, required: true }
   },
 
+  components: {
+    AddHome,
+    AssignManager
+  },
+
   data() {
     return {
       homes: [],
       loading: false,
+      showAddHome: false,
+      showAssignManager: false,
       columns: [
         {
           name: "viewHome",
@@ -131,12 +155,25 @@ export default {
   },
 
   async mounted() {
-    this.homes = await getHomesWithActivityLevel(this.group._id);
-    await this.$nextTick();
-    this.homes.forEach(home => renderChart(home._id, home.activityLevel));
+    await this.init();
   },
 
-  methods: {}
+  methods: {
+    async close(results) {
+      this.showAddHome = false;
+      if (results) {
+        await this.init();
+      }
+    },
+    closeManager() {
+      this.showAssignManager = false;
+    },
+    async init() {
+      this.homes = await getHomesWithActivityLevel(this.group._id);
+      await this.$nextTick();
+      this.homes.forEach(home => renderChart(home._id, home.activityLevel));
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>

@@ -152,7 +152,7 @@
   "groupModal-update-successful": "Group updated successfully",
   "homeModal-update-successful": "Group updated successfully",
   "managerAssign-create-successful": "manager assigned successfully",
-  "groupModal-group-requiredMaxLength": "This is a required field with max character limit equal to 30",
+  "requiredMaxLength": "This is a required field with max character limit equal to {len}",
   "groupModal-header-edit": "Edit group",
   "groupModal-save": "Save",
   "groups": {
@@ -459,5 +459,5 @@
   "email-reset-submit": "Email reset link",
   "email-reset-title": "Reset your password",
   "email-reset-go-back": "If you already have an account",
-  "search-text":"Search"
+  "search-text": "Search"
 }

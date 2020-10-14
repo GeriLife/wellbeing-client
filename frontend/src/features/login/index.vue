@@ -11,10 +11,7 @@
         <q-form class="col-8" @submit="login" ref="loginForm">
           <q-input
             v-model="email"
-            :rules="[
-              v => requiredValidation(v) || $i18n.t('fieldRequired'),
-              v => validateEmail(v) || $i18n.t('invalid-email')
-            ]"
+            :rules="[v => requiredValidation(v), v => validateEmail(v)]"
             :label="$i18n.t('login-email')"
             outlined
           />
@@ -22,7 +19,7 @@
           <q-input
             v-model="password"
             type="password"
-            :rules="[v => requiredValidation(v) || $i18n.t('fieldRequired')]"
+            :rules="[v => requiredValidation(v)]"
             :label="$i18n.t('login-password')"
             outlined
           />
@@ -52,10 +49,7 @@
         <q-form class="col-8" @submit="verifyAndSendEmail" ref="forgotPwdForm">
           <q-input
             v-model="toEmail"
-            :rules="[
-              v => requiredValidation(v) || $i18n.t('fieldRequired'),
-              v => validateEmail(v) || $i18n.t('invalid-email')
-            ]"
+            :rules="[v => requiredValidation(v), v => validateEmail(v)]"
             :label="$i18n.t('login-email')"
             outlined
           />

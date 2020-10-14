@@ -1,6 +1,5 @@
-import { errorNotifier } from "src/utils/notifier.js";
+import { errorNotifier, successNotifier } from "src/utils/notifier.js";
 import { $axios } from "src/boot/axios";
-import { Notify } from "quasar";
 import { i18n } from "src/boot/i18n";
 
 import axiosSub from "axios";
@@ -39,11 +38,8 @@ export const sendResetEmail = async email => {
       toEmail: email
     });
     if (result) {
-      Notify.create({
-        type: "positive",
-        position: "top-right",
-        message: i18n.t("email-send-successful")
-      });
+      successNotifier(i18n.t("email-send-successful")
+      );
     }
     return result;
   } catch (error) {

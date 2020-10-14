@@ -1,6 +1,5 @@
 import { $axios } from "src/boot/axios";
-import { Notify } from "quasar";
-import { errorNotifier } from "src/utils/notifier.js";
+import { errorNotifier, successNotifier } from "src/utils/notifier.js";
 import { i18n } from "src/boot/i18n";
 
 export const getCurrentManagers = async groupId => {
@@ -33,11 +32,7 @@ export const assignManager = async ({ groupId, users }) => {
       groupId,
       users
     });
-    Notify.create({
-      position: "top-right",
-      type: "positive",
-      message: i18n.t("managerAssign-create-successful")
-    });
+    successNotifier(i18n.t("managerAssign-create-successful"));
     return true;
   } catch (error) {
     errorNotifier(error);
@@ -55,18 +50,10 @@ export const revokeManagerPermission = async (groupId, userId) => {
       }
     );
     if (resp === 0) {
-      Notify.create({
-        position: "top-right",
-        type: "negative",
-        message: i18n.t("couldNotRevokeAccess")
-      });
+      successNotifier(i18n.t("couldNotRevokeAccess"));
       return false;
     }
-    Notify.create({
-      position: "top-right",
-      type: "positive",
-      message: i18n.t("manager-revoke-success")
-    });
+    successNotifier(i18n.t("manager-revoke-success"));
     return true;
   } catch (error) {
     errorNotifier(error);

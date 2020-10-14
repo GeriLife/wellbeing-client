@@ -9,24 +9,16 @@
       <q-form ref="myForm">
         <residents
           v-model="residents"
-          :rules="[
-            val =>
-              (!!val && val.length > 0) ||
-              this.$i18n.t('newFeeling-residentRequired')
-          ]"
+          :rules="[val => requiredValidation(val, 'length')]"
           multiple
         />
         <activity-types
-          :rules="[
-            val => (!!val && !!val._id) || this.$i18n.t('fieldRequired')
-          ]"
+          :rules="[val => requiredValidation(val, '_id')]"
           v-model="activityType"
         />
         <roles
           v-model="role"
-          :rules="[
-            val => (!!val && !!val._id) || this.$i18n.t('fieldRequired')
-          ]"
+          :rules="[val => requiredValidation(val, '_id')]"
         />
         <div>
           <q-input
@@ -35,7 +27,7 @@
             :label="$i18n.t('activities.activityDate.label')"
             mask="datetime"
             :rules="[
-              v => !!v || this.$i18n.t('fieldRequired'),
+              v => requiredValidation(v),
               v =>
                 dateFallsInLastWeek(v) ||
                 $i18n.t('activity-manage-dateSelectionRange')
@@ -71,7 +63,7 @@
           :label="$i18n.t('activities.duration.label')"
           lazy-rules
           :rules="[
-            v => !!v || this.$i18n.t('fieldRequired'),
+            v => requiredValidation(v),
             val =>
               (val > 0 && val < 1441) || $i18n.t('activity-manage-timeMaxValue')
           ]"
@@ -94,6 +86,7 @@ import ActivityTypes from "./ActivityTypes";
 import Roles from "./Roles";
 import { saveActivity, getActivityData } from "src/services/activities.js";
 import { date } from "quasar";
+import { requiredValidation } from "src/utils/validations.js";
 
 export default {
   components: {
@@ -128,6 +121,7 @@ export default {
   },
 
   methods: {
+    requiredValidation,
     async validateAndSubmit() {
       const result = await this.$refs.myForm.validate();
       if (!result) {

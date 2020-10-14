@@ -8,3 +8,11 @@ export const errorNotifier = error => {
     message: parseMeteorError(error)
   });
 };
+
+export const successNotifier = message => {
+  Notify.create({
+    type: "positive",
+    position: "top-right",
+    message: message
+  });
+};

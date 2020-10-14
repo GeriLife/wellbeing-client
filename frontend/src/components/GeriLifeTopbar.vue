@@ -2,7 +2,7 @@
   <q-toolbar class="bg-grey-4">
     <q-toolbar-title
       @click="$route.path !== '/' && $router.push({ path: '/' })"
-      class="pointer q-mr-md"
+      class="cursor-pointer q-mr-md"
       shrink
     >
       <q-img
@@ -79,11 +79,3 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped>
-.bar-grey {
-  background-color: #e7e7e7;
-}
-.pointer {
-  cursor: pointer;
-}
-</style>

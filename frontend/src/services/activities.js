@@ -1,6 +1,5 @@
 import { $axios } from "src/boot/axios";
-import { Notify } from "quasar";
-import { errorNotifier } from "src/utils/notifier.js";
+import { errorNotifier, successNotifier } from "src/utils/notifier.js";
 import { i18n } from "src/boot/i18n";
 
 export const getAllActivityTypes = async () => {
@@ -28,11 +27,7 @@ export const saveActivity = async dataToSave => {
       };
     }
     await $axios.post("/methods/saveActivity", payload);
-    Notify.create({
-      position: "top-right",
-      type: "positive",
-      message: i18n.t("activityForm-add-success")
-    });
+    successNotifier(i18n.t("activityForm-add-success"));
     return true;
   } catch (error) {
     errorNotifier(error);

@@ -23,7 +23,7 @@
         <q-form @submit="onSubmit" ref="manageHome" class="q-gutter-md">
           <q-input
             v-model="homeName"
-            :rules="[v => !!v || $i18n.t('fieldRequired')]"
+            :rules="[v => requiredValidation(v)]"
             :label="$i18n.t('homes.name.label')"
           />
 
@@ -60,6 +60,7 @@
 
 <script>
 import { addOrUpdateHome, getUserGroups } from "./services/homes-list";
+import { requiredValidation } from "src/utils/validations.js";
 
 export default {
   props: {
@@ -79,6 +80,7 @@ export default {
   },
 
   methods: {
+    requiredValidation,
     async onSubmit() {
       const result = await this.$refs.manageHome.validate();
       if (!result) return;

@@ -133,6 +133,7 @@ export default {
         },
         {
           name: "name",
+          style: "max-width:15rem; overflow: hidden; text-overflow:ellipsis;",
           align: "left",
           field: "name",
           label: this.$i18n.t("homeGroup-tableHeader-name")
@@ -140,7 +141,7 @@ export default {
         {
           name: "activityLevel",
           align: "left",
-          style: "width: 600px",
+          style: "max-width:100rem;",
           field: "activityLevel",
           label: this.$i18n.t("homeGroup-tableHeader-activityLevels")
         },
@@ -178,13 +179,23 @@ export default {
 </script>
 <style lang="scss" scoped>
 .legend-inactive {
-  color: #d9534f;
+  color: $inactive;
 }
 
 .legend-semiactive {
-  color: #e6c829;
+  color: $semiactive;
 }
 .legend-active {
-  color: #5cb85c;
+  color: $active;
+}
+
+.name-width {
+  max-width: 30ch;
+  text-overflow: ellipsis;
+  white-space: pre-wrap;
+}
+
+.chart-width {
+  width: 400rem;
 }
 </style>

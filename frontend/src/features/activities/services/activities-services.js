@@ -1,6 +1,5 @@
 import { $axios } from "src/boot/axios";
-import { Notify } from "quasar";
-import { errorNotifier } from "src/utils/notifier.js";
+import { errorNotifier, successNotifier } from "src/utils/notifier.js";
 import { i18n } from "src/boot/i18n";
 
 export const getActivities = async ({
@@ -35,11 +34,7 @@ export const deleteActivity = async id => {
     await $axios.post('/methods/removeActivity', {
       id
     });
-    Notify.create({
-      position: "top-right",
-      type: "positive",
-      message: i18n.t("activityForm-delete-success")
-    });
+    successNotifier(i18n.t("activityForm-delete-success"));
     return true;
   } catch (error) {
     errorNotifier(error);

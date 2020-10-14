@@ -23,11 +23,7 @@
         <q-form @submit="onSubmit" ref="manageGroup" class="q-gutter-md">
           <q-input
             v-model="groupName"
-            :rules="[
-              v =>
-                (!!v && v.length < 31) ||
-                $i18n.t('groupModal-group-requiredMaxLength')
-            ]"
+            :rules="[v => requiredValidation(v), v => maxLength(v.length, 30)]"
             :label="$i18n.t('groups.name.label')"
           />
         </q-form>
@@ -47,6 +43,7 @@
 
 <script>
 import { addOrUpdateAGroup } from "./services/homes-list";
+import { maxLength, requiredValidation } from "src/utils/validations.js";
 
 export default {
   props: {
@@ -57,6 +54,8 @@ export default {
   },
 
   methods: {
+    maxLength,
+    requiredValidation,
     async onSubmit() {
       const result = await this.$refs.manageGroup.validate();
       if (!result) return;

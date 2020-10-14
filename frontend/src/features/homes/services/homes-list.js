@@ -1,6 +1,5 @@
 import { $axios } from "src/boot/axios";
-import { Notify } from "quasar";
-import { errorNotifier } from "src/utils/notifier.js";
+import { errorNotifier, successNotifier } from "src/utils/notifier.js";
 import { i18n } from "src/boot/i18n";
 
 export const getUserGroups = async () => {
@@ -34,13 +33,9 @@ export const addOrUpdateAGroup = async groupDetails => {
     }
     await $axios.post("/methods/addOrUpdateAGroup", payload);
 
-    Notify.create({
-      position: "top-right",
-      type: "positive",
-      message: i18n.t(
-        `groupModal-${groupDetails._id ? "update" : "create"}-successful`
-      )
-    });
+    successNotifier(
+      i18n.t(`groupModal-${groupDetails._id ? "update" : "create"}-successful`)
+    );
     return true;
   } catch (error) {
     errorNotifier(error);
@@ -48,7 +43,7 @@ export const addOrUpdateAGroup = async groupDetails => {
   }
 };
 
-export const addOrUpdateHome =async homeDetails => {
+export const addOrUpdateHome = async homeDetails => {
   try {
     let payload = homeDetails;
     if (homeDetails._id) {
@@ -57,13 +52,9 @@ export const addOrUpdateHome =async homeDetails => {
     }
     await $axios.post("/methods/addOrUpdateHome", payload);
 
-    Notify.create({
-      position: "top-right",
-      type: "positive",
-      message: i18n.t(
-        `homeModal-${homeDetails._id ? "update" : "create"}-successful`
-      )
-    });
+    successNotifier(
+      i18n.t(`homeModal-${homeDetails._id ? "update" : "create"}-successful`)
+    );
     return true;
   } catch (error) {
     errorNotifier(error);

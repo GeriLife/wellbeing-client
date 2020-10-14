@@ -8,7 +8,7 @@
       <q-form ref="myForm">
         <residents
           v-model="resident"
-          :rules="[val => !!val || this.$i18n.t('newFeeling-residentRequired')]"
+          :rules="[val => requiredValidation(val)]"
           :multiple="false"
         />
 
@@ -68,6 +68,7 @@
 <script>
 import Residents from "./Residents";
 import { addFeeling } from "src/services/feelings.js";
+import { requiredValidation } from "src/utils/validations.js";
 
 export default {
   components: {
@@ -80,6 +81,7 @@ export default {
     };
   },
   methods: {
+    requiredValidation,
     async validateAndSubmit() {
       const result = await this.$refs.myForm.validate();
       if (!result) return;

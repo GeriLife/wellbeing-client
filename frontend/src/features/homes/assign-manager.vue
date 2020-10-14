@@ -26,7 +26,7 @@
             fill-input
             option-value="value"
             option-label="label"
-            :rules="[v => (!!v && v.length > 0) || $i18n.t('fieldRequired')]"
+            :rules="[v => requiredValidation(v)]"
             :label="$i18n.t('managersSelectWidget-placeholder')"
             :options="managerList"
             dropdown-icon="fa fa-chevron-down"
@@ -96,6 +96,7 @@ import {
   assignManager,
   revokeManagerPermission
 } from "./services/group-manager";
+import { requiredValidation } from "src/utils/validations.js";
 
 export default {
   props: {
@@ -142,6 +143,7 @@ export default {
   },
 
   methods: {
+    requiredValidation,
     async revoke(userId) {
       const resposeStatus = await revokeManagerPermission(this.groupId, userId);
       if (resposeStatus) {

@@ -75,7 +75,12 @@
 
         <template v-slot:body-cell-viewHome="props">
           <q-td :props="props">
-            <q-btn size="sm" outline class="text-black bg-white">
+            <q-btn
+              @click="$router.push(`/homes/${props.row._id}`)"
+              size="sm"
+              outline
+              class="text-black bg-white"
+            >
               <q-icon name="fa fa-eye" class="q-mr-sm" />
               {{ $i18n.t("homeGroup-home-viewButton-text") }}
             </q-btn>
@@ -84,7 +89,12 @@
 
         <template v-slot:body-cell-viewReport="props">
           <q-td :props="props">
-            <q-btn size="sm" outline class="text-black bg-white">
+            <q-btn
+              @click="$router.push(`/homes/${props.row._id}/report`)"
+              size="sm"
+              outline
+              class="text-black bg-white"
+            >
               <q-icon name="fa fa-chart-line" class="q-mr-sm" />
               {{ $i18n.t("homeGroup-home-reportButton-text") }}
             </q-btn>

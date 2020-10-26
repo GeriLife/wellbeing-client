@@ -48,7 +48,8 @@ export const addOrUpdateHome = async homeDetails => {
     let payload = homeDetails;
     if (homeDetails._id) {
       payload = { _id: homeDetails._id, modifier: { $set: homeDetails } };
-      delete payload.modifier._id;
+      delete payload.modifier.$set._id;
+      delete payload.modifier.$set.groupId;
     }
     await $axios.post("/methods/addOrUpdateHome", payload);
 

@@ -33,12 +33,12 @@ import { getResidentsList } from "src/services/residents";
 export default {
   props: {
     value: [Object, Array],
-    multiple: { type: Boolean, default: false }
+    multiple: { type: Boolean, default: false },
   },
   data() {
     return {
       options: [],
-      original: []
+      original: [],
     };
   },
   async created() {
@@ -58,10 +58,10 @@ export default {
       update(() => {
         const needle = val.toLowerCase();
         this.options = this.original.filter(
-          v => v.label.toLowerCase().indexOf(needle) > -1
+          (v) => v.label.toLowerCase().indexOf(needle) > -1
         );
       });
-    }
-  }
+    },
+  },
 };
 </script>

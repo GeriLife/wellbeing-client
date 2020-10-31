@@ -32,14 +32,14 @@ import AddGroup from "./add-group";
 export default {
   components: {
     HomeGroup,
-    AddGroup
+    AddGroup,
   },
 
   data() {
     return {
       homes: null,
       showAddGroup: false,
-      selectedGroup: null
+      selectedGroup: null,
     };
   },
 
@@ -59,7 +59,7 @@ export default {
     openForEdit(group) {
       this.selectedGroup = group;
       this.showAddGroup = true;
-    }
-  }
+    },
+  },
 };
 </script>

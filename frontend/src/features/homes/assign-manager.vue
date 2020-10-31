@@ -26,7 +26,7 @@
             fill-input
             option-value="value"
             option-label="label"
-            :rules="[v => requiredValidation(v)]"
+            :rules="[(v) => requiredValidation(v)]"
             :label="$i18n.t('managersSelectWidget-placeholder')"
             :options="managerList"
             dropdown-icon="fa fa-chevron-down"
@@ -77,7 +77,7 @@
                 @click="revoke(props.row.userId)"
                 size="sm"
                 round
-                class="text-white bg-red  q-ml-sm"
+                class="text-white bg-red q-ml-sm"
               >
                 <q-icon size="xs" name="fa fa-trash" />
               </q-btn>
@@ -94,13 +94,13 @@ import {
   getCurrentManagers,
   getEligibleManagers,
   assignManager,
-  revokeManagerPermission
+  revokeManagerPermission,
 } from "./services/group-manager";
 import { requiredValidation } from "src/utils/validations.js";
 
 export default {
   props: {
-    groupId: { type: String, required: true }
+    groupId: { type: String, required: true },
   },
   data() {
     return {
@@ -117,15 +117,15 @@ export default {
           field: "address",
           sortable: true,
           key: "address",
-          label: this.$i18n.t("manager-tableLabels-name")
+          label: this.$i18n.t("manager-tableLabels-name"),
         },
         {
           name: "userId",
           field: "userId",
           key: "userId",
-          label: this.$i18n.t("manager-tableLabels-revoke")
-        }
-      ]
+          label: this.$i18n.t("manager-tableLabels-revoke"),
+        },
+      ],
     };
   },
 
@@ -138,8 +138,10 @@ export default {
       if (!this.search) {
         return this.displayList;
       }
-      return this.displayList.filter(v => v.address.indexOf(this.search) > -1);
-    }
+      return this.displayList.filter(
+        (v) => v.address.indexOf(this.search) > -1
+      );
+    },
   },
 
   methods: {
@@ -155,7 +157,7 @@ export default {
       const users = await getCurrentManagers(this.groupId);
       this.displayList = users;
 
-      this.managerList = await getEligibleManagers(users.map(v => v.userId));
+      this.managerList = await getEligibleManagers(users.map((v) => v.userId));
       this.loading = false;
     },
 
@@ -164,14 +166,14 @@ export default {
       if (!result) return;
       const apiResponse = await assignManager({
         groupId: this.groupId,
-        users: this.selectedUsers.map(v => v.value)
+        users: this.selectedUsers.map((v) => v.value),
       });
       if (apiResponse) {
         this.selectedUsers = [];
         this.$refs.assignManager.reset($ev);
         this.getManagerList();
       }
-    }
-  }
+    },
+  },
 };
 </script>

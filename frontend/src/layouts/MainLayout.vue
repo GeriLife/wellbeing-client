@@ -23,6 +23,6 @@ export default {
     if (!!getCookie("token")) {
       await this.$store.dispatch("user/getUserDetails");
     }
-  }
+  },
 };
 </script>

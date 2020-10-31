@@ -22,15 +22,15 @@ import { getRolesExceptAdmin } from "src/services/roles.js";
 
 export default {
   props: {
-    value: { Object }
+    value: { Object },
   },
   data() {
     return {
-      options: []
+      options: [],
     };
   },
   async created() {
     this.options = await getRolesExceptAdmin();
-  }
+  },
 };
 </script>

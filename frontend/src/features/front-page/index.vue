@@ -97,12 +97,12 @@
       <q-card class="fit">
         <q-card-section horizontal>
           <manage-feelings
-            @feeling-result="v => (v === true ? closeDialog() : '')"
+            @feeling-result="(v) => (v === true ? closeDialog() : '')"
             v-if="isFeelings"
           />
           <manage-activity
             v-else
-            @activity-result="v => (v === true ? closeDialog() : '')"
+            @activity-result="(v) => (v === true ? closeDialog() : '')"
           />
         </q-card-section>
       </q-card>
@@ -117,13 +117,13 @@ import ManageActivity from "src/components/ManageActivity";
 export default {
   components: {
     ManageFeelings,
-    ManageActivity
+    ManageActivity,
   },
 
   data() {
     return {
       openDialog: false,
-      isFeelings: false
+      isFeelings: false,
     };
   },
 
@@ -136,7 +136,7 @@ export default {
     closeDialog() {
       this.openDialog = false;
       this.isFeelings = false;
-    }
-  }
+    },
+  },
 };
 </script>

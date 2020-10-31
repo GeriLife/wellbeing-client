@@ -25,12 +25,12 @@
             :options="[
               {
                 label: $i18n.t('report-activityMetric-activity_minutes'),
-                value: 'activity_minutes'
+                value: 'activity_minutes',
               },
               {
                 label: $i18n.t('report-activityMetric-activity_count'),
-                value: 'activity_count'
-              }
+                value: 'activity_count',
+              },
             ]"
           />
         </div>
@@ -47,7 +47,7 @@
             toggle-color="primary"
             :options="[
               { label: $i18n.t('report-timePeriod-week'), value: 'week' },
-              { label: $i18n.t('report-timePeriod-month'), value: 'month' }
+              { label: $i18n.t('report-timePeriod-month'), value: 'month' },
             ]"
           />
         </div>
@@ -62,7 +62,7 @@
             toggle-color="primary"
             :options="[
               { label: $i18n.t('report-barMode-group'), value: 'group' },
-              { label: $i18n.t('report-barMode-stack'), value: 'stack' }
+              { label: $i18n.t('report-barMode-stack'), value: 'stack' },
             ]"
           />
         </div>
@@ -80,14 +80,14 @@ export default {
       default: () => ({
         barMode: "group",
         timePeriod: "week",
-        activityMetric: "activity_minutes"
-      })
-    }
+        activityMetric: "activity_minutes",
+      }),
+    },
   },
   data() {
     return {
-      expanded: false
+      expanded: false,
     };
-  }
+  },
 };
 </script>

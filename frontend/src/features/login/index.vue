@@ -11,7 +11,7 @@
         <q-form class="col-8" @submit="login" ref="loginForm">
           <q-input
             v-model="email"
-            :rules="[v => requiredValidation(v), v => validateEmail(v)]"
+            :rules="[(v) => requiredValidation(v), (v) => validateEmail(v)]"
             :label="$i18n.t('login-email')"
             outlined
           />
@@ -19,7 +19,7 @@
           <q-input
             v-model="password"
             type="password"
-            :rules="[v => requiredValidation(v)]"
+            :rules="[(v) => requiredValidation(v)]"
             :label="$i18n.t('login-password')"
             outlined
           />
@@ -49,7 +49,7 @@
         <q-form class="col-8" @submit="verifyAndSendEmail" ref="forgotPwdForm">
           <q-input
             v-model="toEmail"
-            :rules="[v => requiredValidation(v), v => validateEmail(v)]"
+            :rules="[(v) => requiredValidation(v), (v) => validateEmail(v)]"
             :label="$i18n.t('login-email')"
             outlined
           />
@@ -84,7 +84,7 @@ export default {
       email: null,
       password: null,
       forgotPwd: false,
-      toEmail: null
+      toEmail: null,
     };
   },
   methods: {
@@ -94,7 +94,7 @@ export default {
         this.$q.notify({
           type: "negative",
           position: "top-right",
-          message: this.$i18n.t("formInvalid")
+          message: this.$i18n.t("formInvalid"),
         });
         return;
       }
@@ -111,7 +111,7 @@ export default {
         this.$q.notify({
           type: "negative",
           position: "top-right",
-          message: this.$i18n.t("formInvalid")
+          message: this.$i18n.t("formInvalid"),
         });
         return;
       }
@@ -122,7 +122,7 @@ export default {
         this.forgotPwd = false;
         this.toEmail = null;
       }
-    }
-  }
+    },
+  },
 };
 </script>

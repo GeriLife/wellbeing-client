@@ -23,7 +23,7 @@
         <q-form @submit="onSubmit" ref="manageHome" class="q-gutter-md">
           <q-input
             v-model="homeName"
-            :rules="[v => requiredValidation(v)]"
+            :rules="[(v) => requiredValidation(v)]"
             :label="$i18n.t('homes.name.label')"
           />
 
@@ -65,13 +65,13 @@ import { requiredValidation } from "src/utils/validations.js";
 export default {
   props: {
     home: { type: Object, default: () => null },
-    groupId: { type: String, required: true }
+    groupId: { type: String, required: true },
   },
   data() {
     return {
       show: true,
       homeName: this.home ? this.home.name : null,
-      groups: []
+      groups: [],
     };
   },
 
@@ -87,12 +87,12 @@ export default {
       const apiResponse = await addOrUpdateHome({
         _id: this.home ? this.home._id : undefined,
         name: this.homeName,
-        groupId: this.groupId
+        groupId: this.groupId,
       });
       if (apiResponse) {
         this.$emit("close", true);
       }
-    }
-  }
+    },
+  },
 };
 </script>

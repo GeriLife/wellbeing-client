@@ -38,8 +38,7 @@ export const sendResetEmail = async email => {
       toEmail: email
     });
     if (result) {
-      successNotifier(i18n.t("email-send-successful")
-      );
+      successNotifier(i18n.t("email-send-successful"));
     }
     return result;
   } catch (error) {

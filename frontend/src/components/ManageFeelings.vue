@@ -8,7 +8,7 @@
       <q-form ref="myForm">
         <residents
           v-model="resident"
-          :rules="[val => requiredValidation(val)]"
+          :rules="[(val) => requiredValidation(val)]"
           :multiple="false"
         />
 
@@ -72,12 +72,12 @@ import { requiredValidation } from "src/utils/validations.js";
 
 export default {
   components: {
-    Residents
+    Residents,
   },
   data() {
     return {
       selected: "",
-      resident: null
+      resident: null,
     };
   },
   methods: {
@@ -88,11 +88,11 @@ export default {
       const saveResult = await addFeeling({
         residentId: this.resident.value,
         feeling: this.selected,
-        date: new Date()
+        date: new Date(),
       });
       this.$emit("feeling-result", saveResult);
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>

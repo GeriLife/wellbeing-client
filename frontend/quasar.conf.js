@@ -26,7 +26,7 @@ module.exports = function(/* ctx */) {
 
     // https://github.com/quasarframework/quasar/tree/dev/extras
     extras: [
-      'material-icons',
+      "material-icons",
       "fontawesome-v5",
       // 'eva-icons',
       // 'themify',
@@ -94,7 +94,7 @@ module.exports = function(/* ctx */) {
       // directives: [],
 
       // Quasar plugins
-      plugins: ['Notify']
+      plugins: ["Notify"]
     },
 
     // animations: 'all', // --- includes all animations

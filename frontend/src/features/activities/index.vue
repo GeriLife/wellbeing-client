@@ -28,13 +28,13 @@
         <residents
           class="col-5"
           v-model="resident"
-          @input="val => getData({ pagination: { ...pagination, page: 1 } })"
+          @input="(val) => getData({ pagination: { ...pagination, page: 1 } })"
           :multiple="false"
         />
         <activity-types
           class="col-5"
           v-model="activityType"
-          @input="val => getData({ pagination: { ...pagination, page: 1 } })"
+          @input="(val) => getData({ pagination: { ...pagination, page: 1 } })"
         />
       </q-card-section>
     </q-card>
@@ -63,7 +63,7 @@
           <q-btn
             @click="selectAndOpen(props.row, 'delete')"
             size="sm"
-            class="text-white bg-red  q-ml-sm"
+            class="text-white bg-red q-ml-sm"
           >
             <q-icon size="xs" name="fa fa-trash" />&nbsp;{{
               $i18n.t("deleteActivityButton-text")
@@ -129,7 +129,7 @@ export default {
   components: {
     Residents,
     ActivityTypes,
-    ManageActivity
+    ManageActivity,
   },
   data() {
     return {
@@ -143,38 +143,38 @@ export default {
         descending: true,
         page: 1,
         rowsPerPage: 10,
-        rowsNumber: 1
+        rowsNumber: 1,
       },
       columns: [
         {
           name: "residents",
           align: "left",
           field: "residents",
-          label: this.$i18n.t("activities.residentIds.label")
+          label: this.$i18n.t("activities.residentIds.label"),
         },
         {
           name: "type",
           align: "left",
           field: "type",
-          label: this.$i18n.t("activities.activityTypeId.label")
+          label: this.$i18n.t("activities.activityTypeId.label"),
         },
         {
           name: "duration",
           align: "left",
           field: "duration",
           sortable: true,
-          label: this.$i18n.t("activities.duration.label")
+          label: this.$i18n.t("activities.duration.label"),
         },
         {
           name: "activityDate",
           align: "left",
           field: "activityDate",
           sortable: true,
-          label: this.$i18n.t("activities.activityDate.label")
-        }
+          label: this.$i18n.t("activities.activityDate.label"),
+        },
       ],
       selectedRecord: null,
-      openDeleteDialog: false
+      openDeleteDialog: false,
     };
   },
 
@@ -195,7 +195,7 @@ export default {
 
     areFiltersActive() {
       return !!this.activityTypeId || !!this.residentId;
-    }
+    },
   },
 
   created() {
@@ -217,17 +217,17 @@ export default {
         sortBy,
         descending,
         residentId: this.residentId,
-        activityTypeId: this.activityTypeId
+        activityTypeId: this.activityTypeId,
       });
 
-      this.data = rows.map(r => ({
+      this.data = rows.map((r) => ({
         ...r,
         /* Formatting date as required by the q-date component */
         originalActivityDate: r.activityDate,
         activityDate:
           humanize(new Date().getTime() - new Date(r.activityDate).getTime(), {
-            largest: 1
-          }) + " ago"
+            largest: 1,
+          }) + " ago",
       }));
       this.pagination.rowsNumber = count;
       this.loading = false;
@@ -280,7 +280,7 @@ export default {
     async deleteAndClose() {
       await deleteActivity(this.selectedRecord);
       this.closeAndRefreshContent(true);
-    }
-  }
+    },
+  },
 };
 </script>

@@ -7,6 +7,6 @@ import FrontPage from "src/features/front-page/index.vue";
 
 export default {
   name: "PageIndex",
-  components: { FrontPage }
+  components: { FrontPage },
 };
 </script>

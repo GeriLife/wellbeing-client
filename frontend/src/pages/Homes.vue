@@ -7,7 +7,7 @@ import Homes from "src/features/homes";
 
 export default {
   components: {
-    Homes
-  }
+    Homes,
+  },
 };
 </script>

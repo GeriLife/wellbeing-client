@@ -22,15 +22,15 @@ import { getAllActivityTypes } from "src/services/activities.js";
 
 export default {
   props: {
-    value: { Object }
+    value: { Object },
   },
   data() {
     return {
-      options: []
+      options: [],
     };
   },
   async created() {
     this.options = await getAllActivityTypes();
-  }
+  },
 };
 </script>

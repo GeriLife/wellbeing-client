@@ -3,7 +3,7 @@
     <q-card-section>
       <div class="row" v-if="home">
         <span class="text-h4">
-          <i class="fa fa-home"></i>&nbsp; {{ home.name }}&nbsp;</span
+          <em class="q-ml-sm fa fa-home"></em>&nbsp; {{ home.name }}&nbsp;</span
         >
         <span class="text-h6 text-grey-6"
           >({{ $i18n.t("homeReport-header") }})</span

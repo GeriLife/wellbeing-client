@@ -96,7 +96,7 @@ export const getHomeActivitiesFacilitatorRoleMetrics = async (
 
 export const getHomeActivities = async homeId => {
   try {
-    const response = await $axios.post("/methods/getHomeActivitiesAPI", {
+    const response = await $axios.post("/methods/getHomeActivitiesApi", {
       homeId
     });
     return response.data;

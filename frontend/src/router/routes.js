@@ -10,6 +10,7 @@ const routes = [
         path: "homes/:id/report",
         component: () => import("pages/HomeReport.vue")
       },
+      { path: "report", component: () => import("pages/report.vue") },
       { path: "activities", component: () => import("pages/Activities.vue") },
       { path: "residents", component: () => import("pages/Residents.vue") },
       { path: "login", component: () => import("pages/login.vue") }

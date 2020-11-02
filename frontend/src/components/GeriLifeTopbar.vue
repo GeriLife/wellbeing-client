@@ -46,6 +46,18 @@
       >
         <span class="q-ml-sm">{{ $i18n.t("mainLayoutNavbar-homesLink") }}</span>
       </q-btn>
+      <q-btn
+        @click="$router.push({ path: '/report' })"
+        class="text-grey-7"
+        flat
+        size="md"
+        icon="fa fa-chart-line"
+      >
+        <span class="q-ml-sm">{{
+          $i18n.t("mainLayoutNavbar-reportLink")
+        }}</span>
+      </q-btn>
+
       <q-space />
       <q-btn
         @click="logoutAndRedirect"

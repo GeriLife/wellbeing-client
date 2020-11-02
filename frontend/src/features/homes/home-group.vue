@@ -182,7 +182,9 @@ export default {
     async init() {
       this.homes = await getHomesWithActivityLevel(this.group._id);
       await this.$nextTick();
-      this.homes.forEach(home => renderChart(home._id, home.activityLevel));
+      this.homes.forEach(home =>
+        renderChart(`activityLevelCountsChart-${home._id}`, home.activityLevel)
+      );
     }
   }
 };

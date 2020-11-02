@@ -12,13 +12,13 @@
     </div>
     <div class="row justify-evenly">
       <div class="col-12">
-        <div id="residentActivitiesSummary" />
+        <div :id="residentActivitiesSummary" />
       </div>
       <div class="col-5">
-        <div id="homeActivityCountsByActivityTypeChart" />
+        <div :id="homeActivityCountsByActivityTypeChart" />
       </div>
       <div class="col-5">
-        <div id="homeActivityCountsByFacilitatorRoleChart" />
+        <div :id="homeActivityCountsByFacilitatorRoleChart" />
       </div>
     </div>
   </div>
@@ -26,12 +26,14 @@
 <script>
 import {
   getHomeResidentsActivitySumsByType,
-  renderActivitySumsByType,
   getHomeActivityTypeMetrics,
-  renderActivityMetricsChart,
-  getHomeActivitiesFacilitatorRoleMetrics,
-  renderFacilitatorChart
+  getHomeActivitiesFacilitatorRoleMetrics
 } from "../services/detail-services";
+import {
+  renderActivitySumsByType,
+  renderActivityMetricsChart,
+  renderFacilitatorChart
+} from "../services/chart-services";
 import ReportSettingsForm from "src/components/ReportSettingsForm.vue";
 
 export default {
@@ -50,7 +52,12 @@ export default {
         activityMetric: "activity_minutes"
       },
       activityMetricsData: [],
-      rolesData: []
+      rolesData: [],
+      residentActivitiesSummary: "residentActivitiesSummary",
+      homeActivityCountsByActivityTypeChart:
+        "homeActivityCountsByActivityTypeChart",
+      homeActivityCountsByFacilitatorRoleChart:
+        "homeActivityCountsByFacilitatorRoleChart"
     };
   },
 
@@ -76,19 +83,31 @@ export default {
         this.homeId,
         this.activityPeriod
       );
-      renderActivitySumsByType(this.activitySumsByType, this.activityMetric);
+      renderActivitySumsByType(
+        this.residentActivitiesSummary,
+        this.activitySumsByType,
+        this.activityMetric
+      );
 
       this.activityMetricsData = await getHomeActivityTypeMetrics(
         this.homeId,
         this.activityPeriod
       );
-      renderActivityMetricsChart(this.activityMetric, this.activityMetricsData);
+      renderActivityMetricsChart(
+        this.homeActivityCountsByActivityTypeChart,
+        this.activityMetric,
+        this.activityMetricsData
+      );
 
       this.rolesData = await getHomeActivitiesFacilitatorRoleMetrics(
         this.homeId,
         this.activityPeriod
       );
-      renderFacilitatorChart(this.activityMetric, this.rolesData);
+      renderFacilitatorChart(
+        this.homeActivityCountsByFacilitatorRoleChart,
+        this.activityMetric,
+        this.rolesData
+      );
     }
   },
 

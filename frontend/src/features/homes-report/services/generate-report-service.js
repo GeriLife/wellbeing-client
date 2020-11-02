@@ -2,6 +2,7 @@ import Plotly from "plotly.js/dist/plotly.min.js";
 import { i18n } from "src/boot/i18n";
 
 export const renderChart = (
+  chartName,
   activityData,
   activityMetric = "activity_minutes",
   barMode = "group"
@@ -33,7 +34,7 @@ export const renderChart = (
   };
 
   // Render plot
-  Plotly.newPlot("homeResidentsActivitiesChart", data, layout, {
+  Plotly.newPlot(chartName, data, layout, {
     locale: i18n.locale
   });
 };

@@ -13,27 +13,31 @@
         </caption>
         <thead>
           <tr class="q-my-md">
-            <th colspan="3"></th>
-            <th colspan="7">
+            <th id="empty-space-start" colspan="3"></th>
+            <th id="past-week" colspan="7">
               {{ $i18n.t("homeResidents-tableHeader-pastWeek") }}
             </th>
           </tr>
 
           <tr>
-            <th>
+            <th id="r-name">
               <q-icon name="fa fa-lg fa-user" />&nbsp;
               {{ $i18n.t("homeResidents-tableHeader-residentName") }}
             </th>
-            <th>
+            <th id="day-count">
               <i class="fa fa-lg fa-heartbeat"></i>
               {{ $i18n.t("homeResidents-tableHeader-activeDaysCount") }}
             </th>
-            <th>
+            <th id="level">
               <q-icon class="fa fa-lg fa-heartbeat" />
               {{ $i18n.t("homeResidents-tableHeader-activityLevel") }}
             </th>
 
-            <th v-for="(day, index) in pastSevenDays" :key="index">
+            <th
+              :id="`weekday-${index}`"
+              v-for="(day, index) in pastSevenDays"
+              :key="index"
+            >
               {{ abbreviatedWeekday(day) }}
             </th>
           </tr>
@@ -58,21 +62,24 @@
                     .recentActiveDays"
                   :key="index"
                 >
-                  <i v-if="day.residentWasActive" class="fa fa-check"></i>
+                  <em
+                    v-if="day.residentWasActive"
+                    class="q-ml-md fa fa-check"
+                  ></em>
                 </td>
               </template>
             </tr>
           </template>
 
           <tr v-else>
-            <th colspan="3"></th>
+            <th id="empty-space-start" colspan="3"></th>
             <td colspan="3" v-if="loadingResidents">
               {{ $i18n.t("homeResidents-loadingMessage") }}
             </td>
             <td colspan="3" v-else>
               {{ $i18n.t("homeResidents-noResidents") }}
             </td>
-            <th colspan="4"></th>
+            <th id="empty-space-end" colspan="4"></th>
           </tr>
         </tbody>
       </table>

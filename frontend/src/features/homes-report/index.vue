@@ -13,7 +13,7 @@
     </q-card-section>
 
     <q-card-section>
-      <div id="homeResidentsActivitiesChart" />
+      <div :id="chartName" />
     </q-card-section>
   </q-card>
 </template>
@@ -35,7 +35,8 @@ export default {
         timePeriod: "week",
         activityMetric: "activity_minutes"
       },
-      activityData: null
+      activityData: null,
+      chartName: "homeResidentsActivitiesChart"
     };
   },
   async created() {
@@ -60,6 +61,7 @@ export default {
   methods: {
     renderChart() {
       renderChart(
+        this.chartName,
         this.activityData,
         this.settings.activityMetric,
         this.settings.barMode

@@ -1,6 +1,6 @@
 import Plotly from "plotly.js/dist/plotly.min.js";
 
-export const renderChart = (homeId, activityLevelCounts) => {
+export const renderChart = (chartName, activityLevelCounts) => {
   const colors = ["#d9534f", "#e6c829", "#5cb85c"];
 
   if (!activityLevelCounts || activityLevelCounts.length === 0) {
@@ -54,7 +54,7 @@ export const renderChart = (homeId, activityLevelCounts) => {
     showlegend: false
   };
   // Render plot
-  Plotly.newPlot(`activityLevelCountsChart-${homeId}`, data, layout, {
+  Plotly.newPlot(chartName, data, layout, {
     displayModeBar: false,
     responsive: true
   });

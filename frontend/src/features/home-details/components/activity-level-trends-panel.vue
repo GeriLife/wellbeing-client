@@ -8,15 +8,13 @@
       <p>
         {{ $i18n.t("homeResidentActivityLevelTrend-chartTitle") }}
       </p>
-      <div id="level-trend-home"></div>
+      <div :id="chartName"></div>
     </q-card-section>
   </q-card>
 </template>
 <script>
-import {
-  getHomeActivityCountTrendApi,
-  renderActivityChart
-} from "../services/detail-services";
+import { getHomeActivityCountTrendApi } from "../services/detail-services";
+import { renderActivityChart } from "../services/chart-services";
 
 export default {
   props: {
@@ -25,13 +23,14 @@ export default {
 
   data() {
     return {
-      activityData: {}
+      activityData: {},
+      chartName: "level-trend-home"
     };
   },
 
   async created() {
     this.activityData = await getHomeActivityCountTrendApi(this.homeId);
-    renderActivityChart(this.activityData);
+    renderActivityChart(this.chartName, this.activityData);
   }
 };
 </script>

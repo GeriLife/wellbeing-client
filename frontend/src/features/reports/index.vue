@@ -88,25 +88,32 @@ export default {
       this.fetchDataAndRender();
     },
     "settings.barMode"() {
-      this.render(this.typeData, "residentsActivitiesChartByType");
-      this.render(this.rolesData, "residentsActivitiesChartByRole");
+      this.render();
     },
     "settings.activityMetric"() {
-      this.render(this.typeData, "residentsActivitiesChartByType");
-      this.render(this.rolesData, "residentsActivitiesChartByRole");
+      this.render();
     }
   },
 
   methods: {
-    render(data, type) {
-      Plotly.purge(type);
+    render() {
+      Plotly.purge("residentsActivitiesChartByType");
       prepareChartData(
         this.settings.activityMetric,
         this.settings.barMode,
-        data,
-        type
+        this.typeData,
+        "residentsActivitiesChartByType"
+      );
+
+      Plotly.purge("residentsActivitiesChartByRole");
+      prepareChartData(
+        this.settings.activityMetric,
+        this.settings.barMode,
+        this.rolesData,
+        "residentsActivitiesChartByRole"
       );
     },
+
     async getTypeChartData() {
       const {
         activityData: typeData,
@@ -127,6 +134,7 @@ export default {
       this.rolesData = rolesData;
       this.roleLastUpdatedDate = roleLastUpdatedDate;
     },
+
     async fetchDataAndRender() {
       this.loading = true;
       await Promise.all([this.getTypeChartData(), this.getRoleChartData()]);
@@ -134,8 +142,7 @@ export default {
       /* Required as we need to wait for chart div to exist */
       await this.$nextTick();
 
-      this.render(this.typeData, "residentsActivitiesChartByType");
-      this.render(this.rolesData, "residentsActivitiesChartByRole");
+      this.render();
     }
   }
 };

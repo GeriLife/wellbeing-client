@@ -7,7 +7,7 @@ import Activities from "src/features/activities";
 
 export default {
   components: {
-    Activities
-  }
+    Activities,
+  },
 };
 </script>

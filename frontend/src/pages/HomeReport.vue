@@ -7,7 +7,7 @@ import HomesReport from "src/features/homes-report";
 
 export default {
   components: {
-    HomesReport
-  }
+    HomesReport,
+  },
 };
 </script>

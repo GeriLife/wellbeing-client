@@ -23,7 +23,10 @@
         <q-form @submit="onSubmit" ref="manageGroup" class="q-gutter-md">
           <q-input
             v-model="groupName"
-            :rules="[v => requiredValidation(v), v => maxLength(v.length, 30)]"
+            :rules="[
+              (v) => requiredValidation(v),
+              (v) => maxLength(v.length, 30),
+            ]"
             :label="$i18n.t('groups.name.label')"
           />
         </q-form>
@@ -47,7 +50,7 @@ import { maxLength, requiredValidation } from "src/utils/validations.js";
 
 export default {
   props: {
-    group: { type: Object, default: () => null }
+    group: { type: Object, default: () => null },
   },
   data() {
     return { show: true, groupName: this.group ? this.group.name : null };
@@ -61,12 +64,12 @@ export default {
       if (!result) return;
       const apiResponse = await addOrUpdateAGroup({
         _id: this.group ? this.group._id : null,
-        name: this.groupName
+        name: this.groupName,
       });
       if (apiResponse) {
         this.$emit("close", true);
       }
-    }
-  }
+    },
+  },
 };
 </script>

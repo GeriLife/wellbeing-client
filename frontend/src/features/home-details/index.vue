@@ -86,19 +86,19 @@ export default {
     ActivityLevelTrendsPanel,
     ResidentsLastWeek,
     ActivitySummary,
-    ActivityTable
+    ActivityTable,
   },
   data() {
     return {
       home: {},
       showAddHome: false,
-      tab: "summary"
+      tab: "summary",
     };
   },
   computed: {
     userIsAdmin() {
       return this.$store.getters["user/isUserAdmin"];
-    }
+    },
   },
   async created() {
     this.home = await getHomeDetailsApi(this.$route.params.id);
@@ -107,7 +107,7 @@ export default {
     async close() {
       this.showAddHome = false;
       this.home = await getHomeDetailsApi(this.$route.params.id);
-    }
-  }
+    },
+  },
 };
 </script>

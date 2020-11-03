@@ -9,16 +9,16 @@
       <q-form ref="myForm">
         <residents
           v-model="residents"
-          :rules="[val => requiredValidation(val, 'length')]"
+          :rules="[(val) => requiredValidation(val, 'length')]"
           multiple
         />
         <activity-types
-          :rules="[val => requiredValidation(val, '_id')]"
+          :rules="[(val) => requiredValidation(val, '_id')]"
           v-model="activityType"
         />
         <roles
           v-model="role"
-          :rules="[val => requiredValidation(val, '_id')]"
+          :rules="[(val) => requiredValidation(val, '_id')]"
         />
         <div>
           <q-input
@@ -27,10 +27,10 @@
             :label="$i18n.t('activities.activityDate.label')"
             mask="datetime"
             :rules="[
-              v => requiredValidation(v),
-              v =>
+              (v) => requiredValidation(v),
+              (v) =>
                 dateFallsInLastWeek(v) ||
-                $i18n.t('activity-manage-dateSelectionRange')
+                $i18n.t('activity-manage-dateSelectionRange'),
             ]"
           >
             <template v-slot:append>
@@ -63,9 +63,10 @@
           :label="$i18n.t('activities.duration.label')"
           lazy-rules
           :rules="[
-            v => requiredValidation(v),
-            val =>
-              (val > 0 && val < 1441) || $i18n.t('activity-manage-timeMaxValue')
+            (v) => requiredValidation(v),
+            (val) =>
+              (val > 0 && val < 1441) ||
+              $i18n.t('activity-manage-timeMaxValue'),
           ]"
         />
         <div>
@@ -92,11 +93,11 @@ export default {
   components: {
     Residents,
     ActivityTypes,
-    Roles
+    Roles,
   },
 
   props: {
-    residentId: { type: String, default: null }
+    residentId: { type: String, default: null },
   },
 
   data() {
@@ -105,7 +106,7 @@ export default {
       activityType: null,
       role: null,
       date: date.formatDate(new Date(), "YYYY/MM/DD"),
-      duration: 0
+      duration: 0,
     };
   },
 
@@ -128,7 +129,7 @@ export default {
         this.$q.notify({
           type: "negative",
           position: "top-right",
-          message: this.$i18n.t("formInvalid")
+          message: this.$i18n.t("formInvalid"),
         });
         return;
       }
@@ -141,8 +142,8 @@ export default {
         )}Z`,
         facilitatorRoleId: this.role._id,
         duration: this.duration,
-        residentIds: this.residents.map(r => r.value),
-        _id: this.residentId
+        residentIds: this.residents.map((r) => r.value),
+        _id: this.residentId,
       };
       const saveResult = await saveActivity(payload);
       this.$emit("activity-result", saveResult);
@@ -154,7 +155,7 @@ export default {
         new Date(v).getTime() >=
           new Date(date.subtractFromDate(new Date(), { days: 7 })).getTime()
       );
-    }
-  }
+    },
+  },
 };
 </script>

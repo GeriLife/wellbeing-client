@@ -65,7 +65,7 @@ import { getCookie } from "src/services/cookies";
 export default {
   data() {
     return {
-      getCookie
+      getCookie,
     };
   },
 
@@ -75,7 +75,7 @@ export default {
         window.location.reload();
         window.location.href = "/#/login";
       }
-    }
-  }
+    },
+  },
 };
 </script>

@@ -92,19 +92,19 @@ import "moment/locale/fi";
 import * as d3 from "d3";
 import {
   getHomeCurrentAndActiveResidents,
-  getSelectedResidentsRecentActiveDaysAndCount
+  getSelectedResidentsRecentActiveDaysAndCount,
 } from "../services/detail-services";
 
 export default {
   props: {
-    homeId: { type: String, required: true }
+    homeId: { type: String, required: true },
   },
 
   data() {
     return {
       residents: [],
       recentActiveDays: [],
-      loadingResidents: false
+      loadingResidents: false,
     };
   },
 
@@ -112,7 +112,7 @@ export default {
     this.loadingResidents = true;
     this.residents = await getHomeCurrentAndActiveResidents(this.homeId);
     this.recentActiveDays = await getSelectedResidentsRecentActiveDaysAndCount(
-      this.residents.map(r => r._id)
+      this.residents.map((r) => r._id)
     );
     this.loadingResidents = false;
   },
@@ -120,13 +120,11 @@ export default {
   computed: {
     pastSevenDays() {
       // Get date seven days ago
-      const sevenDaysAgo = moment()
-        .subtract(7, "days")
-        .toDate();
+      const sevenDaysAgo = moment().subtract(7, "days").toDate();
 
       // Get array of past seven days including today
       return d3.utcDay.range(sevenDaysAgo, new Date());
-    }
+    },
   },
   methods: {
     //TODO: add redirection to resident detail page
@@ -189,8 +187,8 @@ export default {
         return "danger";
       }
       return "";
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>

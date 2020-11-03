@@ -7,7 +7,7 @@ import LoginPage from "src/features/login";
 
 export default {
   components: {
-    LoginPage
-  }
+    LoginPage,
+  },
 };
 </script>

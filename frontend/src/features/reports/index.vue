@@ -1,18 +1,20 @@
 <template>
-  <div class="full-width">
-    <div class="q-mb-sm">
-      <span class="text-h4"> {{ $i18n.t("report-header") }}</span>
-      <report-settings-form class="d-inline" :settings.sync="settings" />
-    </div>
-    <div class="text-h6">
-      {{ $i18n.t("report-activityByType") }}
-    </div>
-    <span
-      >{{ $i18n.t("report-lastUpdatedAt") }}&nbsp;{{
-        typeLastUpdatedDate
-      }}</span
-    >
-    <div v-if="!loadingType" id="residentsActivitiesChartByType"></div>
+  <q-card class="q-px-sm full-width">
+    <q-card-section class="q-mb-sm">
+      <div>
+        <span class="text-h4"> {{ $i18n.t("report-header") }}</span>
+        <report-settings-form class="d-inline" :settings.sync="settings" />
+      </div>
+      <div class="text-h6">
+        {{ $i18n.t("report-activityByType") }}
+      </div>
+      <span
+        >{{ $i18n.t("report-lastUpdatedAt") }}&nbsp;{{
+          typeLastUpdatedDate
+        }}</span
+      >
+    </q-card-section>
+    <div v-if="!loading" id="residentsActivitiesChartByType"></div>
 
     <div v-else>
       <q-circular-progress
@@ -27,16 +29,17 @@
     </div>
 
     <!-- Chart for activity by activity roles -->
-    <div class="text-h6">
-      {{ $i18n.t("report-activityByRole") }}
-    </div>
-    <span
-      >{{ $i18n.t("report-lastUpdatedAt") }}&nbsp;{{
-        roleLastUpdatedDate
-      }}</span
-    >
-
-    <div v-if="!loadingRole" id="residentsActivitiesChartByRole"></div>
+    <q-card-section>
+      <div class="text-h6">
+        {{ $i18n.t("report-activityByRole") }}
+      </div>
+      <span
+        >{{ $i18n.t("report-lastUpdatedAt") }}&nbsp;{{
+          roleLastUpdatedDate
+        }}</span
+      >
+    </q-card-section>
+    <div v-if="!loading" id="residentsActivitiesChartByRole"></div>
     <div v-else>
       <q-circular-progress
         :value="61"
@@ -48,7 +51,7 @@
         class="q-ma-md"
       />
     </div>
-  </div>
+  </q-card>
 </template>
 <script>
 import ReportSettingsForm from "src/components/ReportSettingsForm.vue";
@@ -64,8 +67,7 @@ export default {
   },
   data() {
     return {
-      loadingRole: false,
-      loadingType: false,
+      loading: false,
       settings: {
         barMode: "stack",
         timePeriod: "week",
@@ -105,19 +107,16 @@ export default {
         type
       );
     },
-    async fetchDataAndRender() {
-      this.loadingType = true;
+    async getTypeChartData() {
       const {
         activityData: typeData,
         lastUpdated: typeLastUpdatedDate
       } = await getActivitiesAggregateReport(this.settings.timePeriod, "type");
-      this.loadingType = false;
       this.typeData = typeData;
       this.typeLastUpdatedDate = typeLastUpdatedDate;
-      await this.$nextTick();
-      this.render(typeData, "residentsActivitiesChartByType");
+    },
 
-      this.loadingRole = true;
+    async getRoleChartData() {
       const {
         activityData: rolesData,
         lastUpdated: roleLastUpdatedDate
@@ -125,12 +124,18 @@ export default {
         this.settings.timePeriod,
         "facilitator"
       );
-      this.loadingRole = false;
-      await this.$nextTick();
       this.rolesData = rolesData;
       this.roleLastUpdatedDate = roleLastUpdatedDate;
+    },
+    async fetchDataAndRender() {
+      this.loading = true;
+      await Promise.all([this.getTypeChartData(), this.getRoleChartData()]);
+      this.loading = false;
+      /* Required as we need to wait for chart div to exist */
+      await this.$nextTick();
 
-      this.render(rolesData, "residentsActivitiesChartByRole");
+      this.render(this.typeData, "residentsActivitiesChartByType");
+      this.render(this.rolesData, "residentsActivitiesChartByRole");
     }
   }
 };

@@ -101,6 +101,7 @@ export default {
 
       if (await loginToServer(this.email, this.password)) {
         await this.$store.dispatch("user/getUserDetails");
+        await this.$store.dispatch("user/getGroupsOfCurrentUser");
         window.location.reload();
         window.location.href = "/#/";
       }

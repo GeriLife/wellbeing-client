@@ -153,6 +153,8 @@
   "homeModal-update-successful": "Group updated successfully",
   "managerAssign-create-successful": "manager assigned successfully",
   "requiredMaxLength": "This is a required field with max character limit equal to {len}",
+  "requiredMaxDate": "Please select a date on or before {date}",
+  "requiredMinDate": "Please select a date on or after {date}",
   "groupModal-header-edit": "Edit group",
   "groupModal-save": "Save",
   "groups": {
@@ -297,7 +299,7 @@
     },
     "previousEndTime": "Previous residency ended on ",
     "note": "Each residency is limited to a single home. So updating the home or resident here is not allowed. For such cases, it is recommended to end this residency and start a new one. Click here to end this residency today.",
-    "endResidency": "End Residency"
+    "endResidency": "End Residency Today"
   },
   "residecyForm-save": "Save",
   "residents": {
@@ -459,5 +461,7 @@
   "email-reset-submit": "Email reset link",
   "email-reset-title": "Reset your password",
   "email-reset-go-back": "If you already have an account",
-  "search-text": "Search"
+  "search-text": "Search",
+  "residency-create-successful": "Residency created successfully",
+  "residency-update-successful": "Residency updated successfully"
 }

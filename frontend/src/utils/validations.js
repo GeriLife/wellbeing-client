@@ -8,3 +8,11 @@ export const requiredValidation = (value, key) =>
 
 export const maxLength = (currentLength, max) =>
   currentLength <= max || i18n.t("requiredMaxLength", { len: max });
+
+export const maxDate = (v, maxValue) =>
+  new Date(v).getTime() <= new Date(maxValue).getTime() ||
+  i18n.t("requiredMaxDate", { date: maxValue });
+
+export const minDate = (v, minValue) =>
+  new Date(v).getTime() >= new Date(minValue).getTime() ||
+  i18n.t("requiredMinDate", { date: minValue });

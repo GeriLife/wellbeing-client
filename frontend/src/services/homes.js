@@ -9,6 +9,24 @@ export const getHomeDetailsApi = async homeId => {
     return response.data;
   } catch (error) {
     errorNotifier(error);
+    return {};
+  }
+};
+
+export const getHomeSelectOptionsWithGroups = async () => {
+  try {
+    const { data } = await $axios.post(
+      "/methods/getHomeSelectOptionsWithGroups"
+    );
+    return (data || []).flatMap(r =>
+      r.options.map(subOpt => ({
+        group: r.optgroup,
+        label: subOpt.label,
+        value: subOpt.value
+      }))
+    );
+  } catch (error) {
+    errorNotifier(error);
     return [];
   }
 };

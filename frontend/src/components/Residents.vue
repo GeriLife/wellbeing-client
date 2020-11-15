@@ -2,13 +2,13 @@
   <q-select
     v-bind="$attrs"
     v-on="$listeners"
-    filled
     :value="value"
+    outlined
     :use-chips="multiple === true"
-    use-input
-    input-debounce="0"
+    input-debounce="450"
     :label="$i18n.t('activityForm-residentSelect-placeholder')"
-    :options="options"
+    map-options
+    :options="residentOptions"
     @filter="filterFn"
     :multiple="multiple"
     dropdown-icon="fa fa-chevron-down"
@@ -17,32 +17,57 @@
     <template v-slot:option="scope">
       <q-item v-bind="scope.itemProps" v-on="scope.itemEvents">
         <q-item-section>
-          <q-item-label v-html="scope.opt.label"></q-item-label>
-          <q-item-label caption
-            >{{ $i18n.t("newResidentAndResidencySchema-homeId-label") }}:
-            {{ scope.opt.home }}</q-item-label
-          >
+          <q-item-label>
+            {{ scope.opt.label }}
+          </q-item-label>
+          <q-item-label v-if="!inactiveOnly" caption>
+            {{ $i18n.t("newResidentAndResidencySchema-homeId-label") }}:
+            {{ scope.opt.home }}
+          </q-item-label>
         </q-item-section>
       </q-item>
     </template>
   </q-select>
 </template>
 <script>
-import { getResidentsList } from "src/services/residents";
+import {
+  getResidentsList,
+  getResidentsWithoutActiveResidencies
+} from "src/services/residents";
 
 export default {
   props: {
-    value: [Object, Array],
+    value: [Object, String, Array],
     multiple: { type: Boolean, default: false },
+    inactiveOnly: { type: Boolean, default: false },
+    residency: { type: String, default: null },
+    itemsOverideList: { type: Array, default: null }
   },
   data() {
     return {
       options: [],
-      original: [],
+      original: []
     };
   },
+
+  computed: {
+    residentOptions() {
+      return this.itemsOverideList || this.options;
+    }
+  },
+
   async created() {
-    this.original = await getResidentsList();
+    if (this.itemsOverideList) {
+      this.original = this.options = this.itemsOverideList;
+      return;
+    }
+    if (this.inactiveOnly) {
+      this.original = await getResidentsWithoutActiveResidencies(
+        this.residency
+      );
+    } else {
+      this.original = await getResidentsList();
+    }
     this.options = this.original;
   },
 
@@ -58,10 +83,10 @@ export default {
       update(() => {
         const needle = val.toLowerCase();
         this.options = this.original.filter(
-          (v) => v.label.toLowerCase().indexOf(needle) > -1
+          v => v.label.toLowerCase().indexOf(needle) > -1
         );
       });
-    },
-  },
+    }
+  }
 };
 </script>

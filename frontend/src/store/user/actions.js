@@ -9,3 +9,12 @@ export async function getUserDetails({ commit }) {
     errorNotifier(error);
   }
 }
+
+export async function getGroupsOfCurrentUser({ commit }) {
+  try {
+    const { data } = await $axios.post("/methods/getHomesOfCurrentUser");
+    commit("setUserManagedHomes", data);
+  } catch (error) {
+    errorNotifier(error);
+  }
+}

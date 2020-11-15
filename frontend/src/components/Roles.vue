@@ -2,7 +2,7 @@
   <q-select
     v-bind="$attrs"
     v-on="$listeners"
-    filled
+    outlined
     :value="value"
     :label="$i18n.t('activities.facilitatorRoleId.label')"
     :options="options"

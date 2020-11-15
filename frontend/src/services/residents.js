@@ -18,3 +18,33 @@ export const getResidentsList = async () => {
     return [];
   }
 };
+
+export const getResidentsWithoutActiveResidencies = async currentResidency => {
+  try {
+    const { data } = await $axios.post(
+      "/methods/getResidentsWithoutActiveResidencies",
+      {
+        currentResidency
+      }
+    );
+    return data.map(r => ({
+      label: `${r.firstName}${r.lastInitial ? " " + r.lastInitial : ""}`,
+      value: r._id
+    }));
+  } catch (error) {
+    errorNotifier(error);
+    return [];
+  }
+};
+
+export const getResidentDetailsApi = async residentId => {
+  try {
+    const { data } = await $axios.post("/methods/getResidentDetailsApi", {
+      residentId
+    });
+    return data;
+  } catch (error) {
+    errorNotifier(error);
+    return null;
+  }
+};

@@ -175,10 +175,13 @@ export default {
                   this.moveIn,
                   "YYYY-MM-DDTHH:mm:ss.SSS"
                 )}Z`,
-                moveOut: `${date.formatDate(
-                  this.moveOut && this.endClicked ? this.moveOut : null,
-                  "YYYY-MM-DDTHH:mm:ss.SSS"
-                )}Z`,
+                moveOut:
+                  this.moveOut && this.endClicked
+                    ? `${date.formatDate(
+                        this.moveOut,
+                        "YYYY-MM-DDTHH:mm:ss.SSS"
+                      )}Z`
+                    : undefined,
                 homeId: this.homeId.value || this.homeId
               })
           : async () =>

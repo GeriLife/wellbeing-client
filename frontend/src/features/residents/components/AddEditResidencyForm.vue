@@ -2,7 +2,7 @@
   <q-dialog v-model="show" @hide="$emit('close')" @escape-key="$emit('close')">
     <q-card flat class="q-py-sm full-width">
       <q-card-section class="text-h5">
-        <span v-if="residency">
+        <span v-if="!residency">
           {{ $i18n.t("addResidencyModal-header") }}
         </span>
         <span v-else>

@@ -10,7 +10,7 @@
       :inactive-only="true"
       v-if="!residency || overideList"
       :residency="residencyId"
-      :rules="[val => requiredValidation(val)]"
+      :rules="[(val) => requiredValidation(val)]"
       :multiple="false"
       :items-overide-list="!residency ? null : overideList"
     />
@@ -18,7 +18,7 @@
       :disabled="!!residency && !endClicked"
       class="q-mt-sm"
       v-model="homeId"
-      :rules="[val => requiredValidation(val)]"
+      :rules="[(val) => requiredValidation(val)]"
       :multiple="false"
     />
 
@@ -30,7 +30,7 @@
       :label="$i18n.t('residencies.moveIn.label')"
       type="date"
       mask="date"
-      :rules="[v => requiredValidation(v), v => maxDate(v, currentDate)]"
+      :rules="[(v) => requiredValidation(v), (v) => maxDate(v, currentDate)]"
     />
 
     <q-input
@@ -43,7 +43,7 @@
       type="date"
       fill-mask
       mask="date"
-      :rules="[v => !v || !moveIn || minDate(v, moveIn)]"
+      :rules="[(v) => !v || !moveIn || minDate(v, moveIn)]"
     />
 
     <div class="float-right">
@@ -89,18 +89,18 @@ import { getResidentDetailsApi } from "src/services/residents.js";
 import Homes from "src/components/Homes.vue";
 import {
   addNewResidencyWithExistingResident,
-  editResidency
+  editResidency,
 } from "../services/residency-services";
 import Residents from "src/components/Residents";
 
 export default {
   components: {
     Homes,
-    Residents
+    Residents,
   },
 
   props: {
-    residency: { type: Object, default: null }
+    residency: { type: Object, default: null },
   },
 
   data() {
@@ -120,14 +120,14 @@ export default {
         "YYYY-MM-DD"
       ),
       endClicked: false,
-      overideList: null
+      overideList: null,
     };
   },
 
   computed: {
     currentDate() {
       return date.formatDate(new Date(), "YYYY-MM-DD");
-    }
+    },
   },
 
   async created() {
@@ -139,8 +139,8 @@ export default {
               label: `${resident.firstName}${
                 resident.lastInitial ? " " + resident.lastInitial : ""
               }`,
-              value: resident._id
-            }
+              value: resident._id,
+            },
           ]
         : null;
     }
@@ -158,7 +158,7 @@ export default {
         this.$q.notify({
           type: "negative",
           position: "top-right",
-          message: this.$i18n.t("formInvalid")
+          message: this.$i18n.t("formInvalid"),
         });
         return;
       }
@@ -175,14 +175,13 @@ export default {
                   this.moveIn,
                   "YYYY-MM-DDTHH:mm:ss.SSS"
                 )}Z`,
-                moveOut:
-                  this.moveOut && this.endClicked
-                    ? `${date.formatDate(
-                        this.moveOut,
-                        "YYYY-MM-DDTHH:mm:ss.SSS"
-                      )}Z`
-                    : undefined,
-                homeId: this.homeId.value || this.homeId
+                moveOut: this.moveOut
+                  ? `${date.formatDate(
+                      this.moveOut,
+                      "YYYY-MM-DDTHH:mm:ss.SSS"
+                    )}Z`
+                  : undefined,
+                homeId: this.homeId.value || this.homeId,
               })
           : async () =>
               await editResidency({
@@ -202,9 +201,9 @@ export default {
                       : undefined,
                     homeId: this.endClicked
                       ? this.homeId.value || this.homeId
-                      : undefined
-                  }
-                }
+                      : undefined,
+                  },
+                },
               });
 
       if (await action()) {
@@ -224,9 +223,9 @@ export default {
         _id: this.residency._id,
         modifier: {
           $set: {
-            moveOut: newMoveIn
-          }
-        }
+            moveOut: newMoveIn,
+          },
+        },
       });
 
       if (saveResult) {
@@ -238,13 +237,13 @@ export default {
       if (
         await editResidency({
           _id: this.residencyId,
-          modifier: { $unset: { moveOut: true } }
+          modifier: { $unset: { moveOut: true } },
         })
       ) {
         this.endClicked = false;
         this.moveOut = date.formatDate(null, "YYYY-MM-DD");
       }
-    }
-  }
+    },
+  },
 };
 </script>

@@ -28,6 +28,10 @@ export default function(/* { store, ssrContext } */) {
   });
 
   Router.beforeEach(async (to, from, next) => {
+    if (to.path.startsWith("/resident/")) {
+      next();
+      return;
+    }
     if (to.path === "/login" && !!getCookie("token")) {
       next("/");
       return;

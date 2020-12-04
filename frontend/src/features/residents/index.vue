@@ -59,7 +59,13 @@
         >
           <template v-slot:body-cell-homeId="props">
             <q-td :props="props">
-              <q-btn size="sm" class="text-black" outline icon="fa fa-user" />
+              <q-btn
+                @click="$router.push(`/resident/${props.row.residentId}`)"
+                size="sm"
+                class="text-black"
+                outline
+                icon="fa fa-user"
+              />
             </q-td>
           </template>
 

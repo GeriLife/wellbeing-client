@@ -21,7 +21,19 @@ export default ({ urlPath }) => {
       }
       config.params["_t"] = new Date().getTime();
 
-      if (config.url === "/users/login") {
+      if (
+        config.url === "/users/login" ||
+        config.url.startsWith("/resident/")
+      ) {
+        return config;
+      }
+
+      const allowedApiCalls = [
+        "/methods/getResidentDetailsApi",
+        "/methods/isResidentManagedByCurrentUserApi"
+      ];
+
+      if (allowedApiCalls.indexOf(config.url) > -1) {
         return config;
       }
 

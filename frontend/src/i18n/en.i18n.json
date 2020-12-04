@@ -463,5 +463,6 @@
   "email-reset-go-back": "If you already have an account",
   "search-text": "Search",
   "residency-create-successful": "Residency created successfully",
-  "residency-update-successful": "Residency updated successfully"
+  "residency-update-successful": "Residency updated successfully",
+  "resident-update-successful": "Resident details updated successfully"
 }

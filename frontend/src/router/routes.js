@@ -13,7 +13,8 @@ const routes = [
       { path: "report", component: () => import("pages/report.vue") },
       { path: "activities", component: () => import("pages/Activities.vue") },
       { path: "residents", component: () => import("pages/Residents.vue") },
-      { path: "login", component: () => import("pages/login.vue") }
+      { path: "resident/:id", component: () => import("pages/ResidentDetails.vue") },
+      { path: "login", component: () => import("pages/login.vue") },
     ]
   },
 

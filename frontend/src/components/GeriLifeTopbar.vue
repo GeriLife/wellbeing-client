@@ -77,7 +77,7 @@ import { getCookie } from "src/services/cookies";
 export default {
   data() {
     return {
-      getCookie,
+      getCookie
     };
   },
 
@@ -85,9 +85,11 @@ export default {
     async logoutAndRedirect() {
       if (await logout()) {
         window.location.reload();
-        window.location.href = "/#/login";
+        if (!this.$route.path.startsWith("/resident/")) {
+          window.location.href = "/#/login";
+        }
       }
-    },
-  },
+    }
+  }
 };
 </script>

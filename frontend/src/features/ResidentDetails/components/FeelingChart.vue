@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div v-show="hasFeelings" class="row">
     <div class="text-h6">
       {{ $i18n.t("residentFeelings-header") }}
     </div>
@@ -18,6 +18,7 @@ export default {
   data() {
     return {
       feelingId: "residentFeelingsChart",
+      feelings: [],
     };
   },
 
@@ -25,12 +26,18 @@ export default {
     this.getFeelings();
   },
 
+  computed: {
+    hasFeelings() {
+      return this.feelings && this.feelings.length > 0;
+    },
+  },
+
   methods: {
     async getFeelings() {
-      const feelings = await getFeelingsPercentagesByResidentIdApi(
+      this.feelings = await getFeelingsPercentagesByResidentIdApi(
         this.residentId
       );
-      renderFeelingsChart(this.feelingId, feelings);
+      renderFeelingsChart(this.feelingId, this.feelings);
     },
   },
 };

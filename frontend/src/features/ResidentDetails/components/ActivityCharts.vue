@@ -3,9 +3,6 @@
     <feeling-chart :resident-id="residentId" />
 
     <template v-if="activities">
-      <div class="col-12">
-        <span class="text-h6"> {{ $i18n.t("residentActivities-header") }}</span>
-      </div>
       <trends-chart :resident-id="residentId" />
       <div class="row">
         <div class="col-sm-6 col-12">

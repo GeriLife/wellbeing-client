@@ -49,7 +49,16 @@
               :key="resident._id"
               class="row-class"
             >
-              <td>{{ resident.firstName }} {{ resident.lastInitial }}</td>
+              <td>
+                {{ resident.firstName }} {{ resident.lastInitial }}
+                <span class="q-ml-sm">
+                  <q-icon
+                    name="fa fa-eye"
+                    class="cursor-pointer"
+                    @click="$router.push(`/resident/${resident._id}`)"
+                  />
+                </span>
+              </td>
               <td class="activity-count">
                 {{ activeDayscount(resident_index) }}
               </td>

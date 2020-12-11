@@ -1,5 +1,5 @@
 <template>
-  <q-card class="full-width">
+  <q-card class="full-width" flat>
     <q-card-section class="row">
       <template v-if="resident">
         <p class="q-mt-sm">{{ resident.firstName }}</p>

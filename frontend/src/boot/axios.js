@@ -30,7 +30,14 @@ export default ({ urlPath }) => {
 
       const allowedApiCalls = [
         "/methods/getResidentDetailsApi",
-        "/methods/isResidentManagedByCurrentUserApi"
+        "/methods/isResidentManagedByCurrentUserApi",
+        "/methods/isResidentManagedByCurrentUserApi",
+        "/methods/updateResidentInfo",
+        "/methods/getFeelingsPercentagesByResidentIdApi",
+        "/methods/getResidentAggregatedActivitiesApi",
+        "/methods/getCountsByTypeApi",
+        "/methods/getResidentActvitiesWithActivityAndFaciltatorNameApi",
+        "/methods/getDaywiseActivityDurationApi"
       ];
 
       if (allowedApiCalls.indexOf(config.url) > -1) {

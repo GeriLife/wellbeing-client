@@ -153,6 +153,7 @@
   "homeModal-update-successful": "Group updated successfully",
   "managerAssign-create-successful": "manager assigned successfully",
   "requiredMaxLength": "This is a required field with max character limit equal to {len}",
+  "requiredMinLength": "This is a required field with min character limit equal to {len}",
   "requiredMaxDate": "Please select a date on or before {date}",
   "requiredMinDate": "Please select a date on or after {date}",
   "groupModal-header-edit": "Edit group",
@@ -464,5 +465,11 @@
   "search-text": "Search",
   "residency-create-successful": "Residency created successfully",
   "residency-update-successful": "Residency updated successfully",
-  "resident-update-successful": "Resident details updated successfully"
+  "resident-update-successful": "Resident details updated successfully",
+  "change-password": "Change Password",
+  "change-password-current": "Current Password",
+  "change-password-new": "Password",
+  "change-password-repeat": "Password (again)",
+  "password-no-match": "Passwords do not match",
+  "changePassword-success": "Changed password successfully"
 }

@@ -7,7 +7,7 @@ const fi = require("../i18n/fi.i18n.json");
 Vue.use(VueI18n);
 
 const i18n = new VueI18n({
-  locale: "en",
+  locale: localStorage.getItem("locale") || "en",
   messages: {
     en,
     fi

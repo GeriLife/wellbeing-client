@@ -57,8 +57,32 @@
           $i18n.t("mainLayoutNavbar-reportLink")
         }}</span>
       </q-btn>
+    </template>
+    <q-space />
+    <q-select
+      outlined
+      dense
+      fill-input
+      class="q-mr-sm"
+      bg-color="white"
+      map-options
+      :value="$i18n.locale"
+      @input="changeLanguage"
+      :options="languageOptions"
+    />
+    <template v-if="!!getCookie('token')">
+      <q-btn
+        @click="openProfile = true"
+        class="text-grey-7"
+        flat
+        size="md"
+        icon="fa fa-user"
+      >
+        <span class="q-ml-sm">{{
+          $i18n.t("mainLayoutNavbar-profileLink")
+        }}</span>
+      </q-btn>
 
-      <q-space />
       <q-btn
         @click="logoutAndRedirect"
         outline
@@ -67,17 +91,29 @@
         {{ $i18n.t("logout-logoutButton") }}
       </q-btn>
     </template>
+
+    <change-password v-if="openProfile" @close="openProfile = false" />
   </q-toolbar>
 </template>
 
 <script>
 import { logout } from "src/services/login.js";
 import { getCookie } from "src/services/cookies";
+import ChangePassword from "./ChangePassword.vue";
 
 export default {
+  components: {
+    ChangePassword,
+  },
+
   data() {
     return {
-      getCookie
+      getCookie,
+      openProfile: false,
+      languageOptions: [
+        { label: "English", value: "en" },
+        { label: "Suomi", value: "fi" },
+      ],
     };
   },
 
@@ -89,7 +125,12 @@ export default {
           window.location.href = "/#/login";
         }
       }
-    }
-  }
+    },
+
+    changeLanguage(selected) {
+      this.$i18n.locale = selected.value;
+      localStorage.setItem("locale", selected.value);
+    },
+  },
 };
 </script>

@@ -13,8 +13,33 @@ const routes = [
       { path: "report", component: () => import("pages/report.vue") },
       { path: "activities", component: () => import("pages/Activities.vue") },
       { path: "residents", component: () => import("pages/Residents.vue") },
-      { path: "resident/:id", component: () => import("pages/ResidentDetails.vue") },
-      { path: "login", component: () => import("pages/login.vue") },
+      {
+        path: "resident/:id",
+        component: () => import("pages/ResidentDetails.vue")
+      },
+      { path: "login", component: () => import("pages/login.vue") }
+    ]
+  },
+  {
+    path: "/settings",
+    component: () => import("layouts/Settings.vue"),
+    children: [
+      { path: "", component: () => import("pages/Settings.vue") },
+      {
+        path: "activity-types",
+        component: () => import("pages/ActivityTypeSettings.vue")
+      },
+      { path: "data", component: () => import("pages/DataSettings.vue") },
+      {
+        path: "date-time",
+        component: () => import("pages/DateTimeSettings.vue")
+      },
+      { path: "roles", component: () => import("pages/RolesSettings.vue") },
+      {
+        path: "event-log",
+        component: () => import("pages/EventLogSettings.vue")
+      },
+      { path: "users", component: () => import("pages/UsersSettings.vue") }
     ]
   },
 

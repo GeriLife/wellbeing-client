@@ -84,6 +84,18 @@
       </q-btn>
 
       <q-btn
+        @click="$router.push({ path: '/settings' })"
+        class="text-grey-7"
+        flat
+        size="md"
+        icon="fa fa-cog"
+      >
+        <span class="q-ml-sm">{{
+          $i18n.t("mainLayoutNavbar-settingsLink")
+        }}</span>
+      </q-btn>
+
+      <q-btn
         @click="logoutAndRedirect"
         outline
         class="flat text-black bg-white"

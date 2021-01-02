@@ -473,6 +473,7 @@
   "password-no-match": "Passwords do not match",
   "changePassword-success": "Changed password successfully",
   "activityType-create-successful": "Activity type added successfully",
+  "tz-create-successful": "Timezone added successfully",
   "roles-create-successful": "Role added successfully",
   "activityType-delete-successful": "Activity type removed successfully"
 }

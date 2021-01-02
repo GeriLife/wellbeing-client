@@ -111,8 +111,8 @@ module.exports = function(/* ctx */) {
       workboxPluginMode: "GenerateSW", // 'GenerateSW' or 'InjectManifest'
       workboxOptions: {}, // only for GenerateSW
       manifest: {
-        name: `welling-app`,
-        short_name: `welling-app`,
+        name: `GeriLife`,
+        short_name: `GeriLife`,
         description: `Wellbeing frontend app`,
         display: "standalone",
         orientation: "portrait",

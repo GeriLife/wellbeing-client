@@ -475,5 +475,9 @@
   "activityType-create-successful": "Activity type added successfully",
   "tz-create-successful": "Timezone added successfully",
   "roles-create-successful": "Role added successfully",
-  "activityType-delete-successful": "Activity type removed successfully"
+  "activityType-delete-successful": "Activity type removed successfully",
+  "userAssignGroup-successful": "User groups updated",
+  "user-remove-successful": "User removed successfully",
+  "enroll-atleast-oneEmail": "Must add at least one email address",
+  "enroll-user-successful": "User(s) successfully enrolled"
 }

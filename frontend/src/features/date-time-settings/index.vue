@@ -1,10 +1,10 @@
 <template>
-  <q-card class="full-width">
+  <q-card class="fit q-ma-md">
     <q-card-section class="text-h5">
       <q-icon name="fa fa-calendar" />&nbsp;
       {{ $i18n.t("dateTimeSettings-header") }}
     </q-card-section>
-    <q-card-section>
+    <q-card-section class="shadow-9">
       <div class="row">
         <span class="texh-h6">
           {{ $i18n.t("dateTimeSettings-timezone-header") }}
@@ -12,10 +12,8 @@
         <q-space />
         <q-icon color="primary" name="fa fa-2x fa-globe" />
       </div>
-    </q-card-section>
 
-    <q-card-section>
-      <div class="row">
+      <div class="q-mt-sm row">
         <q-select
           class="col-8"
           v-model="timezone"

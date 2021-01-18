@@ -20,7 +20,7 @@ export default {
   name: "MainLayout",
   components: { GeriLifeTopbar },
   async created() {
-    if (!!getCookie("token")) {
+    if (!!getCookie("token") && !!getCookie("subdomain")) {
       await this.$store.dispatch("user/getUserDetails");
       await this.$store.dispatch("user/getGroupsOfCurrentUser");
     }

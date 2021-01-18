@@ -1,17 +1,19 @@
 import { errorNotifier, successNotifier } from "src/utils/notifier.js";
-import { $axios } from "src/boot/axios";
+import { $axios, updateBaseUrl, appendSubdomain } from "src/boot/axios";
 import { i18n } from "src/boot/i18n";
 
 import axiosSub from "axios";
 import { getCookie } from "src/services/cookies";
 
-export const loginToServer = async (email, password) => {
+export const loginToServer = async (email, password, subdomain) => {
+  updateBaseUrl(subdomain);
   try {
     const { data: cookieData } = await $axios.post("/users/login", {
       email,
       password
     });
     document.cookie = `token=${cookieData.token}; expires=${cookieData.tokenExpires}`;
+    document.cookie = `subdomain=${subdomain};`
     return true;
   } catch (error) {
     errorNotifier(error);
@@ -24,6 +26,7 @@ export const logout = async () => {
     const { data: result } = await $axios.post("/methods/userLogout", {});
     if (result) {
       document.cookie = `token=;`;
+      document.cookie = `subdomain=;`;
       return true;
     }
   } catch (error) {
@@ -32,8 +35,9 @@ export const logout = async () => {
   return false;
 };
 
-export const sendResetEmail = async email => {
+export const sendResetEmail = async (email, subdomain) => {
   try {
+    updateBaseUrl(subdomain);
     const { data: result } = await $axios.post("/methods/sendResetEmail", {
       toEmail: email
     });
@@ -48,8 +52,13 @@ export const sendResetEmail = async email => {
 };
 
 export const checkIfLoggedIn = async () => {
+  const subdomain = getCookie("subdomain");
   const axiosInstance = axiosSub.create({
-    baseURL: process.env.BASE_URL
+    baseURL: `${
+      !subdomain
+        ? process.env.BASE_URL
+        : appendSubdomain(process.env.BASE_URL, subdomain)
+    }`
   });
 
   let result;
@@ -68,6 +77,7 @@ export const checkIfLoggedIn = async () => {
   }
   if (!result) {
     document.cookie = `token=;`;
+    document.cookie = `subdomain=;`;
   }
   return result;
 };

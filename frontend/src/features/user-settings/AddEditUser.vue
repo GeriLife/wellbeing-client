@@ -170,7 +170,6 @@ export default {
         apiResponse = addUser;
       }
       const userID = await apiResponse(this.user);
-      debugger;
       if (userID) {
         await updateAdministratorRights(this.user, userID);
         this.$emit("close", true);

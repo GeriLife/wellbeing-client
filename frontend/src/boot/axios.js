@@ -6,10 +6,42 @@ import { checkIfLoggedIn } from "src/services/login.js";
 const axiosInstance = axios.create({
   baseURL: process.env.BASE_URL
 });
+const _appendSubdomain = (domain, subdomain) => {
+  if (domain.indexOf("localhost") > -1) {
+    return domain;
+  }
+  if (
+    domain.startsWith(`http://${subdomain}.`) ||
+    domain.startsWith(`https://${subdomain}.`)
+  ) {
+    return domain;
+  }
+  const domsArray = domain.split(/^(https?|http):\/\//);
+  const dom = domsArray[domsArray.length - 1];
+  const protocol = domsArray[domsArray.length - 2];
+  return `${protocol}://${subdomain}.${dom}`;
+};
 
-export default ({ urlPath }) => {
+export const appendSubdomain = _appendSubdomain;
+
+export const updateBaseUrl = subdomain => {
+  axiosInstance.defaults.baseURL = _appendSubdomain(
+    process.env.BASE_URL,
+    subdomain
+  );
+};
+
+export default () => {
   axiosInstance.interceptors.request.use(
     async config => {
+      const subdomain = getCookie("subdomain");
+      if (subdomain) {
+        config.baseURL = axiosInstance.defaults.baseURL = _appendSubdomain(
+          process.env.BASE_URL,
+          getCookie("subdomain")
+        );
+      }
+
       if (config.url !== "/users/login") {
         const token = getCookie("token");
         if (token) {
@@ -23,6 +55,7 @@ export default ({ urlPath }) => {
 
       if (
         config.url === "/users/login" ||
+        config.url === "/methods/sendResetEmail" ||
         config.url.startsWith("/resident/")
       ) {
         return config;

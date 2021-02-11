@@ -2,8 +2,8 @@
   <q-select
     v-bind="$attrs"
     v-on="$listeners"
-    filled
     :value="value"
+    outlined
     map-options
     fill-input
     option-value="_id"

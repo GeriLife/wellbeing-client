@@ -11,7 +11,8 @@
     "dev": "quasar dev",
     "build": "quasar build",
     "build:pwa": "quasar build -m pwa",
-    "serve": "yarn build && quasar serve dist/spa/ -p 8080 -g --history"
+    "serve": "yarn build && quasar serve dist/spa/ -p 8080 -g --history",
+    "android-dev": "quasar dev -m cordova -T android"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",

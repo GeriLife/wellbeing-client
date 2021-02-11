@@ -2,6 +2,7 @@
   <div class="bg-white">
     <q-toolbar class="bg-grey-4">
       <q-btn
+        :size="isSmOrAbove ? 'md' : 'sm'"
         @click="$emit('menu-toggled')"
         class="gerilife-blue"
         flat
@@ -26,10 +27,10 @@
       <q-space />
       <template v-if="!!getCookie('token')">
         <q-btn
+          :size="isSmOrAbove ? 'md' : 'sm'"
           @click="$router.push({ path: '/settings' })"
           :disabled="$route.path === '/settings'"
           class="text-grey-7"
-          size="md"
           flat
           icon="fa fa-cog"
         >
@@ -38,6 +39,7 @@
           }}</span>
         </q-btn>
         <q-btn
+          :size="isSmOrAbove ? 'md' : 'sm'"
           @click="logoutAndRedirect"
           outline
           class="flat text-black bg-white"
@@ -54,6 +56,17 @@ import { logout } from "src/services/login.js";
 import { getCookie } from "src/services/cookies";
 
 export default {
+  computed: {
+    isSmOrAbove() {
+      return (
+        this.$q.screen.sm ||
+        this.$q.screen.md ||
+        this.$q.screen.lg ||
+        this.$q.screen.xl
+      );
+    },
+  },
+
   methods: {
     getCookie,
     async logoutAndRedirect() {

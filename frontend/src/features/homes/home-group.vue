@@ -11,7 +11,7 @@
           >{{ $i18n.t("homeGroup-editButton-text") }}</q-btn
         >
       </div>
-      <div class="col-12 col-sm-4">
+      <div class="q-mt-sm col-12 col-sm-4">
         <span class="q-gutter-sm float-right">
           <q-btn
             @click="showAddHome = true"
@@ -120,12 +120,12 @@ import AssignManager from "./assign-manager";
 
 export default {
   props: {
-    group: { type: Object, required: true }
+    group: { type: Object, required: true },
   },
 
   components: {
     AddHome,
-    AssignManager
+    AssignManager,
   },
 
   data() {
@@ -139,29 +139,29 @@ export default {
           name: "viewHome",
           align: "left",
           field: "_id",
-          label: this.$i18n.t("homeGroup-tableHeader-viewHome")
+          label: this.$i18n.t("homeGroup-tableHeader-viewHome"),
         },
         {
           name: "name",
           style: "max-width:15rem; overflow: hidden; text-overflow:ellipsis;",
           align: "left",
           field: "name",
-          label: this.$i18n.t("homeGroup-tableHeader-name")
+          label: this.$i18n.t("homeGroup-tableHeader-name"),
         },
         {
           name: "activityLevel",
           align: "left",
           style: "max-width:100rem;",
           field: "activityLevel",
-          label: this.$i18n.t("homeGroup-tableHeader-activityLevels")
+          label: this.$i18n.t("homeGroup-tableHeader-activityLevels"),
         },
         {
           name: "viewReport",
           align: "left",
           field: "_id",
-          label: this.$i18n.t("homeGroup-tableHeader-viewReport")
-        }
-      ]
+          label: this.$i18n.t("homeGroup-tableHeader-viewReport"),
+        },
+      ],
     };
   },
 
@@ -182,11 +182,11 @@ export default {
     async init() {
       this.homes = await getHomesWithActivityLevel(this.group._id);
       await this.$nextTick();
-      this.homes.forEach(home =>
+      this.homes.forEach((home) =>
         renderChart(`activityLevelCountsChart-${home._id}`, home.activityLevel)
       );
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>

@@ -37,7 +37,7 @@
           v-model="home"
           :label="$i18n.t('residents-filterLabels-homeName')"
         />
-        <div class="col">
+        <div class="col-auto">
           <q-checkbox
             v-model="includeDeparted"
             @input="getTableData"
@@ -112,7 +112,7 @@ import AddEditResidencyForm from "./components/AddEditResidencyForm";
 
 export default {
   components: {
-    AddEditResidencyForm
+    AddEditResidencyForm,
   },
 
   data() {
@@ -127,39 +127,39 @@ export default {
           name: "homeId",
           align: "left",
           field: "homeId",
-          label: this.$i18n.t("residents-tableLabels-viewResident")
+          label: this.$i18n.t("residents-tableLabels-viewResident"),
         },
         {
           name: "residentName",
           align: "left",
           field: "residentName",
           sortable: true,
-          label: this.$i18n.t("residents-tableLabels-fullName")
+          label: this.$i18n.t("residents-tableLabels-fullName"),
         },
         {
           name: "homeName",
           align: "left",
           field: "homeName",
           sortable: true,
-          label: this.$i18n.t("residents-tableLabels-homeName")
+          label: this.$i18n.t("residents-tableLabels-homeName"),
         },
         {
           name: "residentId",
           align: "left",
           field: "residentId",
-          label: this.$i18n.t("residents-tableLabels-residency")
-        }
+          label: this.$i18n.t("residents-tableLabels-residency"),
+        },
       ],
       includeDeparted: false,
       name: "",
-      home: ""
+      home: "",
     };
   },
 
   computed: {
     tableData() {
       return this.data.filter(
-        row =>
+        (row) =>
           (!this.home && !this.name) ||
           (!!this.home &&
             row.homeName.toLowerCase().indexOf(this.home.toLowerCase()) > -1) ||
@@ -167,7 +167,7 @@ export default {
             row.residentName.toLowerCase().indexOf(this.name.toLowerCase()) >
               -1)
       );
-    }
+    },
   },
 
   created() {
@@ -185,7 +185,7 @@ export default {
 
     userManagesHome(homeId) {
       return this.$store.getters["user/userManagesHome"](homeId);
-    }
-  }
+    },
+  },
 };
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="fit q-ma-md">
+  <div class="fit q-pa-md">
     <div class="text-h5">
       <q-icon name="fa fa-heartbeat" />&nbsp;
       {{ $i18n.t("activities-pageHeader") }}

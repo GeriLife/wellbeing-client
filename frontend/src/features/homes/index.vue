@@ -1,5 +1,5 @@
 <template>
-  <div class="fit q-ma-md">
+  <div class="fit q-pa-lg">
     <div class="text-h5">
       <q-icon name="fa fa-home" />&nbsp;
       {{ $i18n.t("homes-header") }}

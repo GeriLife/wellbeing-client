@@ -12,7 +12,9 @@
     "build": "quasar build",
     "build:pwa": "quasar build -m pwa",
     "serve": "yarn build && quasar serve dist/spa/ -p 8080 -g --history",
-    "android-dev": "quasar dev -m cordova -T android"
+    "only-serve": "quasar serve dist/spa/ -p 8080 -g --history",
+    "android-dev": "quasar dev -m cordova -T android",
+    "docker-deploy": "docker build -t dockerize-quasar . && docker run -it -p 8080:80 --rm dockerize-quasar"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
@@ -28,6 +30,7 @@
     "plotly.js": "^1.55.2",
     "quasar": "^1.0.0",
     "vue-i18n": "^8.20.0",
+    "webpack": "^5.23.0",
     "xlsx": "0.16.7"
   },
   "devDependencies": {

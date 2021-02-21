@@ -15,3 +15,15 @@ After cloning the app,
     - adb tcpip 5555
     - adb connect <device-ip>
 - To start the dev server run `yarn android-dev`
+
+# Docker deployment
+
+## Setup
+
+Here is a useful link (https://medium.com/@jwdobken/develop-quasar-applications-with-docker-a19c38d4a6ac) to setup docker deployment for the frontend folder. There is a one time command from it that needs to be fired to setup docker on the server. Make sure you have docker pre-installed
+
+`cd "$_"`
+`docker run --rm -v ${PWD}:/app -it node:12.20.2-alpine3.10  sh -c "yarn global add @vue/cli && vue init 'quasarframework/quasar-starter-kit' app"`
+
+## deployment
+run the following command to start the frontend server, `yarn docker-deploy`.

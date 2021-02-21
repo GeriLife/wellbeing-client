@@ -14,7 +14,7 @@
     "serve": "yarn build && quasar serve dist/spa/ -p 8080 -g --history",
     "only-serve": "quasar serve dist/spa/ -p 8080 -g --history",
     "android-dev": "quasar dev -m cordova -T android",
-    "docker-deploy": "docker build -t dockerize-quasar . && docker run -it -p 8080:80 --rm dockerize-quasar"
+    "docker-deploy": "docker build -t dockerize-quasar . && docker run -p 8080:80 --rm dockerize-quasar"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",

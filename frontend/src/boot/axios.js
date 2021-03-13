@@ -7,6 +7,20 @@ const axiosInstance = axios.create({
   baseURL: process.env.BASE_URL
 });
 const _appendSubdomain = (domain, subdomain) => {
+  const ip = domain.split("://")[1]
+    ? domain.split("://")[1].split(":")
+      ? domain.split("://")[1].split(":")[0]
+      : null
+    : null;
+
+  //skip adding sub-domain to ip
+  if (
+    /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(
+      ip
+    )
+  ) {
+    return domain;
+  }
   if (domain.indexOf("localhost") > -1) {
     return domain;
   }

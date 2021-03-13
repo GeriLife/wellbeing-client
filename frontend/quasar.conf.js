@@ -2,13 +2,11 @@
  * This file runs in a Node context (it's NOT transpiled by Babel), so use only
  * the ES6 features that are supported by your Node version. https://node.green/
  */
-const envParser = require("./src/boot/env-parser");
-
 // Configuration for your app
 // https://quasar.dev/quasar-cli/quasar-conf-js
 /* eslint-env node */
 
-module.exports = function(/* ctx */) {
+module.exports = function() {
   return {
     // https://quasar.dev/quasar-cli/supporting-ts
     supportTS: false,
@@ -20,6 +18,7 @@ module.exports = function(/* ctx */) {
     // --> boot files are part of "main.js"
     // https://quasar.dev/quasar-cli/boot-files
     boot: ["i18n", "axios"],
+    target : 'node',
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
     css: ["app.scss"],
@@ -28,11 +27,6 @@ module.exports = function(/* ctx */) {
     extras: [
       "material-icons",
       "fontawesome-v5",
-      // 'eva-icons',
-      // 'themify',
-      // 'line-awesome',
-      // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
-
       "roboto-font" // optional, you are not bound to it
       // 'material-icons', // optional, you are not bound to it
     ],
@@ -40,7 +34,7 @@ module.exports = function(/* ctx */) {
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
     build: {
       vueRouterMode: "hash", // available values: 'hash', 'history'
-      env: envParser(),
+      env: require("./src/boot/env-parser")(),
       // transpile: false,
 
       // Add dependencies for transpiling with Babel (Array of string/regex)

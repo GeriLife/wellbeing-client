@@ -1,6 +1,12 @@
 const DotEnv = require("dotenv");
-var shell = require("shelljs");
-var is3000On = shell.exec("lsof -t -i :3000 -s TCP:LISTEN").stdout;
+const execSync = require("child_process").execSync;
+let is3000On = false;
+
+try {
+  is3000On = execSync("lsof -t -i :3000 -s TCP:LISTEN").toString();
+} catch (e) {
+  // not running throws error
+}
 
 module.exports = function() {
   if (!!is3000On) {

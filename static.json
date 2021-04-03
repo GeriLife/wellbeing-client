@@ -1,0 +1,12 @@
+{
+    "root": "dist/spa/",
+    "clean_urls": true,
+    "routes": {
+        "/css/*": "/css/",
+        "/fonts/*": "/fonts/",
+        "/icons/*": "/icons/",
+        "/img/*": "/img/",
+        "/js/*": "/js/",
+        "/**": "index.html"
+    }
+}

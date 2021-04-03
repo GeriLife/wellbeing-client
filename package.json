@@ -6,15 +6,15 @@
   "author": "Shailee Mehta <>",
   "private": true,
   "scripts": {
-    "lint": "eslint --ext .js,.vue ./",
-    "test": "echo \"No test specified\" && exit 0",
-    "dev": "quasar dev",
+    "android-dev": "quasar dev -m cordova -T android",
     "build": "quasar build",
     "build:pwa": "quasar build -m pwa",
-    "serve": "yarn build && quasar serve dist/spa/ -p 8080 -g --history",
+    "dev": "quasar dev",
+    "docker-deploy": "docker build -t dockerize-quasar . && docker run -p 8080:80 --rm dockerize-quasar",
+    "lint": "eslint --ext .js,.vue ./",
     "only-serve": "quasar serve dist/spa/ -p 8080 -g --history",
-    "android-dev": "quasar dev -m cordova -T android",
-    "docker-deploy": "docker build -t dockerize-quasar . && docker run -p 8080:80 --rm dockerize-quasar"
+    "serve": "yarn build && quasar serve dist/spa/ -p 8080 -g --history",
+    "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",

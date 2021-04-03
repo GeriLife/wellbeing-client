@@ -11,6 +11,7 @@
     "build:pwa": "quasar build -m pwa",
     "dev": "quasar dev",
     "docker-deploy": "docker build -t dockerize-quasar . && docker run -p 8080:80 --rm dockerize-quasar",
+    "heroku-postbuild": "npm run build",
     "lint": "eslint --ext .js,.vue ./",
     "only-serve": "quasar serve dist/spa/ -p 8080 -g --history",
     "serve": "yarn build && quasar serve dist/spa/ -p 8080 -g --history",

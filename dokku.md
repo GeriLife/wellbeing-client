@@ -1,12 +1,5 @@
 # Dokku deployment instructions
-
-## Server dependencies
-It may be necessary to install `lsof` on the remote server.
-
-Install `lsof` on Ubuntu
-```
-sudo apt install lsof
-```
+This guide assumes Dokku is already [installed](https://dokku.com/docs/getting-started/installation/) on the remote server.
 
 ## Set up Dokku app on remote server
 ```
@@ -19,7 +12,7 @@ The local Git repository will need to be configured with a Dokku remote.
 ```
 git remote add dokku dokku@<server-address>:quasar-gerilife
 ```
-
+s
 ## Deploy
 In order to deploy, simply push the `main` branch to the Dokku server.
 

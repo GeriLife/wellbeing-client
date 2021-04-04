@@ -4,7 +4,7 @@ import { errorNotifier, successNotifier } from "src/utils/notifier.js";
 
 export const addFeeling = async data => {
   try {
-    await $axios.post("methods/addFeeling", data);
+    await $axios.post("/methods/addFeeling", data);
     successNotifier(i18n.t("newFeeling-success"));
     return true;
   } catch (error) {

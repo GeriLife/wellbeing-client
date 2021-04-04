@@ -7,7 +7,7 @@ import { getCookie } from "src/services/cookies";
 
 export const loginToServer = async (email, password) => {
   try {
-    const { data: cookieData } = await $axios.post("/users/login", {
+    const { data: cookieData } = await $axios.post("users/login", {
       email,
       password
     });
@@ -21,7 +21,7 @@ export const loginToServer = async (email, password) => {
 
 export const logout = async () => {
   try {
-    const { data: result } = await $axios.post("/methods/userLogout", {});
+    const { data: result } = await $axios.post("methods/userLogout", {});
     if (result) {
       document.cookie = `token=;`;s
       return true;
@@ -34,7 +34,7 @@ export const logout = async () => {
 
 export const sendResetEmail = async (email) => {
   try {
-    const { data: result } = await $axios.post("/methods/sendResetEmail", {
+    const { data: result } = await $axios.post("methods/sendResetEmail", {
       toEmail: email
     });
     if (result) {

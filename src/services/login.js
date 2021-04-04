@@ -55,7 +55,7 @@ export const checkIfLoggedIn = async () => {
   let result;
   try {
     const { data } = await axiosInstance.post(
-      "/methods/checkIfLoggedIn?_t=" + new Date().getTime(),
+      "methods/checkIfLoggedIn?_t=" + new Date().getTime(),
       {},
       {
         headers: { Authorization: "Bearer " + getCookie("token") }

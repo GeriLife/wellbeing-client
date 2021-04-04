@@ -3,7 +3,7 @@ import { errorNotifier } from "src/utils/notifier";
 
 export const getRolesExceptAdmin = async () => {
   try {
-    const { data } = await $axios.post("/methods/getRolesExceptAdmin");
+    const { data } = await $axios.post("/api/methods/getRolesExceptAdmin");
     return data;
   } catch (error) {
     errorNotifier(error);

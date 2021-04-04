@@ -95,6 +95,7 @@ export default {
   methods: {
     async login() {
       const result = await this.$refs.loginForm.validate();
+
       if (!result) {
         this.$q.notify({
           type: "negative",
@@ -105,10 +106,15 @@ export default {
       }
 
       if (await loginToServer(this.email, this.password)) {
+        console.log("logged in to server");
+
         await this.$store.dispatch("user/getUserDetails");
         await this.$store.dispatch("user/getGroupsOfCurrentUser");
+        
         window.location.reload();
         window.location.href = "/#/";
+      } else {
+        console.log("Could not log in to server.");
       }
     },
     async verifyAndSendEmail() {

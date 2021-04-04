@@ -1,19 +1,17 @@
 import { errorNotifier, successNotifier } from "src/utils/notifier.js";
-import { $axios, updateBaseUrl, appendSubdomain } from "src/boot/axios";
+import { $axios } from "src/boot/axios";
 import { i18n } from "src/boot/i18n";
 
 import axiosSub from "axios";
 import { getCookie } from "src/services/cookies";
 
-export const loginToServer = async (email, password, subdomain) => {
-  updateBaseUrl(subdomain);
+export const loginToServer = async (email, password) => {
   try {
     const { data: cookieData } = await $axios.post("/users/login", {
       email,
       password
     });
     document.cookie = `token=${cookieData.token}; expires=${cookieData.tokenExpires}`;
-    document.cookie = `subdomain=${subdomain};`
     return true;
   } catch (error) {
     errorNotifier(error);
@@ -25,8 +23,7 @@ export const logout = async () => {
   try {
     const { data: result } = await $axios.post("/methods/userLogout", {});
     if (result) {
-      document.cookie = `token=;`;
-      document.cookie = `subdomain=;`;
+      document.cookie = `token=;`;s
       return true;
     }
   } catch (error) {
@@ -35,9 +32,8 @@ export const logout = async () => {
   return false;
 };
 
-export const sendResetEmail = async (email, subdomain) => {
+export const sendResetEmail = async (email) => {
   try {
-    updateBaseUrl(subdomain);
     const { data: result } = await $axios.post("/methods/sendResetEmail", {
       toEmail: email
     });
@@ -52,13 +48,8 @@ export const sendResetEmail = async (email, subdomain) => {
 };
 
 export const checkIfLoggedIn = async () => {
-  const subdomain = getCookie("subdomain");
   const axiosInstance = axiosSub.create({
-    baseURL: `${
-      !subdomain
-        ? process.env.BASE_URL
-        : appendSubdomain(process.env.BASE_URL, subdomain)
-    }`
+    baseURL: process.env.BASE_URL,
   });
 
   let result;
@@ -77,7 +68,6 @@ export const checkIfLoggedIn = async () => {
   }
   if (!result) {
     document.cookie = `token=;`;
-    document.cookie = `subdomain=;`;
   }
   return result;
 };

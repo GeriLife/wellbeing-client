@@ -70,7 +70,7 @@ export default {
     };
   },
   async created() {
-    if (!!getCookie("token") && !!getCookie("subdomain")) {
+    if (!!getCookie("token")) {
       await this.$store.dispatch("user/getUserDetails");
       await this.$store.dispatch("user/getGroupsOfCurrentUser");
     }

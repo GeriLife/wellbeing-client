@@ -453,7 +453,6 @@
   "activity-manage-timeMaxValue": "Add under 24 hours",
   "login": "Sign-in to Gerilife",
   "login-email": "Email",
-  "login-subdomain": "Enter sub-domain",
   "invalid-email": "Email address is invalid",
   "login-password": "Password",
   "login-submit": "Sign In",

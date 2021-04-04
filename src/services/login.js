@@ -29,7 +29,7 @@ export const logout = async () => {
   try {
     const { data: result } = await $axios.post("/methods/userLogout", {});
     if (result) {
-      document.cookie = `token=;`;s
+      document.cookie = `token=;`;
       return true;
     }
   } catch (error) {

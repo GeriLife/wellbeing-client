@@ -32,3 +32,6 @@ yarn-error.log*
 *.njsproj
 *.sln
 .vscode
+
+# Environment variables, to deter checking in secrets to Git
+.env

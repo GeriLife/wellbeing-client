@@ -93,7 +93,9 @@ export default {
     };
   },
   methods: {
-    async login() {
+    async login(event) {
+      event.preventDefault();
+      
       console.log("login form submitted")
       const result = await this.$refs.loginForm.validate();
 

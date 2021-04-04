@@ -10,6 +10,7 @@ const GERILIFE_SERVER_ADDRESS = process.env.GERILIFE_SERVER_ADDRESS;
 const GERILIFE_SERVER_PORT = process.env.GERILIFE_SERVER_PORT;
 
 const API_BASE_URL = `${GERILIFE_SERVER_PROTOCOL}://${GERILIFE_SERVER_ADDRESS}:${GERILIFE_SERVER_PORT}`;
+console.log(API_BASE_URL);
 
 export const loginToServer = async (email, password) => {
   try {

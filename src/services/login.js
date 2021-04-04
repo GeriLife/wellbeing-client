@@ -11,7 +11,10 @@ export const loginToServer = async (email, password) => {
       email,
       password
     });
+
+    console.log(cookieData);
     document.cookie = `token=${cookieData.token}; expires=${cookieData.tokenExpires}`;
+    
     return true;
   } catch (error) {
     errorNotifier(error);

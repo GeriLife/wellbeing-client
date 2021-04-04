@@ -10,13 +10,6 @@
         <q-space />
         <q-form class="col-8" @submit="login" ref="loginForm">
           <q-input
-            v-model="subDomain"
-            :rules="[(v) => requiredValidation(v)]"
-            :label="$i18n.t('login-subdomain')"
-            outlined
-          />
-
-          <q-input
             v-model="email"
             :rules="[(v) => requiredValidation(v), (v) => validateEmail(v)]"
             :label="$i18n.t('login-email')"
@@ -54,12 +47,6 @@
       <q-card-section class="row">
         <q-space />
         <q-form class="col-8" ref="forgotPwdForm">
-          <q-input
-            v-model="toSubDomain"
-            :rules="[(v) => requiredValidation(v)]"
-            :label="$i18n.t('login-subdomain')"
-            outlined
-          />
 
           <q-input
             v-model="toEmail"
@@ -100,8 +87,6 @@ export default {
       validateEmail,
       requiredValidation,
       email: null,
-      subDomain: null,
-      toSubDomain: null,
       password: null,
       forgotPwd: false,
       toEmail: null,
@@ -119,7 +104,7 @@ export default {
         return;
       }
 
-      if (await loginToServer(this.email, this.password, this.subDomain)) {
+      if (await loginToServer(this.email, this.password)) {
         await this.$store.dispatch("user/getUserDetails");
         await this.$store.dispatch("user/getGroupsOfCurrentUser");
         window.location.reload();
@@ -136,13 +121,12 @@ export default {
         });
         return;
       }
-      const resetResult = await sendResetEmail(this.toEmail, this.toSubDomain);
+      const resetResult = await sendResetEmail(this.toEmail);
       this.$refs.forgotPwdForm.reset();
 
       if (resetResult) {
         this.forgotPwd = false;
         this.toEmail = null;
-        this.toSubDomain = null;
       }
     },
   },

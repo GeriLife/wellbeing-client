@@ -4,7 +4,7 @@ import { i18n } from "src/boot/i18n";
 
 export const getAllActivityTypes = async () => {
   try {
-    const { data } = await $axios.post("/methods/getAllActivityTypes", {});
+    const { data } = await $axios.post("/api/methods/getAllActivityTypes", {});
     return data;
   } catch (error) {
     errorNotifier(error);
@@ -26,7 +26,7 @@ export const saveActivity = async dataToSave => {
         }
       };
     }
-    await $axios.post("/methods/saveActivity", payload);
+    await $axios.post("/api/methods/saveActivity", payload);
     successNotifier(i18n.t("activityForm-add-success"));
     return true;
   } catch (error) {
@@ -37,7 +37,7 @@ export const saveActivity = async dataToSave => {
 
 export const getActivityData = async id => {
   try {
-    return await $axios.post("/methods/getActivityById", { id });
+    return await $axios.post("/api/methods/getActivityById", { id });
   } catch (error) {
     errorNotifier(error);
     return {};

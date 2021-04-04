@@ -14,7 +14,7 @@ console.log(API_BASE_URL);
 
 export const loginToServer = async (email, password) => {
   try {
-    const { data: cookieData } = await $axios.post("/users/login", {
+    const { data: cookieData } = await $axios.post("/api/users/login", {
       email,
       password
     });
@@ -28,7 +28,7 @@ export const loginToServer = async (email, password) => {
 
 export const logout = async () => {
   try {
-    const { data: result } = await $axios.post("/methods/userLogout", {});
+    const { data: result } = await $axios.post("/api/methods/userLogout", {});
     if (result) {
       document.cookie = `token=;`;
       return true;
@@ -41,7 +41,7 @@ export const logout = async () => {
 
 export const sendResetEmail = async (email) => {
   try {
-    const { data: result } = await $axios.post("/methods/sendResetEmail", {
+    const { data: result } = await $axios.post("/api/methods/sendResetEmail", {
       toEmail: email
     });
     if (result) {
@@ -62,7 +62,7 @@ export const checkIfLoggedIn = async () => {
   let result;
   try {
     const { data } = await axiosInstance.post(
-      "/methods/checkIfLoggedIn?_t=" + new Date().getTime(),
+      "/api/methods/checkIfLoggedIn?_t=" + new Date().getTime(),
       {},
       {
         headers: { Authorization: "Bearer " + getCookie("token") }

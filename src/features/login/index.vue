@@ -94,6 +94,7 @@ export default {
   },
   methods: {
     async login() {
+      console.log("login form submitted")
       const result = await this.$refs.loginForm.validate();
 
       if (!result) {
@@ -110,7 +111,7 @@ export default {
 
         await this.$store.dispatch("user/getUserDetails");
         await this.$store.dispatch("user/getGroupsOfCurrentUser");
-        
+
         window.location.reload();
         window.location.href = "/#/";
       } else {

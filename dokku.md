@@ -10,7 +10,11 @@ dokku apps:create quasar-gerilife
 
 ### Configure GeriLife address and port
 
-The Quasar app will need to connect to a GeriLife server, using address and port.
+The Quasar app will need to connect to a GeriLife server, using protocol, address, and port.
+
+```
+dokku config:set quasar-gerilife GERILIFE_SERVER_PROTOCOL=<server-protocol>
+```
 
 ```
 dokku config:set quasar-gerilife GERILIFE_SERVER_ADDRESS=<server-address>

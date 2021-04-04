@@ -27,7 +27,7 @@ export const loginToServer = async (email, password) => {
 
 export const logout = async () => {
   try {
-    const { data: result } = await $axios.post("methods/userLogout", {});
+    const result = await $axios.post("methods/userLogout", {});
     if (result) {
       document.cookie = `token=;`;s
       return true;

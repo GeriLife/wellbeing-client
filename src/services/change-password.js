@@ -4,7 +4,7 @@ import { errorNotifier, successNotifier } from "src/utils/notifier.js";
 
 export const changePassword = async obj => {
   try {
-    await $axios.post("methods/changeAccPassword", obj);
+    await $axios.post("/methods/changeAccPassword", obj);
     successNotifier(i18n.t("changePassword-success"));
     return true;
   } catch (error) {

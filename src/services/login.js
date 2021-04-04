@@ -5,6 +5,12 @@ import { i18n } from "src/boot/i18n";
 import axiosSub from "axios";
 import { getCookie } from "src/services/cookies";
 
+const GERILIFE_SERVER_PROTOCOL = process.env.GERILIFE_SERVER_PROTOCOL;
+const GERILIFE_SERVER_ADDRESS = process.env.GERILIFE_SERVER_ADDRESS;
+const GERILIFE_SERVER_PORT = process.env.GERILIFE_SERVER_PORT;
+
+const API_BASE_URL = `${GERILIFE_SERVER_PROTOCOL}://${GERILIFE_SERVER_ADDRESS}:${GERILIFE_SERVER_PORT}`;
+
 export const loginToServer = async (email, password) => {
   try {
     const { data: cookieData } = await $axios.post("users/login", {
@@ -49,7 +55,7 @@ export const sendResetEmail = async (email) => {
 
 export const checkIfLoggedIn = async () => {
   const axiosInstance = axiosSub.create({
-    baseURL: process.env.BASE_URL,
+    baseURL: API_BASE_URL,
   });
 
   let result;

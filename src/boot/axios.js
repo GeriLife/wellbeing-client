@@ -3,10 +3,6 @@ import axios from "axios";
 import { getCookie } from "src/services/cookies";
 import { checkIfLoggedIn } from "src/services/login.js";
 
-// const axiosInstance = axios.create({
-//   baseURL: process.env.BASE_URL
-// });
-
 const axiosInstance = axios.create();
 
 export default () => {

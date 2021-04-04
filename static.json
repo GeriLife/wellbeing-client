@@ -1,12 +1,17 @@
 {
-    "root": "dist/spa/",
-    "clean_urls": true,
-    "routes": {
-        "/css/*": "/css/",
-        "/fonts/*": "/fonts/",
-        "/icons/*": "/icons/",
-        "/img/*": "/img/",
-        "/js/*": "/js/",
-        "/**": "index.html"
+  "root": "dist/spa/",
+  "clean_urls": true,
+  "routes": {
+    "/css/*": "/css/",
+    "/fonts/*": "/fonts/",
+    "/icons/*": "/icons/",
+    "/img/*": "/img/",
+    "/js/*": "/js/",
+    "/**": "index.html"
+  },
+  "proxies": {
+    "/api/": {
+      "origin": "${GERILIFE_SERVER_ADDRESS}:${GERILIFE_SERVER_PORT}"
     }
+  }
 }

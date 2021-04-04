@@ -8,7 +8,7 @@
       </q-card-section>
       <q-card-section class="row">
         <q-space />
-        <q-form class="col-8" @submit="login" ref="loginForm">
+        <q-form class="col-8" @submit.prevent="login" ref="loginForm">
           <q-input
             v-model="email"
             :rules="[(v) => requiredValidation(v), (v) => validateEmail(v)]"
@@ -93,9 +93,7 @@ export default {
     };
   },
   methods: {
-    async login(event) {
-      event.preventDefault();
-      
+    async login() {
       console.log("login form submitted")
       const result = await this.$refs.loginForm.validate();
 

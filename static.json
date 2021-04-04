@@ -8,10 +8,5 @@
     "/img/*": "/img/",
     "/js/*": "/js/",
     "/**": "index.html"
-  },
-  "proxies": {
-    "/api/": {
-      "origin": "http://${GERILIFE_SERVER_ADDRESS}:${GERILIFE_SERVER_PORT}"
-    }
   }
 }

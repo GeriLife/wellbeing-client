@@ -2,6 +2,7 @@ import { Notify } from "quasar";
 import { parseMeteorError } from "./parsers";
 
 export const errorNotifier = error => {
+  console.log(error);
   Notify.create({
     type: "negative",
     position: "top-right",

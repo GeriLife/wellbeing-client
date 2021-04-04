@@ -3,7 +3,7 @@ import { errorNotifier } from "src/utils/notifier.js";
 
 export const getHomeDetailsApi = async homeId => {
   try {
-    const response = await $axios.post("/methods/getHomeDetailsApi", {
+    const response = await $axios.post("methods/getHomeDetailsApi", {
       homeId
     });
     return response.data;
@@ -16,7 +16,7 @@ export const getHomeDetailsApi = async homeId => {
 export const getHomeSelectOptionsWithGroups = async () => {
   try {
     const { data } = await $axios.post(
-      "/methods/getHomeSelectOptionsWithGroups"
+      "methods/getHomeSelectOptionsWithGroups"
     );
     return (data || []).flatMap(r =>
       r.options.map(subOpt => ({

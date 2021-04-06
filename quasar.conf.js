@@ -18,7 +18,7 @@ module.exports = function() {
     // --> boot files are part of "main.js"
     // https://quasar.dev/quasar-cli/boot-files
     boot: ["i18n", "axios"],
-    target : 'node',
+    target: "node",
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
     css: ["app.scss"],
@@ -68,14 +68,14 @@ module.exports = function() {
       open: true, // opens browser window automatically
       proxy: {
         // proxy all requests starting with /api to GeriLife server
-        '/api': {
-          target: 'http://localhost:3000',
+        "/api": {
+          target: "http://localhost:3000",
           changeOrigin: true,
           pathRewrite: {
-            '^/api': '',
-          },
-        },
-      },
+            "^/api": ""
+          }
+        }
+      }
     },
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-framework

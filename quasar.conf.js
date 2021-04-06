@@ -67,7 +67,7 @@ module.exports = function() {
       port: 8080,
       open: true, // opens browser window automatically
       proxy: {
-        // proxy all requests starting with /api to jsonplaceholder
+        // proxy all requests starting with /api to GeriLife server
         '/api': {
           target: 'http://localhost:3000',
           changeOrigin: true,

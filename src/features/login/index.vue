@@ -47,7 +47,6 @@
       <q-card-section class="row">
         <q-space />
         <q-form class="col-8" ref="forgotPwdForm">
-
           <q-input
             v-model="toEmail"
             :rules="[(v) => requiredValidation(v), (v) => validateEmail(v)]"
@@ -93,8 +92,11 @@ export default {
     };
   },
   methods: {
-    async login() {
-      console.log("login form submitted")
+    async login(event) {
+      if (event) {
+        event.preventDefault();
+      }
+      console.log("login form submitted");
       const result = await this.$refs.loginForm.validate();
 
       if (!result) {

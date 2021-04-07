@@ -163,6 +163,9 @@ export default {
 
     async onSubmit($ev) {
       const result = await this.$refs.assignManager.validate();
+      if ($ev) {
+        $ev.preventDefault();
+      }
       if (!result) return;
       const apiResponse = await assignManager({
         groupId: this.groupId,

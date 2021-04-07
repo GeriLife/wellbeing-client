@@ -81,8 +81,11 @@ export default {
 
   methods: {
     requiredValidation,
-    async onSubmit() {
+    async onSubmit($ev) {
       const result = await this.$refs.manageHome.validate();
+      if ($ev) {
+        $ev.preventDefault();
+      }
       if (!result) return;
       const apiResponse = await addOrUpdateHome({
         _id: this.home ? this.home._id : undefined,
@@ -92,6 +95,7 @@ export default {
       if (apiResponse) {
         this.$emit("close", true);
       }
+      
     },
   },
 };

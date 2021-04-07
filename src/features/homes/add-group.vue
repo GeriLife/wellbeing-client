@@ -59,8 +59,11 @@ export default {
   methods: {
     maxLength,
     requiredValidation,
-    async onSubmit() {
+    async onSubmit($ev) {
       const result = await this.$refs.manageGroup.validate();
+      if ($ev) {
+        $ev.preventDefault();
+      }
       if (!result) return;
       const apiResponse = await addOrUpdateAGroup({
         _id: this.group ? this.group._id : null,

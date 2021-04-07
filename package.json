@@ -14,7 +14,7 @@
     "heroku-postbuild": "npm run build",
     "lint": "eslint --ext .js,.vue ./",
     "only-serve": "quasar serve dist/spa/ -p 8080 -g --history",
-    "serve": "yarn build && quasar serve dist/spa/ -p 8080 -g --history",
+    "serve": "yarn build && yarn only-serve",
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
@@ -23,6 +23,7 @@
     "core-js": "^3.6.5",
     "crypto-js": "^4.0.0",
     "d3": "^6.2.0",
+    "dotenv": "^8.2.0",
     "file-saver": "2.0.2",
     "humanize-duration": "^3.23.1",
     "moment": "^2.29.1",

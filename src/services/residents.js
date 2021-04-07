@@ -4,7 +4,7 @@ import { errorNotifier } from "src/utils/notifier.js";
 export const getResidentsList = async () => {
   try {
     const { data } = await $axios.post(
-      "/api/methods/userVisibleResidentNamesGroupedtByHomes"
+      "/methods/userVisibleResidentNamesGroupedtByHomes"
     );
     return data.flatMap(r =>
       r.options.map(subOpt => ({
@@ -22,7 +22,7 @@ export const getResidentsList = async () => {
 export const getResidentsWithoutActiveResidencies = async currentResidency => {
   try {
     const { data } = await $axios.post(
-      "/api/methods/getResidentsWithoutActiveResidencies",
+      "/methods/getResidentsWithoutActiveResidencies",
       {
         currentResidency
       }
@@ -39,7 +39,7 @@ export const getResidentsWithoutActiveResidencies = async currentResidency => {
 
 export const getResidentDetailsApi = async residentId => {
   try {
-    const { data } = await $axios.post("/api/methods/getResidentDetailsApi", {
+    const { data } = await $axios.post("/methods/getResidentDetailsApi", {
       residentId
     });
     return data;

@@ -2,8 +2,14 @@ import Vue from "vue";
 import axios from "axios";
 import { getCookie } from "src/services/cookies";
 import { checkIfLoggedIn } from "src/services/login.js";
+const GERILIFE_SERVER_PROTOCOL = process.env.GERILIFE_SERVER_PROTOCOL || "http";
+const GERILIFE_SERVER_ADDRESS = process.env.GERILIFE_SERVER_ADDRESS;
+const GERILIFE_SERVER_PORT = process.env.GERILIFE_SERVER_PORT;
 
-const axiosInstance = axios.create();
+const API_BASE_URL = `${GERILIFE_SERVER_PROTOCOL}://${GERILIFE_SERVER_ADDRESS}:${GERILIFE_SERVER_PORT}`;
+const axiosInstance = axios.create({
+  baseURL: API_BASE_URL
+});
 
 export default () => {
   axiosInstance.interceptors.request.use(

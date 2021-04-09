@@ -8,7 +8,7 @@ const axiosInstance = axios.create();
 export default () => {
   axiosInstance.interceptors.request.use(
     async config => {
-      if (config.url !== "/users/login") {
+      if (config.url.indexOf("/users/login") === -1) {
         const token = getCookie("token");
         if (token) {
           config.headers["Authorization"] = "Bearer " + token;
@@ -20,9 +20,8 @@ export default () => {
       config.params["_t"] = new Date().getTime();
 
       if (
-        config.url === "/users/login" ||
-        config.url === "/methods/sendResetEmail" ||
-        config.url.startsWith("/resident/")
+        config.url.indexOf("/users/login") > -1 ||
+        config.url.indexOf("/methods/sendResetEmail") > -1
       ) {
         return config;
       }

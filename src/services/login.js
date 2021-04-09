@@ -14,7 +14,6 @@ export const loginToServer = async (email, password) => {
 
     console.log(cookieData);
     document.cookie = `token=${cookieData.token}; expires=${cookieData.tokenExpires}`;
-    
     return true;
   } catch (error) {
     errorNotifier(error);
@@ -35,7 +34,7 @@ export const logout = async () => {
   return false;
 };
 
-export const sendResetEmail = async (email) => {
+export const sendResetEmail = async email => {
   try {
     const { data: result } = await $axios.post("/api/methods/sendResetEmail", {
       toEmail: email

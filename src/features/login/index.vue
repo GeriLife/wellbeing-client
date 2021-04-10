@@ -47,7 +47,6 @@
       <q-card-section class="row">
         <q-space />
         <q-form class="col-8" ref="forgotPwdForm">
-
           <q-input
             v-model="toEmail"
             :rules="[(v) => requiredValidation(v), (v) => validateEmail(v)]"
@@ -94,7 +93,6 @@ export default {
   },
   methods: {
     async login() {
-      console.log("login form submitted")
       const result = await this.$refs.loginForm.validate();
 
       if (!result) {
@@ -112,8 +110,8 @@ export default {
         await this.$store.dispatch("user/getUserDetails");
         await this.$store.dispatch("user/getGroupsOfCurrentUser");
 
-        window.location.reload();
-        window.location.href = "/#/";
+        this.$router.push({ path: "/" });
+        this.$router.go();
       } else {
         console.log("Could not log in to server.");
       }

@@ -88,7 +88,7 @@ export default {
         })
       ) {
         this.closeDialog();
-        window.location.reload();
+        this.$router.go();
       }
     },
     closeDialog() {

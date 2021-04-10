@@ -5,7 +5,7 @@ import { checkIfLoggedIn } from "src/services/login.js";
 
 const axiosInstance = axios.create();
 
-export default () => {
+export default ({ router }) => {
   axiosInstance.interceptors.request.use(
     async config => {
       if (config.url.indexOf("/users/login") === -1) {
@@ -38,14 +38,13 @@ export default () => {
         "/methods/getDaywiseActivityDurationApi"
       ];
 
-      if (allowedApiCalls.indexOf(config.url) > -1) {
+      if (new RegExp(allowedApiCalls.join("|")).test(config.url)) {
         return config;
       }
 
       const result = await checkIfLoggedIn();
       if (!result) {
-        window.location.reload();
-        window.location.href = "/#/login";
+        router.push({ path: "/login" });
       }
       return config;
     },

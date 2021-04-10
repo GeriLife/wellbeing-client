@@ -145,9 +145,9 @@ export default {
   methods: {
     async logoutAndRedirect() {
       if (await logout()) {
-        window.location.reload();
+        this.$router.go();
         if (!this.$route.path.startsWith("/resident/")) {
-          window.location.href = "/#/login";
+          this.$router.push({ path: "/login" });
         }
       }
     },

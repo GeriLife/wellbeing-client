@@ -24,12 +24,7 @@ module.exports = function() {
     css: ["app.scss"],
 
     // https://github.com/quasarframework/quasar/tree/dev/extras
-    extras: [
-      "material-icons",
-      "fontawesome-v5",
-      "roboto-font" // optional, you are not bound to it
-      // 'material-icons', // optional, you are not bound to it
-    ],
+    extras: ["material-icons", "fontawesome-v5"],
 
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
     build: {
@@ -74,10 +69,6 @@ module.exports = function() {
           pathRewrite: {
             "^/api": ""
           }
-        },
-        "/methods": {
-          target: "http://localhost:3000",
-          changeOrigin: true
         }
       }
     },

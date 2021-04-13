@@ -88,6 +88,7 @@ export const renderActivitySumsByType = (
   // Add plot layout configuration
   const layout = {
     autosize: true,
+    height: 250,
     xaxis: {
       title: i18n.t(
         `homeResidentsActivitySumsByType-chart-xaxisTitle-${activityMetric}`
@@ -152,7 +153,7 @@ export const renderActivityMetricsChart = (
   // Add plot layout configuration
   const layout = {
     autosize: true,
-    height: 250,
+    height: 150,
     xaxis: {
       title: i18n.t(
         `homeActivityCountsByActivityTypeChart-xAxis-${activityMetric}`
@@ -218,7 +219,7 @@ export const renderFacilitatorChart = (
   // Add plot layout configuration
   const layout = {
     autosize: true,
-    height: 250,
+    height: 150,
     xaxis: {
       title: i18n.t(
         `homeActivityCountsByFacilitatorRoleChart-xAxis-${activityMetric}`

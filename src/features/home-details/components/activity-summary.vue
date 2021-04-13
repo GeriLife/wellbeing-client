@@ -27,21 +27,21 @@
 import {
   getHomeResidentsActivitySumsByType,
   getHomeActivityTypeMetrics,
-  getHomeActivitiesFacilitatorRoleMetrics
+  getHomeActivitiesFacilitatorRoleMetrics,
 } from "../services/detail-services";
 import {
   renderActivitySumsByType,
   renderActivityMetricsChart,
-  renderFacilitatorChart
+  renderFacilitatorChart,
 } from "../services/chart-services";
 import ReportSettingsForm from "src/components/ReportSettingsForm.vue";
 
 export default {
   components: {
-    ReportSettingsForm
+    ReportSettingsForm,
   },
   props: {
-    homeId: { type: String, required: true }
+    homeId: { type: String, required: true },
   },
   data() {
     return {
@@ -49,7 +49,7 @@ export default {
       period: "week",
       settings: {
         timePeriod: "week",
-        activityMetric: "activity_minutes"
+        activityMetric: "activity_minutes",
       },
       activityMetricsData: [],
       rolesData: [],
@@ -57,7 +57,7 @@ export default {
       homeActivityCountsByActivityTypeChart:
         "homeActivityCountsByActivityTypeChart",
       homeActivityCountsByFacilitatorRoleChart:
-        "homeActivityCountsByFacilitatorRoleChart"
+        "homeActivityCountsByFacilitatorRoleChart",
     };
   },
 
@@ -69,7 +69,7 @@ export default {
       return this.settings.activityMetric === "activity_minutes"
         ? "minutes"
         : "count";
-    }
+    },
   },
 
   async mounted() {
@@ -108,7 +108,7 @@ export default {
         this.activityMetric,
         this.rolesData
       );
-    }
+    },
   },
 
   watch: {
@@ -117,8 +117,8 @@ export default {
     },
     activityMetric() {
       this.getActivityData();
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>

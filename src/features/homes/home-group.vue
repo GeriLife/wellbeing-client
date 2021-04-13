@@ -39,6 +39,7 @@
     <q-card-section>
       <span class="text-grey-9"> {{ $i18n.t("homeGroup-tableCaption") }}</span>
       <q-table
+        flat
         class="q-mt-md"
         :data="homes"
         :columns="columns"

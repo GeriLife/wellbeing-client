@@ -6,3 +6,9 @@
 .helvetica-font {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+
+// app global css in SCSS form
+.q-btn,
+.q-tab {
+  text-transform: capitalize;
+}

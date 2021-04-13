@@ -12,7 +12,7 @@ export const getActivities = async ({
 }) => {
   try {
     const { data } = await $axios.post(
-      "/methods/allUserVisibleActivities-paginated",
+      "/api/methods/allUserVisibleActivities-paginated",
       {
         currentPage,
         rowsPerPage,
@@ -31,7 +31,7 @@ export const getActivities = async ({
 
 export const deleteActivity = async id => {
   try {
-    await $axios.post("/methods/removeActivity", {
+    await $axios.post("/api/methods/removeActivity", {
       id
     });
     successNotifier(i18n.t("activityForm-delete-success"));

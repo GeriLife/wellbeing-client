@@ -27,7 +27,7 @@ const exportXls = data => {
 
 export const exportData = async type => {
   try {
-    const response = await $axios.post("/methods/exportAllData");
+    const response = await $axios.post("/api/methods/exportAllData");
 
     if (type === "JSON") {
       exportJson(response.data);
@@ -43,7 +43,7 @@ export const exportData = async type => {
 
 export const JSONFileImport = async data => {
   try {
-    const response = await $axios.post("/methods/JSONFileImportApi", {
+    const response = await $axios.post("/api/methods/JSONFileImportApi", {
       fileData: data
     });
 

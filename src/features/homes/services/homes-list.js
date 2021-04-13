@@ -4,7 +4,7 @@ import { i18n } from "src/boot/i18n";
 
 export const getUserGroups = async () => {
   try {
-    const { data } = await $axios.post("/methods/currentUserGroups");
+    const { data } = await $axios.post("/api/methods/currentUserGroups");
     return data;
   } catch (error) {
     errorNotifier(error);
@@ -14,7 +14,7 @@ export const getUserGroups = async () => {
 
 export const getHomesWithActivityLevel = async groupId => {
   try {
-    const { data } = await $axios.post("/methods/getHomesWithActivityLevel", {
+    const { data } = await $axios.post("/api/methods/getHomesWithActivityLevel", {
       groupId
     });
     return data;
@@ -31,7 +31,7 @@ export const addOrUpdateAGroup = async groupDetails => {
       payload = { _id: groupDetails._id, modifier: { $set: groupDetails } };
       delete payload.modifier._id;
     }
-    await $axios.post("/methods/addOrUpdateAGroup", payload);
+    await $axios.post("/api/methods/addOrUpdateAGroup", payload);
 
     successNotifier(
       i18n.t(`groupModal-${groupDetails._id ? "update" : "create"}-successful`)
@@ -51,7 +51,7 @@ export const addOrUpdateHome = async homeDetails => {
       delete payload.modifier.$set._id;
       delete payload.modifier.$set.groupId;
     }
-    await $axios.post("/methods/addOrUpdateHome", payload);
+    await $axios.post("/api/methods/addOrUpdateHome", payload);
 
     successNotifier(
       i18n.t(`homeModal-${homeDetails._id ? "update" : "create"}-successful`)

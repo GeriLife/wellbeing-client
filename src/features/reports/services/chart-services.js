@@ -51,7 +51,7 @@ export const prepareChartData = (
 export const getActivitiesAggregateReport = async (timePeriod, aggregateBy) => {
   try {
     const response = await $axios.post(
-      "/methods/getActivitiesAggregateReportApi",
+      "/api/methods/getActivitiesAggregateReportApi",
       {
         timePeriod,
         aggregateBy

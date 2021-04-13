@@ -21,21 +21,21 @@ export default ({ router }) => {
 
       if (
         config.url.indexOf("/users/login") > -1 ||
-        config.url.indexOf("/methods/sendResetEmail") > -1
+        config.url.indexOf("/api/methods/sendResetEmail") > -1
       ) {
         return config;
       }
 
       const allowedApiCalls = [
-        "/methods/getResidentDetailsApi",
-        "/methods/isResidentManagedByCurrentUserApi",
-        "/methods/isResidentManagedByCurrentUserApi",
-        "/methods/updateResidentInfo",
-        "/methods/getFeelingsPercentagesByResidentIdApi",
-        "/methods/getResidentAggregatedActivitiesApi",
-        "/methods/getCountsByTypeApi",
-        "/methods/getResidentActvitiesWithActivityAndFaciltatorNameApi",
-        "/methods/getDaywiseActivityDurationApi"
+        "/api/methods/getResidentDetailsApi",
+        "/api/methods/isResidentManagedByCurrentUserApi",
+        "/api/methods/isResidentManagedByCurrentUserApi",
+        "/api/methods/updateResidentInfo",
+        "/api/methods/getFeelingsPercentagesByResidentIdApi",
+        "/api/methods/getResidentAggregatedActivitiesApi",
+        "/api/methods/getCountsByTypeApi",
+        "/api/methods/getResidentActvitiesWithActivityAndFaciltatorNameApi",
+        "/api/methods/getDaywiseActivityDurationApi"
       ];
 
       if (new RegExp(allowedApiCalls.join("|")).test(config.url)) {

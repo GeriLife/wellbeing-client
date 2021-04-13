@@ -4,7 +4,7 @@ import { i18n } from "src/boot/i18n";
 
 export const getAllActivityTypeIdsApi = async () => {
   try {
-    const response = await $axios.post("/methods/getAllActivityTypeIdsApi");
+    const response = await $axios.post("/api/methods/getAllActivityTypeIdsApi");
     return response.data;
   } catch (error) {
     errorNotifier(error);
@@ -14,7 +14,7 @@ export const getAllActivityTypeIdsApi = async () => {
 
 export const addActivityType = async formData => {
   try {
-    await $axios.post("/methods/addActivityType", formData);
+    await $axios.post("/api/methods/addActivityType", formData);
     successNotifier(i18n.t("activityType-create-successful"));
     return true;
   } catch (e) {
@@ -25,7 +25,7 @@ export const addActivityType = async formData => {
 
 export const removeActivityType = async formData => {
   try {
-    await $axios.post("/methods/removeActivityTypeApi", formData);
+    await $axios.post("/api/methods/removeActivityTypeApi", formData);
     successNotifier(i18n.t("activityType-delete-successful"));
     return true;
   } catch (e) {

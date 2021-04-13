@@ -7,7 +7,7 @@ export const getMonthlyAggregatedHomeResidentActivities = async (
 ) => {
   try {
     const response = await $axios.post(
-      "/methods/getMonthlyAggregatedHomeResidentActivitiesApi",
+      "/api/methods/getMonthlyAggregatedHomeResidentActivitiesApi",
       {
         homeId,
         timePeriod

@@ -4,7 +4,7 @@ import { i18n } from "src/boot/i18n";
 
 export const getTimezone = async () => {
   try {
-    const response = await $axios.post("/methods/getTimezone");
+    const response = await $axios.post("/api/methods/getTimezone");
     return response.data.value;
   } catch (error) {
     errorNotifier(error);
@@ -14,7 +14,7 @@ export const getTimezone = async () => {
 
 export const saveTimeZone = async tz => {
   try {
-    await $axios.post("/methods/createOrEditTimezoneSettingsApi", { selectedTimezone: tz });
+    await $axios.post("/api/methods/createOrEditTimezoneSettingsApi", { selectedTimezone: tz });
     successNotifier(i18n.t("tz-create-successful"));
     return true;
   } catch (e) {

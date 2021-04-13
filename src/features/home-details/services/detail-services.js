@@ -4,7 +4,7 @@ import { errorNotifier } from "src/utils/notifier.js";
 export const getHomeCurrentAndActiveResidents = async homeId => {
   try {
     const response = await $axios.post(
-      "/methods/getHomeCurrentAndActiveResidentsApi",
+      "/api/methods/getHomeCurrentAndActiveResidentsApi",
       {
         homeId
       }
@@ -19,7 +19,7 @@ export const getHomeCurrentAndActiveResidents = async homeId => {
 export const getSelectedResidentsRecentActiveDaysAndCount = async residentIds => {
   try {
     const response = await $axios.post(
-      "/methods/getSelectedResidentsRecentActiveDaysAndCount",
+      "/api/methods/getSelectedResidentsRecentActiveDaysAndCount",
       {
         residentIds
       }
@@ -34,7 +34,7 @@ export const getSelectedResidentsRecentActiveDaysAndCount = async residentIds =>
 export const getHomeActivityCountTrendApi = async homeId => {
   try {
     const response = await $axios.post(
-      "/methods/getHomeActivityCountTrendApi",
+      "/api/methods/getHomeActivityCountTrendApi",
       {
         homeId
       }
@@ -49,7 +49,7 @@ export const getHomeActivityCountTrendApi = async homeId => {
 export const getHomeResidentsActivitySumsByType = async (homeId, period) => {
   try {
     const response = await $axios.post(
-      "/methods/getHomeResidentsActivitySumsByType",
+      "/api/methods/getHomeResidentsActivitySumsByType",
       {
         homeId,
         period
@@ -64,7 +64,7 @@ export const getHomeResidentsActivitySumsByType = async (homeId, period) => {
 
 export const getHomeActivityTypeMetrics = async (homeId, period) => {
   try {
-    const response = await $axios.post("/methods/getHomeActivityTypeMetrics", {
+    const response = await $axios.post("/api/methods/getHomeActivityTypeMetrics", {
       homeId,
       period
     });
@@ -81,7 +81,7 @@ export const getHomeActivitiesFacilitatorRoleMetrics = async (
 ) => {
   try {
     const response = await $axios.post(
-      "/methods/getHomeActivitiesFacilitatorRoleMetrics",
+      "/api/methods/getHomeActivitiesFacilitatorRoleMetrics",
       {
         homeId,
         period
@@ -96,7 +96,7 @@ export const getHomeActivitiesFacilitatorRoleMetrics = async (
 
 export const getHomeActivities = async homeId => {
   try {
-    const response = await $axios.post("/methods/getHomeActivitiesApi", {
+    const response = await $axios.post("/api/methods/getHomeActivitiesApi", {
       homeId
     });
     return response.data;

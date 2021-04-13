@@ -4,7 +4,7 @@ import { i18n } from "src/boot/i18n";
 
 export const getCurrentManagers = async groupId => {
   try {
-    const response = await $axios.post("/methods/getCurrentManagersApi", {
+    const response = await $axios.post("/api/methods/getCurrentManagersApi", {
       groupId
     });
     return response.data;
@@ -16,7 +16,7 @@ export const getCurrentManagers = async groupId => {
 
 export const getEligibleManagers = async currentManagers => {
   try {
-    const response = await $axios.post("/methods/getEligibleManagerListApi", {
+    const response = await $axios.post("/api/methods/getEligibleManagerListApi", {
       idsToFilter: currentManagers
     });
     return response.data;
@@ -28,7 +28,7 @@ export const getEligibleManagers = async currentManagers => {
 
 export const assignManager = async ({ groupId, users }) => {
   try {
-    await $axios.post("/methods/assignManager", {
+    await $axios.post("/api/methods/assignManager", {
       groupId,
       users
     });
@@ -43,7 +43,7 @@ export const assignManager = async ({ groupId, users }) => {
 export const revokeManagerPermission = async (groupId, userId) => {
   try {
     const { data: resp } = await $axios.post(
-      "/methods/revokeManagerPermission",
+      "/api/methods/revokeManagerPermission",
       {
         groupId,
         userId

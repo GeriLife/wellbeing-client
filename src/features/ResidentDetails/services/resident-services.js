@@ -5,7 +5,7 @@ import { i18n } from "src/boot/i18n";
 export const isResidentManagedByCurrentUserApi = async residentId => {
   try {
     const { data } = await $axios.post(
-      "/methods/isResidentManagedByCurrentUserApi",
+      "/api/methods/isResidentManagedByCurrentUserApi",
       {
         residentId
       }
@@ -23,7 +23,7 @@ export const updateResidentInfo = async document => {
     const modifier = { $set: { ...document } };
     delete modifier.$set._id;
 
-    await $axios.post("/methods/updateResidentInfo", {
+    await $axios.post("/api/methods/updateResidentInfo", {
       _id,
       modifier
     });
@@ -38,7 +38,7 @@ export const updateResidentInfo = async document => {
 export const getFeelingsPercentagesByResidentIdApi = async residentId => {
   try {
     const { data } = await $axios.post(
-      "/methods/getFeelingsPercentagesByResidentIdApi",
+      "/api/methods/getFeelingsPercentagesByResidentIdApi",
       {
         residentId
       }
@@ -75,7 +75,7 @@ export const getResidentAggregatedActivitiesApi = async (
 ) => {
   try {
     const { data } = await $axios.post(
-      "/methods/getResidentAggregatedActivitiesApi",
+      "/api/methods/getResidentAggregatedActivitiesApi",
       {
         residentId,
         timePeriod
@@ -90,7 +90,7 @@ export const getResidentAggregatedActivitiesApi = async (
 
 export const getCountsByTypeApi = async (residentId, type) => {
   try {
-    const { data } = await $axios.post("/methods/getCountsByTypeApi", {
+    const { data } = await $axios.post("/api/methods/getCountsByTypeApi", {
       residentId,
       type
     });
@@ -104,7 +104,7 @@ export const getCountsByTypeApi = async (residentId, type) => {
 export const getResidentActvitiesWithActivityAndFaciltatorNameApi = async residentId => {
   try {
     const { data } = await $axios.post(
-      "/methods/getResidentActvitiesWithActivityAndFaciltatorNameApi",
+      "/api/methods/getResidentActvitiesWithActivityAndFaciltatorNameApi",
       {
         residentId
       }
@@ -127,7 +127,7 @@ export const getResidentActvitiesWithActivityAndFaciltatorNameApi = async reside
 export const getDaywiseActivityDurationApi = async residentId => {
   try {
     const { data } = await $axios.post(
-      "/methods/getDaywiseActivityDurationApi",
+      "/api/methods/getDaywiseActivityDurationApi",
       {
         residentId
       }

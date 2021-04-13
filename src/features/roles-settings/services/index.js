@@ -4,7 +4,7 @@ import { i18n } from "src/boot/i18n";
 
 export const getRolesExceptAdmin = async () => {
   try {
-    const response = await $axios.post("/methods/getRolesExceptAdmin");
+    const response = await $axios.post("/api/methods/getRolesExceptAdmin");
     return response.data;
   } catch (error) {
     errorNotifier(error);
@@ -14,7 +14,7 @@ export const getRolesExceptAdmin = async () => {
 
 export const addRole = async formData => {
   try {
-    await $axios.post("/methods/addRole", formData);
+    await $axios.post("/api/methods/addRole", formData);
     successNotifier(i18n.t("roles-create-successful"));
     return true;
   } catch (e) {

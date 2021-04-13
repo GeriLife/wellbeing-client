@@ -5,7 +5,7 @@ import { i18n } from "src/boot/i18n";
 export const getResidentsWithHomeAndResidentDetailsApi = async includeDeparted => {
   try {
     const { data } = await $axios.post(
-      "/methods/getResidentsWithHomeAndResidentDetailsApi",
+      "/api/methods/getResidentsWithHomeAndResidentDetailsApi",
       {
         includeDeparted
       }
@@ -19,7 +19,7 @@ export const getResidentsWithHomeAndResidentDetailsApi = async includeDeparted =
 
 export const addNewResidentAndResidency = async document => {
   try {
-    await $axios.post("/methods/addNewResidentAndResidencyApi", {
+    await $axios.post("/api/methods/addNewResidentAndResidencyApi", {
       document
     });
     successNotifier(i18n.t("residency-create-successful"));
@@ -32,7 +32,7 @@ export const addNewResidentAndResidency = async document => {
 
 export const addNewResidencyWithExistingResident = async document => {
   try {
-    await $axios.post("/methods/addNewResidencyWithExistingResident", document);
+    await $axios.post("/api/methods/addNewResidencyWithExistingResident", document);
     successNotifier(i18n.t("residency-create-successful"));
     return true;
   } catch (error) {
@@ -43,7 +43,7 @@ export const addNewResidencyWithExistingResident = async document => {
 
 export const editResidency = async document => {
   try {
-    await $axios.post("/methods/editResidency", document);
+    await $axios.post("/api/methods/editResidency", document);
     successNotifier(i18n.t("residency-update-successful"));
     return true;
   } catch (error) {

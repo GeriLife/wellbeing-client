@@ -4,7 +4,7 @@ import { i18n } from "src/boot/i18n";
 
 export const getUserList = async () => {
   try {
-    const { data } = await $axios.post("/methods/getUserListApi");
+    const { data } = await $axios.post("/api/methods/getUserListApi");
     return data.map(r => ({
       ...r,
       Email: r.emails[0].address,
@@ -18,7 +18,7 @@ export const getUserList = async () => {
 
 export const getSingleUserGroupIdsApi = async (userId, allGroups = []) => {
   try {
-    const { data } = await $axios.post("/methods/getSingleUserGroupIdsApi", {
+    const { data } = await $axios.post("/api/methods/getSingleUserGroupIdsApi", {
       userId
     });
     return data;
@@ -30,7 +30,7 @@ export const getSingleUserGroupIdsApi = async (userId, allGroups = []) => {
 
 export const addSingleUserPermissionsApi = async (userId, groupIds) => {
   try {
-    await $axios.post("/methods/addSingleUserPermissionsApi", {
+    await $axios.post("/api/methods/addSingleUserPermissionsApi", {
       userId,
       groupIds
     });
@@ -45,7 +45,7 @@ export const addSingleUserPermissionsApi = async (userId, groupIds) => {
 
 export const deleteUser = async user => {
   try {
-    await $axios.post("/methods/deleteUser", user);
+    await $axios.post("/api/methods/deleteUser", user);
     successNotifier(i18n.t("user-remove-successful"));
 
     return true;
@@ -57,7 +57,7 @@ export const deleteUser = async user => {
 
 export const editUserFormSubmit = async user => {
   try {
-    await $axios.post("/methods/editUserFormSubmit", user);
+    await $axios.post("/api/methods/editUserFormSubmit", user);
 
     return user._id;
   } catch (error) {
@@ -68,7 +68,7 @@ export const editUserFormSubmit = async user => {
 
 export const addUser = async user => {
   try {
-    const { data } = await $axios.post("/methods/addUser", user);
+    const { data } = await $axios.post("/api/methods/addUser", user);
 
     return data;
   } catch (error) {
@@ -80,7 +80,7 @@ export const addUser = async user => {
 export const updateAdministratorRights = async (user, userId) => {
   try {
     await $axios.post(
-      `/methods/${
+      `/api/methods/${
         user.isAdmin ? "addUserToAdminRoleApi" : "removeUserFromAdminRoleApi"
       }`,
       { userId }
@@ -94,7 +94,7 @@ export const updateAdministratorRights = async (user, userId) => {
 
 export const addUsersAndSendEnrollmentEmails = async doc => {
   try {
-    await $axios.post("/methods/addUsersAndSendEnrollmentEmails", doc);
+    await $axios.post("/api/methods/addUsersAndSendEnrollmentEmails", doc);
     successNotifier(i18n.t("enroll-user-successful"));
 
     return true;

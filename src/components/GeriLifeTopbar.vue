@@ -133,27 +133,27 @@ export default {
         {
           icon: "fa fa-users",
           title: this.$i18n.t("mainLayoutNavbar-residentsLink"),
-          route: "residents",
+          route: "/residents",
         },
         {
           icon: "fa fa-heartbeat",
           title: this.$i18n.t("mainLayoutNavbar-activitesLink"),
-          route: "activities",
+          route: "/activities",
         },
         {
           icon: "fa fa-home",
           title: this.$i18n.t("mainLayoutNavbar-homesLink"),
-          route: "homes",
+          route: "/homes",
         },
         {
           icon: "fa fa-chart-line",
           title: this.$i18n.t("mainLayoutNavbar-reportLink"),
-          route: "report",
+          route: "/report",
         },
         {
           icon: "fa fa-cog",
           title: this.$i18n.t("mainLayoutNavbar-settingsLink"),
-          route: "settings",
+          route: "/settings",
         },
       ],
     };

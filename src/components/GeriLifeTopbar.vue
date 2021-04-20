@@ -1,11 +1,8 @@
 <template>
   <div>
     <q-toolbar class="bg-grey-4">
-      <div class="row no-wrap" style="width: 100%">
-        <q-toolbar-title
-          @click="$route.path !== '/' && $router.push({ path: '/' })"
-          class="cursor-pointer col-auto"
-        >
+      <q-toolbar-title class="cursor-pointer max-width">
+        <router-link class="no-text-decor" :to="{ path: '/' }">
           <q-img
             width="30px"
             height="30px"
@@ -13,23 +10,33 @@
             alt=""
           />
           <span class="text-grey-7"> GeriLife<sup>®</sup></span>
-        </q-toolbar-title>
-        <div class="col-8">
-          <div v-if="!!getCookie('token') && isMdOrAbove">
-            <q-btn
-              v-for="(menuItem, index) in menu"
-              :key="index"
-              class="text-grey-7"
-              flat
-              :icon="menuItem.icon"
-              @click="clicked(menuItem, index)"
-            >
-              <span class="q-ml-sm">{{ menuItem.title }}</span>
-            </q-btn>
-          </div>
-        </div>
+        </router-link>
+      </q-toolbar-title>
+      <div v-if="!!getCookie('token')">
+        <router-link
+          v-for="(menuItem, index) in menu"
+          :key="index"
+          :to="{ path: menuItem.route }"
+          mode="history"
+          class="no-text-decor gt-sm"
+        >
+          <q-btn class="text-grey-7" size="md" flat :icon="menuItem.icon">
+            <span class="q-ml-sm">{{ menuItem.title }}</span>
+          </q-btn>
+        </router-link>
       </div>
-      <div style="max-width: 150px">
+      <q-space />
+      <q-btn
+        @click="openProfile = true"
+        class="text-grey-7"
+        flat
+        icon="fa fa-user"
+      >
+        <span class="q-ml-sm">{{
+          this.$i18n.t("mainLayoutNavbar-profileLink")
+        }}</span>
+      </q-btn>
+      <div class="max-width">
         <q-select
           outlined
           dense
@@ -51,7 +58,8 @@
         {{ $i18n.t("logout-logoutButton") }}
       </q-btn>
       <q-btn
-        v-if="!!getCookie('token') && !isMdOrAbove"
+        v-if="!!getCookie('token')"
+        class="lt-md"
         flat
         @click="drawerRight = !drawerRight"
         round
@@ -61,7 +69,7 @@
       <change-password v-if="openProfile" @close="openProfile = false" />
     </q-toolbar>
     <q-drawer
-      v-if="!!getCookie('token') && !isMdOrAbove"
+      v-if="!!getCookie('token')"
       side="right"
       v-model="drawerRight"
       :width="200"
@@ -70,24 +78,29 @@
       <q-scroll-area class="fit">
         <q-list>
           <template v-for="(menuItem, index) in menu">
-            <q-item
-              :class="{
-                'text-black': selected !== menuItem.title,
-                'text-white': selected === menuItem.title,
-              }"
+            <router-link
+              :to="{ path: menuItem.route }"
+              mode="history"
+              class="no-text-decor"
               :key="index"
-              clickable
-              @click="clicked(menuItem, index)"
-              active-class="bg-primary"
-              :active="menuItem.title === selected"
             >
-              <q-item-section avatar>
-                <q-icon :name="menuItem.icon" />
-              </q-item-section>
-              <q-item-section>
-                {{ menuItem.title }}
-              </q-item-section>
-            </q-item>
+              <q-item
+                :class="{
+                  'text-black': selected !== menuItem.title,
+                  'text-white': selected === menuItem.title,
+                }"
+                clickable
+                active-class="bg-primary"
+                :active="menuItem.title === selected"
+              >
+                <q-item-section avatar>
+                  <q-icon :name="menuItem.icon" />
+                </q-item-section>
+                <q-item-section>
+                  {{ menuItem.title }}
+                </q-item-section>
+              </q-item>
+            </router-link>
             <q-separator :key="'sep' + index" v-if="menuItem.separator" />
           </template>
         </q-list>
@@ -120,40 +133,30 @@ export default {
         {
           icon: "fa fa-users",
           title: this.$i18n.t("mainLayoutNavbar-residentsLink"),
-          route: "/residents",
+          route: "residents",
         },
         {
           icon: "fa fa-heartbeat",
           title: this.$i18n.t("mainLayoutNavbar-activitesLink"),
-          route: "/activities",
+          route: "activities",
         },
         {
           icon: "fa fa-home",
           title: this.$i18n.t("mainLayoutNavbar-homesLink"),
-          route: "/homes",
+          route: "homes",
         },
         {
           icon: "fa fa-chart-line",
           title: this.$i18n.t("mainLayoutNavbar-reportLink"),
-          route: "/report",
+          route: "report",
         },
         {
           icon: "fa fa-cog",
           title: this.$i18n.t("mainLayoutNavbar-settingsLink"),
-          route: "/settings",
-        },
-        {
-          icon: "fa fa-user",
-          title: this.$i18n.t("mainLayoutNavbar-profileLink"),
-          isProfileLink: true,
+          route: "settings",
         },
       ],
     };
-  },
-  computed: {
-    isMdOrAbove() {
-      return this.$q.screen.md || this.$q.screen.lg || this.$q.screen.xl;
-    },
   },
 
   methods: {
@@ -166,21 +169,25 @@ export default {
       }
     },
 
-    clicked(menuItem) {
-      this.selected = menuItem.title;
-      if (menuItem.isProfileLink) {
-        this.openProfile = true;
-      } else {
-        this.$router.push({ path: menuItem.route });
-      }
-    },
-
     changeLanguage(selected) {
       this.$i18n.locale = selected.value;
       localStorage.setItem("locale", selected.value);
-
       this.$router.go();
     },
   },
 };
 </script>
+<style lang="scss" scoped>
+.no-text-decor {
+  text-decoration: none;
+}
+
+.max-width {
+  max-width: 6.5em;
+}
+@media (max-width: $breakpoint-sm-max) {
+  .max-width {
+    max-width: 8em;
+  }
+}
+</style>

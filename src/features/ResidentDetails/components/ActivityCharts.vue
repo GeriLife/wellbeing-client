@@ -39,6 +39,17 @@
         </div>
       </div>
     </template>
+    <div v-else-if="loading" class="center-aligned">
+      <q-circular-progress
+        :value="61"
+        indeterminate
+        size="50px"
+        :thickness="0.22"
+        color="primary"
+        track-color="grey-3"
+        class="q-ma-md"
+      />
+    </div>
     <div v-else>
       {{ $i18n.t("resident-noRecordedActivities-text") }}
     </div>
@@ -63,6 +74,7 @@ export default {
     return {
       tab: "calendar",
       activities: null,
+      loading: false,
     };
   },
 
@@ -81,7 +93,9 @@ export default {
 
   methods: {
     async getCalendar() {
+      this.loading = true;
       this.activities = await getResidentActvitiesWithActivityAndFaciltatorNameApi();
+      this.loading = false;
     },
   },
 };

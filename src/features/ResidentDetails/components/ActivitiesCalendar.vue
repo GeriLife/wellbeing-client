@@ -1,5 +1,18 @@
 <template>
-  <div class="fit" :id="calendarId"></div>
+  <div class="fit">
+    <div :id="calendarId"></div>
+    <div v-if="loading" class="center-aligned">
+      <q-circular-progress
+        :value="61"
+        indeterminate
+        size="50px"
+        :thickness="0.22"
+        color="primary"
+        track-color="grey-3"
+        class="q-ma-md"
+      />
+    </div>
+  </div>
 </template>
 <script>
 import { getDaywiseActivityDurationApi } from "../services/resident-services";
@@ -12,6 +25,7 @@ export default {
   data() {
     return {
       calendarId: "activity-calendar-container",
+      loading: false,
     };
   },
 
@@ -25,7 +39,9 @@ export default {
 
   methods: {
     async renderCalendar() {
+      this.loading = true;
       const data = await getDaywiseActivityDurationApi(this.residentId);
+      this.loading = false;
       renderCalendarChart(this.calendarId, "RdYlGn", data);
     },
   },

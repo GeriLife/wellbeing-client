@@ -46,12 +46,23 @@
       </div>
       <q-separator />
     </q-card-section>
-    <q-card-section>
+    <q-card-section v-if="!loading">
       <div class="text-h5">
         {{ $i18n.t("residentActivities-header") }}
       </div>
       <activity-charts :resident-id="$route.params.id" />
     </q-card-section>
+    <div v-else class="center-aligned">
+      <q-circular-progress
+        :value="61"
+        indeterminate
+        size="50px"
+        :thickness="0.22"
+        color="primary"
+        track-color="grey-3"
+        class="q-ma-md"
+      />
+    </div>
     <q-dialog
       @hide="closeDialog"
       @escape-key="closeDialog"
@@ -98,6 +109,7 @@ export default {
     return {
       resident: null,
       canEdit: false,
+      loading: false,
       isLoggedIn: getCookie("token"),
       openDialog: false,
       isFeelings: false,
@@ -129,10 +141,12 @@ export default {
     },
 
     async reload() {
+      this.loading = true;
       this.resident = await getResidentDetailsApi(this.$route.params.id);
       this.canEdit = await isResidentManagedByCurrentUserApi(
         this.$route.params.id
       );
+      this.loading = false;
     },
   },
 };

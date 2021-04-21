@@ -14,13 +14,26 @@
       >
     </div>
     <q-separator class="q-mt-sm" />
-    <home-group
-      v-for="homeGroup in homes"
-      :key="homeGroup._id"
-      :group="homeGroup"
-      class="q-mt-md"
-      @edit-clicked="openForEdit"
-    />
+    <div v-if="!loading">
+      <home-group
+        v-for="homeGroup in homes"
+        :key="homeGroup._id"
+        :group="homeGroup"
+        class="q-mt-md"
+        @edit-clicked="openForEdit"
+      />
+    </div>
+    <div v-else class="center-aligned">
+      <q-circular-progress
+        :value="61"
+        indeterminate
+        size="50px"
+        :thickness="0.22"
+        color="primary"
+        track-color="grey-3"
+        class="q-ma-md"
+      />
+    </div>
     <add-group v-if="showAddGroup" :group="selectedGroup" @close="close" />
   </div>
 </template>
@@ -40,17 +53,22 @@ export default {
       homes: null,
       showAddGroup: false,
       selectedGroup: null,
+      loading: false,
     };
   },
 
   async created() {
+    this.loading = true;
     this.homes = await getUserGroups();
+    this.loading = false;
   },
 
   methods: {
     async close(isGroupChanged) {
       if (isGroupChanged === true) {
+        this.loading = true;
         this.homes = await getUserGroups();
+        this.loading = false;
       }
       this.selectedGroup = null;
       this.showAddGroup = false;

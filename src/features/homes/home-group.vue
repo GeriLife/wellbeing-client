@@ -181,7 +181,9 @@ export default {
       this.showAssignManager = false;
     },
     async init() {
+      this.loading = true;
       this.homes = await getHomesWithActivityLevel(this.group._id);
+      this.loading = false;
       await this.$nextTick();
       this.homes.forEach((home) =>
         renderChart(`activityLevelCountsChart-${home._id}`, home.activityLevel)

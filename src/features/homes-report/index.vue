@@ -15,6 +15,17 @@
     <q-card-section>
       <div :id="chartName" />
     </q-card-section>
+    <div v-if="loading" class="center-aligned">
+      <q-circular-progress
+        :value="61"
+        indeterminate
+        size="50px"
+        :thickness="0.22"
+        color="primary"
+        track-color="grey-3"
+        class="q-ma-md"
+      />
+    </div>
   </q-card>
 </template>
 <script>
@@ -25,23 +36,27 @@ import { renderChart } from "./services/generate-report-service";
 
 export default {
   components: {
-    ReportSettingsForm
+    ReportSettingsForm,
   },
   data() {
     return {
       home: null,
+      loading: false,
       settings: {
         barMode: "group",
         timePeriod: "week",
-        activityMetric: "activity_minutes"
+        activityMetric: "activity_minutes",
       },
       activityData: null,
-      chartName: "homeResidentsActivitiesChart"
+      chartName: "homeResidentsActivitiesChart",
     };
   },
   async created() {
+    this.loading = true;
     this.home = await getHomeDetailsApi(this.$route.params.id);
     await this.getData();
+    this.loading = false;
+
     this.renderChart();
   },
 
@@ -55,7 +70,7 @@ export default {
     },
     "settings.barMode"() {
       this.renderChart();
-    }
+    },
   },
 
   methods: {
@@ -68,11 +83,13 @@ export default {
       );
     },
     async getData() {
+      this.loading = true;
       this.activityData = await getMonthlyAggregatedHomeResidentActivities(
         this.$route.params.id,
         this.settings.timePeriod
       );
-    }
-  }
+      this.loading = false;
+    },
+  },
 };
 </script>

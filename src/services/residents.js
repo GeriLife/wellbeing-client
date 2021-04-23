@@ -6,13 +6,13 @@ export const getResidentsList = async () => {
     const { data } = await $axios.post(
       "/api/methods/userVisibleResidentNamesGroupedtByHomes"
     );
-    return data.flatMap(r =>
-      r.options.map(subOpt => ({
-        home: r.optgroup,
+    return data.map(r => ({
+      ...r,
+      children: r.options.map(subOpt => ({
         label: subOpt.label,
         value: subOpt.value
       }))
-    );
+    }));
   } catch (error) {
     errorNotifier(error);
     return [];

@@ -4,16 +4,21 @@
       {{ $i18n.t("residencies.previousEndTime") }} {{ this.moveIn }}
     </p>
 
-    <residents
+    <q-select
       :disabled="!!residency"
       v-model="residentId"
-      :inactive-only="true"
+      outlined
+      fill-input
+      :label="$i18n.t('activityForm-residentSelect-placeholder')"
+      emit-value
+      map-options
       v-if="!residency || overideList"
-      :residency="residencyId"
       :rules="[(val) => requiredValidation(val)]"
       :multiple="false"
-      :items-overide-list="!residency ? null : overideList"
+      :options="!residency ? residentList : overideList"
+      dropdown-icon="fa fa-chevron-down"
     />
+
     <homes
       :disabled="!!residency && !endClicked"
       class="q-mt-sm"
@@ -85,18 +90,19 @@
 <script>
 import { date } from "quasar";
 import { requiredValidation, minDate, maxDate } from "src/utils/validations.js";
-import { getResidentDetailsApi } from "src/services/residents.js";
+import {
+  getResidentDetailsApi,
+  getResidentsWithoutActiveResidencies,
+} from "src/services/residents.js";
 import Homes from "src/components/Homes.vue";
 import {
   addNewResidencyWithExistingResident,
   editResidency,
 } from "../services/residency-services";
-import Residents from "src/components/Residents";
 
 export default {
   components: {
     Homes,
-    Residents,
   },
 
   props: {
@@ -121,6 +127,7 @@ export default {
       ),
       endClicked: false,
       overideList: null,
+      residentList: [],
     };
   },
 
@@ -144,6 +151,10 @@ export default {
           ]
         : null;
     }
+
+    this.residentList = await getResidentsWithoutActiveResidencies(
+      this.residency
+    );
   },
 
   methods: {

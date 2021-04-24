@@ -3,15 +3,18 @@
     v-bind="$attrs"
     :value="model"
     :options="options"
-    clearable
+    :clearable="!disabled"
     use-input
     :use-chips="multiple === true"
     :multiple="multiple"
+    :disabled="disabled"
     class="q-my-sm"
     dropdown-icon="fa fa-chevron-down"
     outlined
     @filter="filterFn"
-    @remove="(v) => multiple && $emit('update:model', remove(v))"
+    @remove="
+      (v) => (!disabled && multiple ? $emit('update:model', remove(v)) : '')
+    "
     @clear="$emit('update:model', [])"
     option-value="value"
     option-label="label"
@@ -28,10 +31,11 @@
           :key="child.value"
           clickable
           v-ripple
-          :disabled="isActive(child)"
+          :disabled="disabled || isActive(child)"
           @click="
-            !isActive(child) &&
-              $emit('update:model', multiple ? [...model, child] : child)
+            !disabled && !isActive(child)
+              ? $emit('update:model', multiple ? [...model, child] : child)
+              : ''
           "
           :class="{
             'fit-this q-py-xs': true,
@@ -50,8 +54,9 @@
 export default {
   props: {
     stringOptions: { required: true, type: Array },
-    model: { default: null, type: [Array, Object] },
+    model: { default: null, type: [Array, Object, String] },
     multiple: { type: Boolean, default: false },
+    disabled: { type: Boolean, default: false },
   },
 
   data() {

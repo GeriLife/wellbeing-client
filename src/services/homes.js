@@ -18,13 +18,10 @@ export const getHomeSelectOptionsWithGroups = async () => {
     const { data } = await $axios.post(
       "/api/methods/getHomeSelectOptionsWithGroups"
     );
-    return (data || []).flatMap(r =>
-      r.options.map(subOpt => ({
-        group: r.optgroup,
-        label: subOpt.label,
-        value: subOpt.value
-      }))
-    );
+    return (data || []).map(r => ({
+      ...r,
+      children: r.options
+    }));
   } catch (error) {
     errorNotifier(error);
     return [];

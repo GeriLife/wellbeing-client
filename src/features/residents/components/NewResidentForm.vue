@@ -3,7 +3,7 @@
     <q-input
       outlined
       class="q-mt-sm"
-      :rules="[v => requiredValidation(v)]"
+      :rules="[(v) => requiredValidation(v)]"
       :label="$i18n.t('residents.firstName.label')"
       v-model="firstName"
     />
@@ -11,14 +11,15 @@
       outlined
       maxlength="1"
       class="q-mt-sm"
-      :rules="[v => requiredValidation(v)]"
+      :rules="[(v) => requiredValidation(v)]"
       :label="$i18n.t('residents.lastInitial.label')"
       v-model="lastInitial"
     />
     <homes
       class="q-mt-sm"
       v-model="homeId"
-      :rules="[v => requiredValidation(v)]"
+      :multiple="false"
+      :rules="[(v) => requiredValidation(v)]"
     />
 
     <q-input
@@ -28,7 +29,7 @@
       :label="$i18n.t('residencies.moveIn.label')"
       type="date"
       mask="date"
-      :rules="[v => requiredValidation(v), v => maxDate(v, currentDate)]"
+      :rules="[(v) => requiredValidation(v), (v) => maxDate(v, currentDate)]"
     />
     <div class="float-right">
       <q-btn @click="validateAndSubmit" color="primary">
@@ -48,24 +49,24 @@ import { addNewResidentAndResidency } from "../services/residency-services";
 
 export default {
   components: {
-    Homes
+    Homes,
   },
 
   data() {
     return {
-      homeId: "",
+      homeId: null,
       firstName: "",
       lastInitial: "",
       requiredValidation,
       maxDate,
-      moveIn: date.formatDate(new Date(), "YYYY-MM-DD")
+      moveIn: date.formatDate(new Date(), "YYYY-MM-DD"),
     };
   },
 
   computed: {
     currentDate() {
       return date.formatDate(new Date(), "YYYY-MM-DD");
-    }
+    },
   },
 
   methods: {
@@ -75,7 +76,7 @@ export default {
         this.$q.notify({
           type: "negative",
           position: "top-right",
-          message: this.$i18n.t("formInvalid")
+          message: this.$i18n.t("formInvalid"),
         });
         return;
       }
@@ -85,12 +86,12 @@ export default {
           firstName: this.firstName,
           lastInitial: this.lastInitial,
           moveIn: `${date.formatDate(this.moveIn, "YYYY-MM-DDTHH:mm:ss.SSS")}Z`,
-          homeId: this.homeId.value
+          homeId: this.homeId.value,
         })
       ) {
         this.$emit("close-and-exit");
       }
-    }
-  }
+    },
+  },
 };
 </script>

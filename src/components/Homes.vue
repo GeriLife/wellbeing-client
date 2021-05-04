@@ -1,67 +1,50 @@
 <template>
-  <q-select
+  <hierarchy-dropdown
     v-bind="$attrs"
     v-on="$listeners"
-    :value="value"
-    outlined
+    emit-value
     map-options
-    :use-chips="multiple === true"
-    input-debounce="450"
     :label="$i18n.t('residencies.homeId.label')"
-    :options="options"
-    @filter="filterFn"
-    dropdown-icon="fa fa-chevron-down"
+    :model="mappedValue"
+    @update:model="(v) => $emit('input', v)"
     :multiple="multiple"
+    :disabled="disabled"
     behavior="menu"
-  >
-    <template v-slot:option="scope">
-      <q-item v-bind="scope.itemProps" v-on="scope.itemEvents">
-        <q-item-section>
-          <q-item-label>{{ scope.opt.label }}</q-item-label>
-          <q-item-label caption
-            >{{ $i18n.t("homes.groupId.label") }}:
-            {{ scope.opt.group }}</q-item-label
-          >
-        </q-item-section>
-      </q-item>
-    </template>
-  </q-select>
+    :string-options="options"
+  />
 </template>
 <script>
 import { getHomeSelectOptionsWithGroups } from "src/services/homes";
+import HierarchyDropdown from "./HierarchyDropdown";
 
 export default {
   props: {
     value: [String, Object],
-    multiple: { type: Boolean, default: false }
+    multiple: { type: Boolean, default: false },
+    disabled: { type: Boolean, default: false },
+  },
+  components: {
+    HierarchyDropdown,
   },
   data() {
     return {
       options: [],
-      original: []
     };
   },
-  async created() {
-    this.original = await getHomeSelectOptionsWithGroups();
-    this.options = this.original;
+
+  computed: {
+    mappedValue() {
+      if (!this.value || typeof this.value !== "string") {
+        return this.value;
+      }
+      return this.options
+        .flatMap((v) => v.children)
+        .find((v) => v.value === this.value);
+    },
   },
 
-  methods: {
-    filterFn(val, update) {
-      if (val === "") {
-        update(() => {
-          this.options = this.original;
-        });
-        return;
-      }
-
-      update(() => {
-        const needle = val.toLowerCase();
-        this.options = this.original.filter(
-          v => v.label.toLowerCase().indexOf(needle) > -1
-        );
-      });
-    }
-  }
+  async created() {
+    this.options = await getHomeSelectOptionsWithGroups();
+  },
 };
 </script>

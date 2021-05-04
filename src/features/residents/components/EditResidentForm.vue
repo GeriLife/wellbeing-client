@@ -8,8 +8,8 @@
       :disabled="!!residency"
       v-model="residentId"
       outlined
-      fill-input
       :label="$i18n.t('activityForm-residentSelect-placeholder')"
+      fill-input
       emit-value
       map-options
       v-if="!residency || overideList"

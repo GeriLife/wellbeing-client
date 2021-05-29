@@ -294,7 +294,7 @@
   "residentActivityTable-durationLabel": "Kesto",
   "residentActivityTable-activityDateLabel": "Aktiviteetin pvm",
   "residentActivityTable-filterPanel-header": "Suodata aktiviteetteja",
-  "residentActivities-header": "Aktiviteetit",
+  "residentActivities-header": "Aktiviteettitrendi",
   "residentActivities-tabs-trend": "Trendi",
   "residentActivities-tabs-types": "Aktiviteettityypit",
   "residentActivities-tabs-calendar": "Kalenteri",

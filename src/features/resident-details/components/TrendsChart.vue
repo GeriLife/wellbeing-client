@@ -26,7 +26,7 @@ export default {
       trends: null,
       settings: {
         barMode: "stack",
-        timePeriod: "week",
+        timePeriod: "month",
         activityMetric: "activity_minutes",
       },
     };

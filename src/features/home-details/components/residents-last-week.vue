@@ -6,11 +6,6 @@
     </q-card-section>
     <q-card-section>
       <table class="full-width">
-        <caption>
-          {{
-            $i18n.t("homeResidents-tableCaption")
-          }}
-        </caption>
         <thead>
           <tr class="q-my-md">
             <th id="empty-space-start" colspan="3"></th>

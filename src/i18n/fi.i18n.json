@@ -197,7 +197,6 @@
   "homeResidentActivityLevelTrend-legend-inactive": "Passiivinen",
   "homeResidentActivityLevelTrend-legend-semiActive": "Kohtalainen",
   "homeResidentActivityLevelTrend-yAxis-label": "Asukkaiden lukum\u00e4\u00e4r\u00e4",
-  "homeResidents-tableCaption": "Aktiviteettip\u00e4iv\u00e4t ja yhteenveto toteutuneista aktiviteeteista viimeisen seitsem\u00e4n p\u00e4iv\u00e4n ajalta.",
   "homeResidents-tableHeader-residentName": "Nimi",
   "homeResidents-tableHeader-activeDaysCount": "P\u00e4iv\u00e4t",
   "homeResidents-tableHeader-activityLevel": "Taso",

@@ -47,7 +47,7 @@
       <q-separator />
     </q-card-section>
     <q-card-section>
-      <div class="text-h5">
+      <div class="text-h6">
         {{ $i18n.t("residentActivities-header") }}
       </div>
       <activity-charts :resident-id="$route.params.id" />

@@ -1,9 +1,6 @@
 <template>
-  <div>
+  <div class="q-mt-sm">
     <div>
-      <span class="text-h5">
-        {{ $i18n.t("homeResidentActivitySummaryCharts-heading") }}</span
-      >
       <report-settings-form
         class="d-inline"
         :settings.sync="settings"

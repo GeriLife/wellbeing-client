@@ -1,8 +1,5 @@
 <template>
   <div>
-    <div class="text-h5">
-      {{ $i18n.t("activities-pageHeader") }}
-    </div>
     <div>
       <q-table
         class="q-mt-md"

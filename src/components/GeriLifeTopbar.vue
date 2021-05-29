@@ -41,7 +41,7 @@
           outlined
           dense
           fill-input
-          bg-color="white"
+          bg-color="light-grey"
           map-options
           :value="$i18n.locale"
           @input="changeLanguage"

@@ -60,19 +60,7 @@
         </q-btn>
       </div>
       <q-space />
-      <div class="col-3 col-md-1">
-        <q-select
-          outlined
-          dense
-          fill-input
-          bg-color="white"
-          map-options
-          :value="$i18n.locale"
-          @input="changeLanguage"
-          :options="languageOptions"
-        />
-      </div>
-      <div class="col-9 col-md-4" v-if="!!getCookie('token')">
+      <div class="col-3 col-md-3" v-if="!!getCookie('token')">
         <q-btn
           @click="logoutAndRedirect"
           :size="isSmOrAbove ? 'md' : 'xs'"
@@ -105,6 +93,19 @@
             $i18n.t("mainLayoutNavbar-profileLink")
           }}</span>
         </q-btn>
+      
+        <div class="col-3 col-md-1">
+          <q-select
+            outlined
+            dense
+            fill-input
+            bg-color="light-grey"
+            map-options
+            :value="$i18n.locale"
+            @input="changeLanguage"
+            :options="languageOptions"
+          />
+        </div>
       </div>
     </div>
     <change-password v-if="openProfile" @close="openProfile = false" />

@@ -338,7 +338,6 @@
   "residentActivities-tabs-types": "Activity Types",
   "residentActivities-tabs-calendar": "Calendar",
   "residentActivities-tabs-table": "Table",
-  "residentActivityTrendChart-header": "Activity trend",
   "residentActivityTypesChart-header": "Activity types",
   "residentActivityTypesChart-xAxis-title": "Activity count",
   "residentActivityTypesChart-yAxis-title": "Activity type",

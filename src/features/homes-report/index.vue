@@ -8,11 +8,13 @@
         <span class="text-h6 text-grey-6"
           >({{ $i18n.t("homeReport-header") }})</span
         >
-        <report-settings-form class="q-ml-sm" :settings.sync="settings" />
+        
       </div>
     </q-card-section>
 
     <q-card-section>
+      <report-settings-form class="q-ml-sm" :settings.sync="settings" />
+      
       <div :id="chartName" />
     </q-card-section>
   </q-card>

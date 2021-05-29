@@ -106,7 +106,7 @@ export default {
       activityType: null,
       role: null,
       date: date.formatDate(new Date(), "YYYY/MM/DD"),
-      duration: 0,
+      duration: undefined,
     };
   },
 

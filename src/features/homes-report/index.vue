@@ -14,7 +14,7 @@
 
     <q-card-section>
       <report-settings-form class="q-ml-sm" :settings.sync="settings" />
-      
+
       <div :id="chartName" />
     </q-card-section>
   </q-card>
@@ -33,8 +33,8 @@ export default {
     return {
       home: null,
       settings: {
-        barMode: "group",
-        timePeriod: "week",
+        barMode: "stack",
+        timePeriod: "month",
         activityMetric: "activity_minutes"
       },
       activityData: null,

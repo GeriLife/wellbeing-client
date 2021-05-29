@@ -44,8 +44,8 @@ export default {
       home: null,
       loading: false,
       settings: {
-        barMode: "group",
-        timePeriod: "week",
+        barMode: "stack",
+        timePeriod: "month",
         activityMetric: "activity_minutes",
       },
       activityData: null,

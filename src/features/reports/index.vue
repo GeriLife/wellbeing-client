@@ -2,7 +2,7 @@
   <q-card class="q-px-sm full-width">
     <q-card-section class="q-mb-sm">
       <div>
-        <span class="text-h4"> {{ $i18n.t("report-header") }}</span>
+        <span class="text-h5"> {{ $i18n.t("report-header") }}</span>
         <report-settings-form class="d-inline" :settings.sync="settings" />
       </div>
       <div class="text-h6">

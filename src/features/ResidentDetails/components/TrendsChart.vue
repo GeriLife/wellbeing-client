@@ -1,9 +1,6 @@
 <template>
   <div class="row">
     <div class="col-12">
-      <span class="text-h6">
-        {{ $i18n.t("residentActivityTrendChart-header") }}</span
-      >
       <report-settings-form class="d-inline" :settings.sync="settings" />
     </div>
     <div class="col-12" :id="trendChartId"></div>
@@ -29,7 +26,7 @@ export default {
       trends: null,
       settings: {
         barMode: "stack",
-        timePeriod: "week",
+        timePeriod: "month",
         activityMetric: "activity_minutes",
       },
     };

@@ -333,7 +333,7 @@
   "residentActivityTable-durationLabel": "Duration",
   "residentActivityTable-activityDateLabel": "Activity date",
   "residentActivityTable-filterPanel-header": "Filter activities",
-  "residentActivities-header": "Activities",
+  "residentActivities-header": "Activity trend",
   "residentActivities-tabs-trend": "Trend",
   "residentActivities-tabs-types": "Activity Types",
   "residentActivities-tabs-calendar": "Calendar",

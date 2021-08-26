@@ -19,3 +19,22 @@ export const getMonthlyAggregatedHomeResidentActivities = async (
     return [];
   }
 };
+
+export const getMonthlyAggregatedActivitiesByRoles = async (
+  homeId,
+  timePeriod
+) => {
+  try {
+    const response = await $axios.post(
+      "/api/methods/getMonthlyAggregatedActivitiesByRoles",
+      {
+        homeId,
+        timePeriod
+      }
+    );
+    return response.data;
+  } catch (error) {
+    errorNotifier(error);
+    return [];
+  }
+};

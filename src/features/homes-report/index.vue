@@ -10,8 +10,9 @@
 
     <q-card-section>
       <report-settings-form class="q-ml-sm" :settings.sync="settings" />
-      
+
       <div :id="chartName" />
+      <div :id="roleChartName" />
     </q-card-section>
     <div v-if="loading" class="center-aligned">
       <q-circular-progress
@@ -27,10 +28,16 @@
   </q-card>
 </template>
 <script>
-import { getMonthlyAggregatedHomeResidentActivities } from "./services/list-services";
+import {
+  getMonthlyAggregatedHomeResidentActivities,
+  getMonthlyAggregatedActivitiesByRoles,
+} from "./services/list-services";
 import { getHomeDetailsApi } from "src/services/homes.js";
 import ReportSettingsForm from "src/components/ReportSettingsForm.vue";
-import { renderChart } from "./services/generate-report-service";
+import {
+  renderChart,
+  renderRolesChart,
+} from "./services/generate-report-service";
 
 export default {
   components: {
@@ -47,6 +54,7 @@ export default {
       },
       activityData: null,
       chartName: "homeResidentsActivitiesChart",
+      roleChartName: "homeResidentsActivitiesByRolesChart",
     };
   },
   async created() {
@@ -79,10 +87,21 @@ export default {
         this.settings.activityMetric,
         this.settings.barMode
       );
+
+      renderRolesChart(
+        this.roleChartName,
+        this.activityRoleData,
+        this.settings.activityMetric,
+        this.settings.barMode
+      );
     },
     async getData() {
       this.loading = true;
       this.activityData = await getMonthlyAggregatedHomeResidentActivities(
+        this.$route.params.id,
+        this.settings.timePeriod
+      );
+      this.activityRoleData = await getMonthlyAggregatedActivitiesByRoles(
         this.$route.params.id,
         this.settings.timePeriod
       );
